@@ -7,7 +7,7 @@ class Scorer:
 
 	#Calculate the average error per point from the initial point on.
 	#For each point, sum the error predicting the next 63 points
-	def error(self,initial_point):
+	def error(self,initial_point=10):
 		sum=0
 		count=0
 		for i in range(initial_point, len(self.p.lines)-64):
