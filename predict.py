@@ -1,4 +1,5 @@
 #!/usr/bin/python
+import math
 class Predictor:
 	lines=[[]]
 	norm_lines=[[]]
@@ -25,7 +26,14 @@ class Predictor:
 		self.dy=maxY-self.minY
 		for i in range(0,len(self.lines)):
 			if(self.lines[i][0] == "-1" or self.lines[i][1]== "-1"):
-				self.norm_lines.append([-1,-1])
+				self.norm_lines.append([-1,-1,-1,-1])
 			else:
-				self.norm_lines.append([((float(self.lines[i][0])-self.minX)/self.dx),((float(self.lines[i][1])-self.minY)/self.dy)])
+				toAdd=[((float(self.lines[i][0])-self.minX)/self.dx),((float(self.lines[i][1])-self.minY)/self.dy),-1.,-1.]
+				#If there is a previous point, calculate the angle and speed
+				if i>0 and self.lines[i-1][0]!="-1":
+					toAdd[2]=math.sqrt((toAdd[0]-self.norm_lines[-1][0])**2+(toAdd[1]-self.norm_lines[-1][1])**2)
+					toAdd[3]=math.atan2(-1*(toAdd[1]-self.norm_lines[-1][1]),(toAdd[0]-self.norm_lines[-1][0]))
+
+				self.norm_lines.append(toAdd)
+		del self.norm_lines[0]
 
