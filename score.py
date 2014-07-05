@@ -24,6 +24,8 @@ class Scorer:
 p=Predictor()
 p.read("training_video1-centroid_data")
 s=Scorer(p)
-
+p.normalize()
 print p.predict(0,2)
 print s.error(0)
+print p.lines
+print p.norm_lines
