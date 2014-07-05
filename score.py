@@ -11,9 +11,10 @@ class Scorer:
 		sum=0
 		count=0
 		for i in range(initial_point, len(self.p.lines)-64):
-			count+=1
 			for j in range(0,64):
-				sum+=Scorer.squared_err(p.predict(i,i+j),self.p.lines[i+j])		
+				if(self.p.lines[i+j]!="-1"):
+					count+=1
+					sum+=Scorer.squared_err(p.predict(i,i+j),self.p.lines[i+j])		
 		return sum/count
 
 	@staticmethod
