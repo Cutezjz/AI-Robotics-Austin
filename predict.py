@@ -1,5 +1,6 @@
 #!/usr/bin/python
 import math
+import random
 class Predictor:
 	lines=[[]]
 	norm_lines=[[]]
@@ -40,12 +41,15 @@ class Predictor:
 class Predictor2:
 	"""A class for predicting robot positions based on training data."""
 
-	def __init__(self):
+	def __init__(self,noise_parameter=0):
 		self.lines=[[]]
+		self.noise=noise_parameter
 
 	def predict(self,fromPoint, toPoint):
 		"""Predict the datapoint at index 'toPoint'"""
-		return self.lines[toPoint]
+		x=self.lines[toPoint][0]+random.gauss(0,self.noise*abs(self.lines[toPoint][0]-self.lines[fromPoint][0]))
+		y=self.lines[toPoint][1]+random.gauss(0,self.noise*abs(self.lines[toPoint][1]-self.lines[fromPoint][1]))
+		return [x,y]
 
 	def read(self,filename):
 		f = open(filename)

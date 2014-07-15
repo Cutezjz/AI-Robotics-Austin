@@ -10,24 +10,43 @@ class Visualizer:
 
     def __init__(self, predictor):
         self.predictor = predictor
+        self.setup=False
 
-    def visualize(self, start_index, count=1, old_points=16):
+    def visualize_many(self, start_index, count=1, old_points=16, num_visualizations=1, skip_between_visualizations=16):
+        """Display actual and predicted data in a window, plotting predictions from multiple time points. 
+
+        Arguments:
+        start_index -- the index at which prediction should start
+        count -- the number of points to predict
+        old_points -- the number of points leading up to start_index that should be displayed
+        num_visualizations  -- The number of paths to visualize, meaning the number of times to call visualize
+        skip_between_visualizations -- The number of time steps to skip between visualizations
+        """
+        for i in range(num_visualizations):
+            self.visualize(start_index+(i*skip_between_visualizations), count, old_points,False)
+        self.window.exitonclick()
+            
+            
+        
+    def visualize(self, start_index, count=1, old_points=16, wait_after_visualize=True):
         """Display actual and predicted data in a window.
 
         Arguments:
         start_index -- the index at which prediction should start
         count -- the number of points to predict
         old_points -- the number of points leading up to start_index that should be displayed
+        wait_after_visualize -- Whether to wait for a mouseclick at the end of the function
         """
-
         pred = self.predictor
-        real_data = pred.lines
+        if not self.setup:
+            self.setup=True
 
-        window = turtle.Screen()
-        window.setup(self.WINDOW_WIDTH, self.WINDOW_WIDTH * pred.dy / pred.dx)
-        window.bgcolor('black')
-        window.setworldcoordinates(pred.minX, pred.minY+pred.dy, pred.minX+pred.dx, pred.minY)
-        print 'minX=%d, minY=%d, dx=%d, dy=%d' % (pred.minX, pred.minY, pred.dx, pred.dy)
+            self.window = turtle.Screen()
+            self.window.setup(self.WINDOW_WIDTH, self.WINDOW_WIDTH * pred.dy / pred.dx)
+            self.window.bgcolor('black')
+            self.window.setworldcoordinates(pred.minX, pred.minY+pred.dy, pred.minX+pred.dx, pred.minY)
+            print 'minX=%d, minY=%d, dx=%d, dy=%d' % (pred.minX, pred.minY, pred.dx, pred.dy)
+        real_data = pred.lines
 
         old_turtle = turtle.Turtle()
         old_turtle.shape('triangle')
@@ -108,11 +127,16 @@ class Visualizer:
                 last_prediction = prediction
             predict_turtle.speed('slow')
             actual_turtle.speed('slow')
+            if wait_after_visualize==True:
+                self.window.exitonclick()
+                
 
-        window.exitonclick()
 
-p=Predictor2()
+p=Predictor2(.1)
 p.read("training_video1-centroid_data")
+print "Read complete"
 p.process()
+print "Process complete"
 vis = Visualizer(p)
-vis.visualize(512, 16, 64)
+print "Visualizer setup"
+vis.visualize_many(512, 16, 64,3,5)
