@@ -1,0 +1,2899 @@
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 X1                         Num   0%   0%  94%  1476 /  6%     6 /  0%   543 
+
+
+Results KNN-1 Regression X1
+======
+
+Correlation coefficient                  0.9178
+Mean absolute error                      0.0302
+Root mean squared error                  0.0843
+Relative absolute error                 16.3688 %
+Root relative squared error             40.0622 %
+Total Number of Instances            24288     
+Ignored Class Unknown Instances               1476     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 Y1                         Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+
+
+Results KNN-1 Regression Y1
+======
+
+Correlation coefficient                  0.929 
+Mean absolute error                      0.0348
+Root mean squared error                  0.1121
+Relative absolute error                 13.07   %
+Root relative squared error             37.5169 %
+Total Number of Instances            24288     
+Ignored Class Unknown Instances               1476     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 X2                         Num   0%   0%  94%  1476 /  6%     6 /  0%   543 
+
+
+Results KNN-1 Regression X2
+======
+
+Correlation coefficient                  0.916 
+Mean absolute error                      0.031 
+Root mean squared error                  0.0852
+Relative absolute error                 16.7841 %
+Root relative squared error             40.4775 %
+Total Number of Instances            24288     
+Ignored Class Unknown Instances               1476     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 Y2                         Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+
+
+Results KNN-1 Regression Y2
+======
+
+Correlation coefficient                  0.9298
+Mean absolute error                      0.037 
+Root mean squared error                  0.1112
+Relative absolute error                 13.888  %
+Root relative squared error             37.2246 %
+Total Number of Instances            24288     
+Ignored Class Unknown Instances               1476     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 X3                         Num   0%   0%  94%  1476 /  6%     6 /  0%   543 
+
+
+Results KNN-1 Regression X3
+======
+
+Correlation coefficient                  0.9163
+Mean absolute error                      0.0314
+Root mean squared error                  0.0851
+Relative absolute error                 16.9977 %
+Root relative squared error             40.4367 %
+Total Number of Instances            24288     
+Ignored Class Unknown Instances               1476     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 Y3                         Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+
+
+Results KNN-1 Regression Y3
+======
+
+Correlation coefficient                  0.9311
+Mean absolute error                      0.0394
+Root mean squared error                  0.11  
+Relative absolute error                 14.7879 %
+Root relative squared error             36.8249 %
+Total Number of Instances            24288     
+Ignored Class Unknown Instances               1476     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 X4                         Num   0%   0%  94%  1476 /  6%     6 /  0%   543 
+
+
+Results KNN-1 Regression X4
+======
+
+Correlation coefficient                  0.9133
+Mean absolute error                      0.0327
+Root mean squared error                  0.0866
+Relative absolute error                 17.7255 %
+Root relative squared error             41.1443 %
+Total Number of Instances            24288     
+Ignored Class Unknown Instances               1476     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 Y4                         Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+
+
+Results KNN-1 Regression Y4
+======
+
+Correlation coefficient                  0.9371
+Mean absolute error                      0.0412
+Root mean squared error                  0.105 
+Relative absolute error                 15.4547 %
+Root relative squared error             35.1519 %
+Total Number of Instances            24288     
+Ignored Class Unknown Instances               1476     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 X5                         Num   0%   0%  94%  1476 /  6%     6 /  0%   543 
+
+
+Results KNN-1 Regression X5
+======
+
+Correlation coefficient                  0.9126
+Mean absolute error                      0.0338
+Root mean squared error                  0.087 
+Relative absolute error                 18.2884 %
+Root relative squared error             41.3145 %
+Total Number of Instances            24288     
+Ignored Class Unknown Instances               1476     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 Y5                         Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+
+
+Results KNN-1 Regression Y5
+======
+
+Correlation coefficient                  0.9273
+Mean absolute error                      0.0463
+Root mean squared error                  0.1128
+Relative absolute error                 17.3805 %
+Root relative squared error             37.7514 %
+Total Number of Instances            24288     
+Ignored Class Unknown Instances               1476     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 X6                         Num   0%   0%  94%  1476 /  6%     6 /  0%   543 
+
+
+Results KNN-1 Regression X6
+======
+
+Correlation coefficient                  0.9096
+Mean absolute error                      0.0359
+Root mean squared error                  0.0883
+Relative absolute error                 19.4207 %
+Root relative squared error             41.9404 %
+Total Number of Instances            24288     
+Ignored Class Unknown Instances               1476     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 Y6                         Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+
+
+Results KNN-1 Regression Y6
+======
+
+Correlation coefficient                  0.9249
+Mean absolute error                      0.0499
+Root mean squared error                  0.1146
+Relative absolute error                 18.732  %
+Root relative squared error             38.3442 %
+Total Number of Instances            24288     
+Ignored Class Unknown Instances               1476     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 X7                         Num   0%   0%  94%  1476 /  6%     6 /  0%   543 
+
+
+Results KNN-1 Regression X7
+======
+
+Correlation coefficient                  0.9101
+Mean absolute error                      0.0369
+Root mean squared error                  0.0882
+Relative absolute error                 19.978  %
+Root relative squared error             41.8839 %
+Total Number of Instances            24288     
+Ignored Class Unknown Instances               1476     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 Y7                         Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+
+
+Results KNN-1 Regression Y7
+======
+
+Correlation coefficient                  0.9199
+Mean absolute error                      0.0542
+Root mean squared error                  0.1181
+Relative absolute error                 20.3074 %
+Root relative squared error             39.5195 %
+Total Number of Instances            24288     
+Ignored Class Unknown Instances               1476     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 X8                         Num   0%   0%  94%  1476 /  6%     6 /  0%   543 
+
+
+Results KNN-1 Regression X8
+======
+
+Correlation coefficient                  0.9066
+Mean absolute error                      0.0389
+Root mean squared error                  0.0899
+Relative absolute error                 21.0751 %
+Root relative squared error             42.7053 %
+Total Number of Instances            24288     
+Ignored Class Unknown Instances               1476     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 Y8                         Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+
+
+Results KNN-1 Regression Y8
+======
+
+Correlation coefficient                  0.9256
+Mean absolute error                      0.0569
+Root mean squared error                  0.1137
+Relative absolute error                 21.3163 %
+Root relative squared error             38.0606 %
+Total Number of Instances            24288     
+Ignored Class Unknown Instances               1476     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 X9                         Num   0%   0%  94%  1476 /  6%     6 /  0%   543 
+
+
+Results KNN-1 Regression X9
+======
+
+Correlation coefficient                  0.9031
+Mean absolute error                      0.0413
+Root mean squared error                  0.0915
+Relative absolute error                 22.3598 %
+Root relative squared error             43.4678 %
+Total Number of Instances            24288     
+Ignored Class Unknown Instances               1476     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 Y9                         Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+
+
+Results KNN-1 Regression Y9
+======
+
+Correlation coefficient                  0.9103
+Mean absolute error                      0.0629
+Root mean squared error                  0.1249
+Relative absolute error                 23.5857 %
+Root relative squared error             41.7893 %
+Total Number of Instances            24288     
+Ignored Class Unknown Instances               1476     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 X10                        Num   0%   0%  94%  1476 /  6%     6 /  0%   543 
+
+
+Results KNN-1 Regression X10
+======
+
+Correlation coefficient                  0.8991
+Mean absolute error                      0.0435
+Root mean squared error                  0.0934
+Relative absolute error                 23.579  %
+Root relative squared error             44.3782 %
+Total Number of Instances            24288     
+Ignored Class Unknown Instances               1476     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 Y10                        Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+
+
+Results KNN-1 Regression Y10
+======
+
+Correlation coefficient                  0.9051
+Mean absolute error                      0.0672
+Root mean squared error                  0.1284
+Relative absolute error                 25.1834 %
+Root relative squared error             42.9492 %
+Total Number of Instances            24288     
+Ignored Class Unknown Instances               1476     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 X11                        Num   0%   0%  94%  1476 /  6%     6 /  0%   543 
+
+
+Results KNN-1 Regression X11
+======
+
+Correlation coefficient                  0.8955
+Mean absolute error                      0.0459
+Root mean squared error                  0.095 
+Relative absolute error                 24.831  %
+Root relative squared error             45.1523 %
+Total Number of Instances            24288     
+Ignored Class Unknown Instances               1476     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 Y11                        Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+
+
+Results KNN-1 Regression Y11
+======
+
+Correlation coefficient                  0.8988
+Mean absolute error                      0.0714
+Root mean squared error                  0.1326
+Relative absolute error                 26.7882 %
+Root relative squared error             44.3569 %
+Total Number of Instances            24288     
+Ignored Class Unknown Instances               1476     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 X12                        Num   0%   0%  94%  1476 /  6%     6 /  0%   543 
+
+
+Results KNN-1 Regression X12
+======
+
+Correlation coefficient                  0.8932
+Mean absolute error                      0.048 
+Root mean squared error                  0.0962
+Relative absolute error                 25.9977 %
+Root relative squared error             45.6959 %
+Total Number of Instances            24288     
+Ignored Class Unknown Instances               1476     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 Y12                        Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+
+
+Results KNN-1 Regression Y12
+======
+
+Correlation coefficient                  0.8916
+Mean absolute error                      0.0761
+Root mean squared error                  0.1371
+Relative absolute error                 28.5336 %
+Root relative squared error             45.8668 %
+Total Number of Instances            24288     
+Ignored Class Unknown Instances               1476     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 X13                        Num   0%   0%  94%  1476 /  6%     6 /  0%   543 
+
+
+Results KNN-1 Regression X13
+======
+
+Correlation coefficient                  0.8888
+Mean absolute error                      0.0506
+Root mean squared error                  0.0981
+Relative absolute error                 27.4238 %
+Root relative squared error             46.6012 %
+Total Number of Instances            24288     
+Ignored Class Unknown Instances               1476     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 Y13                        Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+
+
+Results KNN-1 Regression Y13
+======
+
+Correlation coefficient                  0.8814
+Mean absolute error                      0.0812
+Root mean squared error                  0.1435
+Relative absolute error                 30.4292 %
+Root relative squared error             48.0202 %
+Total Number of Instances            24288     
+Ignored Class Unknown Instances               1476     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 X14                        Num   0%   0%  94%  1476 /  6%     6 /  0%   543 
+
+
+Results KNN-1 Regression X14
+======
+
+Correlation coefficient                  0.8785
+Mean absolute error                      0.0541
+Root mean squared error                  0.1026
+Relative absolute error                 29.2953 %
+Root relative squared error             48.7364 %
+Total Number of Instances            24288     
+Ignored Class Unknown Instances               1476     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 Y14                        Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+
+
+Results KNN-1 Regression Y14
+======
+
+Correlation coefficient                  0.8725
+Mean absolute error                      0.0859
+Root mean squared error                  0.1489
+Relative absolute error                 32.1873 %
+Root relative squared error             49.8241 %
+Total Number of Instances            24288     
+Ignored Class Unknown Instances               1476     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 X15                        Num   0%   0%  94%  1476 /  6%     6 /  0%   543 
+
+
+Results KNN-1 Regression X15
+======
+
+Correlation coefficient                  0.8736
+Mean absolute error                      0.0568
+Root mean squared error                  0.1048
+Relative absolute error                 30.7403 %
+Root relative squared error             49.7785 %
+Total Number of Instances            24288     
+Ignored Class Unknown Instances               1476     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 Y15                        Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+
+
+Results KNN-1 Regression Y15
+======
+
+Correlation coefficient                  0.8637
+Mean absolute error                      0.0905
+Root mean squared error                  0.1541
+Relative absolute error                 33.9077 %
+Root relative squared error             51.5645 %
+Total Number of Instances            24288     
+Ignored Class Unknown Instances               1476     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 X16                        Num   0%   0%  94%  1476 /  6%     6 /  0%   543 
+
+
+Results KNN-1 Regression X16
+======
+
+Correlation coefficient                  0.868 
+Mean absolute error                      0.0595
+Root mean squared error                  0.107 
+Relative absolute error                 32.2044 %
+Root relative squared error             50.8438 %
+Total Number of Instances            24288     
+Ignored Class Unknown Instances               1476     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 Y16                        Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+
+
+Results KNN-1 Regression Y16
+======
+
+Correlation coefficient                  0.8546
+Mean absolute error                      0.0952
+Root mean squared error                  0.1591
+Relative absolute error                 35.6713 %
+Root relative squared error             53.2268 %
+Total Number of Instances            24288     
+Ignored Class Unknown Instances               1476     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 X17                        Num   0%   0%  94%  1476 /  6%     6 /  0%   543 
+
+
+Results KNN-1 Regression X17
+======
+
+Correlation coefficient                  0.8604
+Mean absolute error                      0.0625
+Root mean squared error                  0.1101
+Relative absolute error                 33.8246 %
+Root relative squared error             52.3256 %
+Total Number of Instances            24288     
+Ignored Class Unknown Instances               1476     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 Y17                        Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+
+
+Results KNN-1 Regression Y17
+======
+
+Correlation coefficient                  0.8447
+Mean absolute error                      0.0998
+Root mean squared error                  0.1646
+Relative absolute error                 37.429  %
+Root relative squared error             55.0599 %
+Total Number of Instances            24288     
+Ignored Class Unknown Instances               1476     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 X18                        Num   0%   0%  94%  1476 /  6%     6 /  0%   543 
+
+
+Results KNN-1 Regression X18
+======
+
+Correlation coefficient                  0.8531
+Mean absolute error                      0.0654
+Root mean squared error                  0.1131
+Relative absolute error                 35.3983 %
+Root relative squared error             53.7486 %
+Total Number of Instances            24288     
+Ignored Class Unknown Instances               1476     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 Y18                        Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+
+
+Results KNN-1 Regression Y18
+======
+
+Correlation coefficient                  0.8342
+Mean absolute error                      0.1046
+Root mean squared error                  0.1701
+Relative absolute error                 39.2021 %
+Root relative squared error             56.9255 %
+Total Number of Instances            24288     
+Ignored Class Unknown Instances               1476     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 X19                        Num   0%   0%  94%  1476 /  6%     6 /  0%   543 
+
+
+Results KNN-1 Regression X19
+======
+
+Correlation coefficient                  0.8422
+Mean absolute error                      0.0689
+Root mean squared error                  0.1172
+Relative absolute error                 37.3141 %
+Root relative squared error             55.7026 %
+Total Number of Instances            24288     
+Ignored Class Unknown Instances               1476     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 Y19                        Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+
+
+Results KNN-1 Regression Y19
+======
+
+Correlation coefficient                  0.8215
+Mean absolute error                      0.1099
+Root mean squared error                  0.1766
+Relative absolute error                 41.1904 %
+Root relative squared error             59.0918 %
+Total Number of Instances            24288     
+Ignored Class Unknown Instances               1476     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 X20                        Num   0%   0%  94%  1476 /  6%     6 /  0%   543 
+
+
+Results KNN-1 Regression X20
+======
+
+Correlation coefficient                  0.8471
+Mean absolute error                      0.0706
+Root mean squared error                  0.115 
+Relative absolute error                 38.2153 %
+Root relative squared error             54.6273 %
+Total Number of Instances            24288     
+Ignored Class Unknown Instances               1476     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 Y20                        Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+
+
+Results KNN-1 Regression Y20
+======
+
+Correlation coefficient                  0.8139
+Mean absolute error                      0.1153
+Root mean squared error                  0.1795
+Relative absolute error                 43.2138 %
+Root relative squared error             60.0438 %
+Total Number of Instances            24288     
+Ignored Class Unknown Instances               1476     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 X21                        Num   0%   0%  94%  1476 /  6%     6 /  0%   543 
+
+
+Results KNN-1 Regression X21
+======
+
+Correlation coefficient                  0.8236
+Mean absolute error                      0.0753
+Root mean squared error                  0.1241
+Relative absolute error                 40.7941 %
+Root relative squared error             58.9412 %
+Total Number of Instances            24288     
+Ignored Class Unknown Instances               1476     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 Y21                        Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+
+
+Results KNN-1 Regression Y21
+======
+
+Correlation coefficient                  0.7932
+Mean absolute error                      0.1204
+Root mean squared error                  0.1904
+Relative absolute error                 45.1292 %
+Root relative squared error             63.7113 %
+Total Number of Instances            24288     
+Ignored Class Unknown Instances               1476     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 X22                        Num   0%   0%  94%  1476 /  6%     6 /  0%   543 
+
+
+Results KNN-1 Regression X22
+======
+
+Correlation coefficient                  0.8143
+Mean absolute error                      0.0782
+Root mean squared error                  0.1274
+Relative absolute error                 42.3435 %
+Root relative squared error             60.5251 %
+Total Number of Instances            24288     
+Ignored Class Unknown Instances               1476     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 Y22                        Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+
+
+Results KNN-1 Regression Y22
+======
+
+Correlation coefficient                  0.7826
+Mean absolute error                      0.1249
+Root mean squared error                  0.1955
+Relative absolute error                 46.8198 %
+Root relative squared error             65.4264 %
+Total Number of Instances            24288     
+Ignored Class Unknown Instances               1476     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 X23                        Num   0%   0%  94%  1476 /  6%     6 /  0%   543 
+
+
+Results KNN-1 Regression X23
+======
+
+Correlation coefficient                  0.8047
+Mean absolute error                      0.0813
+Root mean squared error                  0.1308
+Relative absolute error                 44.0249 %
+Root relative squared error             62.1267 %
+Total Number of Instances            24288     
+Ignored Class Unknown Instances               1476     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 Y23                        Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+
+
+Results KNN-1 Regression Y23
+======
+
+Correlation coefficient                  0.7683
+Mean absolute error                      0.1299
+Root mean squared error                  0.202 
+Relative absolute error                 48.693  %
+Root relative squared error             67.5954 %
+Total Number of Instances            24288     
+Ignored Class Unknown Instances               1476     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 X24                        Num   0%   0%  94%  1476 /  6%     6 /  0%   543 
+
+
+Results KNN-1 Regression X24
+======
+
+Correlation coefficient                  0.7941
+Mean absolute error                      0.0844
+Root mean squared error                  0.1345
+Relative absolute error                 45.7425 %
+Root relative squared error             63.8789 %
+Total Number of Instances            24288     
+Ignored Class Unknown Instances               1476     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 Y24                        Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+
+
+Results KNN-1 Regression Y24
+======
+
+Correlation coefficient                  0.7525
+Mean absolute error                      0.1349
+Root mean squared error                  0.2091
+Relative absolute error                 50.5759 %
+Root relative squared error             69.9734 %
+Total Number of Instances            24288     
+Ignored Class Unknown Instances               1476     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 X25                        Num   0%   0%  94%  1476 /  6%     6 /  0%   543 
+
+
+Results KNN-1 Regression X25
+======
+
+Correlation coefficient                  0.7785
+Mean absolute error                      0.0884
+Root mean squared error                  0.1393
+Relative absolute error                 47.8711 %
+Root relative squared error             66.2065 %
+Total Number of Instances            24288     
+Ignored Class Unknown Instances               1476     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 Y25                        Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+
+
+Results KNN-1 Regression Y25
+======
+
+Correlation coefficient                  0.7379
+Mean absolute error                      0.1398
+Root mean squared error                  0.2151
+Relative absolute error                 52.4233 %
+Root relative squared error             71.9714 %
+Total Number of Instances            24288     
+Ignored Class Unknown Instances               1476     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 X26                        Num   0%   0%  94%  1476 /  6%     6 /  0%   543 
+
+
+Results KNN-1 Regression X26
+======
+
+Correlation coefficient                  0.7668
+Mean absolute error                      0.0917
+Root mean squared error                  0.1432
+Relative absolute error                 49.6565 %
+Root relative squared error             68.0183 %
+Total Number of Instances            24288     
+Ignored Class Unknown Instances               1476     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 Y26                        Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+
+
+Results KNN-1 Regression Y26
+======
+
+Correlation coefficient                  0.718 
+Mean absolute error                      0.146 
+Root mean squared error                  0.2227
+Relative absolute error                 54.7528 %
+Root relative squared error             74.5184 %
+Total Number of Instances            24288     
+Ignored Class Unknown Instances               1476     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 X27                        Num   0%   0%  94%  1476 /  6%     6 /  0%   543 
+
+
+Results KNN-1 Regression X27
+======
+
+Correlation coefficient                  0.7528
+Mean absolute error                      0.0951
+Root mean squared error                  0.1476
+Relative absolute error                 51.5214 %
+Root relative squared error             70.1167 %
+Total Number of Instances            24288     
+Ignored Class Unknown Instances               1476     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 Y27                        Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+
+
+Results KNN-1 Regression Y27
+======
+
+Correlation coefficient                  0.7056
+Mean absolute error                      0.1501
+Root mean squared error                  0.2286
+Relative absolute error                 56.2739 %
+Root relative squared error             76.4899 %
+Total Number of Instances            24288     
+Ignored Class Unknown Instances               1476     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 X28                        Num   0%   0%  94%  1476 /  6%     6 /  0%   543 
+
+
+Results KNN-1 Regression X28
+======
+
+Correlation coefficient                  0.7402
+Mean absolute error                      0.0984
+Root mean squared error                  0.1512
+Relative absolute error                 53.2779 %
+Root relative squared error             71.8136 %
+Total Number of Instances            24288     
+Ignored Class Unknown Instances               1476     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 Y28                        Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+
+
+Results KNN-1 Regression Y28
+======
+
+Correlation coefficient                  0.692 
+Mean absolute error                      0.1544
+Root mean squared error                  0.2339
+Relative absolute error                 57.8993 %
+Root relative squared error             78.2551 %
+Total Number of Instances            24288     
+Ignored Class Unknown Instances               1476     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 X29                        Num   0%   0%  94%  1476 /  6%     6 /  0%   543 
+
+
+Results KNN-1 Regression X29
+======
+
+Correlation coefficient                  0.7216
+Mean absolute error                      0.1026
+Root mean squared error                  0.1558
+Relative absolute error                 55.5731 %
+Root relative squared error             74.0271 %
+Total Number of Instances            24288     
+Ignored Class Unknown Instances               1476     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 Y29                        Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+
+
+Results KNN-1 Regression Y29
+======
+
+Correlation coefficient                  0.6447
+Mean absolute error                      0.1666
+Root mean squared error                  0.2517
+Relative absolute error                 62.4719 %
+Root relative squared error             84.2142 %
+Total Number of Instances            24288     
+Ignored Class Unknown Instances               1476     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 X30                        Num   0%   0%  94%  1476 /  6%     6 /  0%   543 
+
+
+Results KNN-1 Regression X30
+======
+
+Correlation coefficient                  0.7129
+Mean absolute error                      0.1047
+Root mean squared error                  0.1592
+Relative absolute error                 56.6949 %
+Root relative squared error             75.6452 %
+Total Number of Instances            24288     
+Ignored Class Unknown Instances               1476     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 Y30                        Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+
+
+Results KNN-1 Regression Y30
+======
+
+Correlation coefficient                  0.6602
+Mean absolute error                      0.164 
+Root mean squared error                  0.2461
+Relative absolute error                 61.4803 %
+Root relative squared error             82.3573 %
+Total Number of Instances            24288     
+Ignored Class Unknown Instances               1476     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 X31                        Num   0%   0%  94%  1476 /  6%     6 /  0%   543 
+
+
+Results KNN-1 Regression X31
+======
+
+Correlation coefficient                  0.7005
+Mean absolute error                      0.1076
+Root mean squared error                  0.1627
+Relative absolute error                 58.2986 %
+Root relative squared error             77.3157 %
+Total Number of Instances            24288     
+Ignored Class Unknown Instances               1476     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 Y31                        Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+
+
+Results KNN-1 Regression Y31
+======
+
+Correlation coefficient                  0.641 
+Mean absolute error                      0.1691
+Root mean squared error                  0.253 
+Relative absolute error                 63.4049 %
+Root relative squared error             84.6617 %
+Total Number of Instances            24288     
+Ignored Class Unknown Instances               1476     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 X32                        Num   0%   0%  94%  1476 /  6%     6 /  0%   543 
+
+
+Results KNN-1 Regression X32
+======
+
+Correlation coefficient                  0.6851
+Mean absolute error                      0.111 
+Root mean squared error                  0.1657
+Relative absolute error                 60.122  %
+Root relative squared error             78.7164 %
+Total Number of Instances            24288     
+Ignored Class Unknown Instances               1476     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 Y32                        Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+
+
+Results KNN-1 Regression Y32
+======
+
+Correlation coefficient                  0.6031
+Mean absolute error                      0.1788
+Root mean squared error                  0.2653
+Relative absolute error                 67.035  %
+Root relative squared error             88.8007 %
+Total Number of Instances            24288     
+Ignored Class Unknown Instances               1476     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 X33                        Num   0%   0%  94%  1476 /  6%     6 /  0%   543 
+
+
+Results KNN-1 Regression X33
+======
+
+Correlation coefficient                  0.6699
+Mean absolute error                      0.1142
+Root mean squared error                  0.1712
+Relative absolute error                 61.848  %
+Root relative squared error             81.3497 %
+Total Number of Instances            24288     
+Ignored Class Unknown Instances               1476     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 Y33                        Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+
+
+Results KNN-1 Regression Y33
+======
+
+Correlation coefficient                  0.6131
+Mean absolute error                      0.1772
+Root mean squared error                  0.2629
+Relative absolute error                 66.4521 %
+Root relative squared error             87.9793 %
+Total Number of Instances            24288     
+Ignored Class Unknown Instances               1476     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 X34                        Num   0%   0%  94%  1476 /  6%     6 /  0%   543 
+
+
+Results KNN-1 Regression X34
+======
+
+Correlation coefficient                  0.6551
+Mean absolute error                      0.1171
+Root mean squared error                  0.1747
+Relative absolute error                 63.4638 %
+Root relative squared error             83.0378 %
+Total Number of Instances            24288     
+Ignored Class Unknown Instances               1476     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 Y34                        Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+
+
+Results KNN-1 Regression Y34
+======
+
+Correlation coefficient                  0.5942
+Mean absolute error                      0.1826
+Root mean squared error                  0.2703
+Relative absolute error                 68.4749 %
+Root relative squared error             90.4647 %
+Total Number of Instances            24288     
+Ignored Class Unknown Instances               1476     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 X35                        Num   0%   0%  94%  1476 /  6%     6 /  0%   543 
+
+
+Results KNN-1 Regression X35
+======
+
+Correlation coefficient                  0.6359
+Mean absolute error                      0.1207
+Root mean squared error                  0.1798
+Relative absolute error                 65.4175 %
+Root relative squared error             85.4443 %
+Total Number of Instances            24288     
+Ignored Class Unknown Instances               1476     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 Y35                        Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+
+
+Results KNN-1 Regression Y35
+======
+
+Correlation coefficient                  0.5777
+Mean absolute error                      0.1869
+Root mean squared error                  0.2755
+Relative absolute error                 70.0881 %
+Root relative squared error             92.2128 %
+Total Number of Instances            24288     
+Ignored Class Unknown Instances               1476     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 X36                        Num   0%   0%  94%  1475 /  6%     6 /  0%   543 
+
+
+Results KNN-1 Regression X36
+======
+
+Correlation coefficient                  0.6216
+Mean absolute error                      0.1236
+Root mean squared error                  0.1834
+Relative absolute error                 66.9929 %
+Root relative squared error             87.131  %
+Total Number of Instances            24289     
+Ignored Class Unknown Instances               1475     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 Y36                        Num   0%   0%  94%  1475 /  6%     4 /  0%   351 
+
+
+Results KNN-1 Regression Y36
+======
+
+Correlation coefficient                  0.5661
+Mean absolute error                      0.1902
+Root mean squared error                  0.279 
+Relative absolute error                 71.3366 %
+Root relative squared error             93.3805 %
+Total Number of Instances            24289     
+Ignored Class Unknown Instances               1475     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 X37                        Num   0%   0%  94%  1475 /  6%     6 /  0%   543 
+
+
+Results KNN-1 Regression X37
+======
+
+Correlation coefficient                  0.6068
+Mean absolute error                      0.1267
+Root mean squared error                  0.1873
+Relative absolute error                 68.6653 %
+Root relative squared error             88.9962 %
+Total Number of Instances            24289     
+Ignored Class Unknown Instances               1475     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 Y37                        Num   0%   0%  94%  1475 /  6%     4 /  0%   351 
+
+
+Results KNN-1 Regression Y37
+======
+
+Correlation coefficient                  0.55  
+Mean absolute error                      0.1945
+Root mean squared error                  0.2835
+Relative absolute error                 72.9359 %
+Root relative squared error             94.8787 %
+Total Number of Instances            24289     
+Ignored Class Unknown Instances               1475     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 X38                        Num   0%   0%  94%  1475 /  6%     6 /  0%   543 
+
+
+Results KNN-1 Regression X38
+======
+
+Correlation coefficient                  0.5902
+Mean absolute error                      0.1296
+Root mean squared error                  0.1909
+Relative absolute error                 70.2272 %
+Root relative squared error             90.7087 %
+Total Number of Instances            24289     
+Ignored Class Unknown Instances               1475     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 Y38                        Num   0%   0%  94%  1475 /  6%     4 /  0%   351 
+
+
+Results KNN-1 Regression Y38
+======
+
+Correlation coefficient                  0.5371
+Mean absolute error                      0.1981
+Root mean squared error                  0.2884
+Relative absolute error                 74.3065 %
+Root relative squared error             96.5363 %
+Total Number of Instances            24289     
+Ignored Class Unknown Instances               1475     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 X39                        Num   0%   0%  94%  1474 /  6%     6 /  0%   543 
+
+
+Results KNN-1 Regression X39
+======
+
+Correlation coefficient                  0.5755
+Mean absolute error                      0.1323
+Root mean squared error                  0.1941
+Relative absolute error                 71.6921 %
+Root relative squared error             92.2444 %
+Total Number of Instances            24290     
+Ignored Class Unknown Instances               1474     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 Y39                        Num   0%   0%  94%  1474 /  6%     4 /  0%   351 
+
+
+Results KNN-1 Regression Y39
+======
+
+Correlation coefficient                  0.5198
+Mean absolute error                      0.2027
+Root mean squared error                  0.2942
+Relative absolute error                 76.0273 %
+Root relative squared error             98.4772 %
+Total Number of Instances            24290     
+Ignored Class Unknown Instances               1474     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 X40                        Num   0%   0%  94%  1474 /  6%     6 /  0%   543 
+
+
+Results KNN-1 Regression X40
+======
+
+Correlation coefficient                  0.5655
+Mean absolute error                      0.1342
+Root mean squared error                  0.1962
+Relative absolute error                 72.6941 %
+Root relative squared error             93.2268 %
+Total Number of Instances            24290     
+Ignored Class Unknown Instances               1474     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 Y40                        Num   0%   0%  94%  1474 /  6%     4 /  0%   351 
+
+
+Results KNN-1 Regression Y40
+======
+
+Correlation coefficient                  0.5051
+Mean absolute error                      0.2067
+Root mean squared error                  0.299 
+Relative absolute error                 77.5056 %
+Root relative squared error            100.0882 %
+Total Number of Instances            24290     
+Ignored Class Unknown Instances               1474     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 X41                        Num   0%   0%  94%  1474 /  6%     6 /  0%   543 
+
+
+Results KNN-1 Regression X41
+======
+
+Correlation coefficient                  0.5506
+Mean absolute error                      0.1361
+Root mean squared error                  0.1971
+Relative absolute error                 73.7438 %
+Root relative squared error             93.6823 %
+Total Number of Instances            24290     
+Ignored Class Unknown Instances               1474     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 Y41                        Num   0%   0%  94%  1474 /  6%     4 /  0%   351 
+
+
+Results KNN-1 Regression Y41
+======
+
+Correlation coefficient                  0.4972
+Mean absolute error                      0.2071
+Root mean squared error                  0.2966
+Relative absolute error                 77.6869 %
+Root relative squared error             99.2702 %
+Total Number of Instances            24290     
+Ignored Class Unknown Instances               1474     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 X42                        Num   0%   0%  94%  1474 /  6%     6 /  0%   543 
+
+
+Results KNN-1 Regression X42
+======
+
+Correlation coefficient                  0.5369
+Mean absolute error                      0.1389
+Root mean squared error                  0.2021
+Relative absolute error                 75.2867 %
+Root relative squared error             96.0677 %
+Total Number of Instances            24290     
+Ignored Class Unknown Instances               1474     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 Y42                        Num   0%   0%  94%  1474 /  6%     4 /  0%   351 
+
+
+Results KNN-1 Regression Y42
+======
+
+Correlation coefficient                  0.4805
+Mean absolute error                      0.2126
+Root mean squared error                  0.3058
+Relative absolute error                 79.7194 %
+Root relative squared error            102.3701 %
+Total Number of Instances            24290     
+Ignored Class Unknown Instances               1474     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 X43                        Num   0%   0%  94%  1474 /  6%     6 /  0%   543 
+
+
+Results KNN-1 Regression X43
+======
+
+Correlation coefficient                  0.5151
+Mean absolute error                      0.1419
+Root mean squared error                  0.2046
+Relative absolute error                 76.9089 %
+Root relative squared error             97.2472 %
+Total Number of Instances            24290     
+Ignored Class Unknown Instances               1474     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 Y43                        Num   0%   0%  94%  1474 /  6%     4 /  0%   351 
+
+
+Results KNN-1 Regression Y43
+======
+
+Correlation coefficient                  0.4681
+Mean absolute error                      0.2139
+Root mean squared error                  0.3045
+Relative absolute error                 80.2449 %
+Root relative squared error            101.9352 %
+Total Number of Instances            24290     
+Ignored Class Unknown Instances               1474     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 X44                        Num   0%   0%  94%  1473 /  6%     6 /  0%   543 
+
+
+Results KNN-1 Regression X44
+======
+
+Correlation coefficient                  0.5017
+Mean absolute error                      0.1447
+Root mean squared error                  0.2091
+Relative absolute error                 78.4283 %
+Root relative squared error             99.3985 %
+Total Number of Instances            24291     
+Ignored Class Unknown Instances               1473     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 Y44                        Num   0%   0%  94%  1473 /  6%     4 /  0%   351 
+
+
+Results KNN-1 Regression Y44
+======
+
+Correlation coefficient                  0.4703
+Mean absolute error                      0.2149
+Root mean squared error                  0.3074
+Relative absolute error                 80.6173 %
+Root relative squared error            102.9166 %
+Total Number of Instances            24291     
+Ignored Class Unknown Instances               1473     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 X45                        Num   0%   0%  94%  1472 /  6%     6 /  0%   543 
+
+
+Results KNN-1 Regression X45
+======
+
+Correlation coefficient                  0.4831
+Mean absolute error                      0.1474
+Root mean squared error                  0.2116
+Relative absolute error                 79.8913 %
+Root relative squared error            100.5733 %
+Total Number of Instances            24292     
+Ignored Class Unknown Instances               1472     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 Y45                        Num   0%   0%  94%  1472 /  6%     4 /  0%   351 
+
+
+Results KNN-1 Regression Y45
+======
+
+Correlation coefficient                  0.4501
+Mean absolute error                      0.2182
+Root mean squared error                  0.3092
+Relative absolute error                 81.8367 %
+Root relative squared error            103.5137 %
+Total Number of Instances            24292     
+Ignored Class Unknown Instances               1472     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 X46                        Num   0%   0%  94%  1471 /  6%     6 /  0%   543 
+
+
+Results KNN-1 Regression X46
+======
+
+Correlation coefficient                  0.4795
+Mean absolute error                      0.1484
+Root mean squared error                  0.2136
+Relative absolute error                 80.4383 %
+Root relative squared error            101.5369 %
+Total Number of Instances            24293     
+Ignored Class Unknown Instances               1471     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 Y46                        Num   0%   0%  94%  1471 /  6%     4 /  0%   351 
+
+
+Results KNN-1 Regression Y46
+======
+
+Correlation coefficient                  0.4463
+Mean absolute error                      0.2196
+Root mean squared error                  0.3135
+Relative absolute error                 82.3923 %
+Root relative squared error            104.9659 %
+Total Number of Instances            24293     
+Ignored Class Unknown Instances               1471     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 X47                        Num   0%   0%  94%  1471 /  6%     6 /  0%   543 
+
+
+Results KNN-1 Regression X47
+======
+
+Correlation coefficient                  0.4641
+Mean absolute error                      0.151 
+Root mean squared error                  0.2165
+Relative absolute error                 81.798  %
+Root relative squared error            102.873  %
+Total Number of Instances            24293     
+Ignored Class Unknown Instances               1471     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 Y47                        Num   0%   0%  94%  1471 /  6%     4 /  0%   351 
+
+
+Results KNN-1 Regression Y47
+======
+
+Correlation coefficient                  0.437 
+Mean absolute error                      0.2217
+Root mean squared error                  0.3154
+Relative absolute error                 83.1577 %
+Root relative squared error            105.5736 %
+Total Number of Instances            24293     
+Ignored Class Unknown Instances               1471     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 X48                        Num   0%   0%  94%  1471 /  6%     6 /  0%   543 
+
+
+Results KNN-1 Regression X48
+======
+
+Correlation coefficient                  0.4486
+Mean absolute error                      0.1535
+Root mean squared error                  0.2194
+Relative absolute error                 83.1696 %
+Root relative squared error            104.2664 %
+Total Number of Instances            24293     
+Ignored Class Unknown Instances               1471     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 Y48                        Num   0%   0%  94%  1471 /  6%     4 /  0%   351 
+
+
+Results KNN-1 Regression Y48
+======
+
+Correlation coefficient                  0.4303
+Mean absolute error                      0.2229
+Root mean squared error                  0.3166
+Relative absolute error                 83.6374 %
+Root relative squared error            105.9935 %
+Total Number of Instances            24293     
+Ignored Class Unknown Instances               1471     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 X49                        Num   0%   0%  94%  1470 /  6%     6 /  0%   543 
+
+
+Results KNN-1 Regression X49
+======
+
+Correlation coefficient                  0.4345
+Mean absolute error                      0.1558
+Root mean squared error                  0.2221
+Relative absolute error                 84.4026 %
+Root relative squared error            105.5505 %
+Total Number of Instances            24294     
+Ignored Class Unknown Instances               1470     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 Y49                        Num   0%   0%  94%  1470 /  6%     4 /  0%   351 
+
+
+Results KNN-1 Regression Y49
+======
+
+Correlation coefficient                  0.4276
+Mean absolute error                      0.2234
+Root mean squared error                  0.3169
+Relative absolute error                 83.813  %
+Root relative squared error            106.0953 %
+Total Number of Instances            24294     
+Ignored Class Unknown Instances               1470     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 X50                        Num   0%   0%  94%  1469 /  6%     6 /  0%   543 
+
+
+Results KNN-1 Regression X50
+======
+
+Correlation coefficient                  0.4227
+Mean absolute error                      0.1576
+Root mean squared error                  0.2242
+Relative absolute error                 85.3981 %
+Root relative squared error            106.5657 %
+Total Number of Instances            24295     
+Ignored Class Unknown Instances               1469     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 Y50                        Num   0%   0%  94%  1469 /  6%     4 /  0%   351 
+
+
+Results KNN-1 Regression Y50
+======
+
+Correlation coefficient                  0.4243
+Mean absolute error                      0.2241
+Root mean squared error                  0.3171
+Relative absolute error                 84.0701 %
+Root relative squared error            106.1589 %
+Total Number of Instances            24295     
+Ignored Class Unknown Instances               1469     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 X51                        Num   0%   0%  94%  1469 /  6%     6 /  0%   543 
+
+
+Results KNN-1 Regression X51
+======
+
+Correlation coefficient                  0.4082
+Mean absolute error                      0.1599
+Root mean squared error                  0.2268
+Relative absolute error                 86.6606 %
+Root relative squared error            107.7811 %
+Total Number of Instances            24295     
+Ignored Class Unknown Instances               1469     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 Y51                        Num   0%   0%  94%  1469 /  6%     4 /  0%   351 
+
+
+Results KNN-1 Regression Y51
+======
+
+Correlation coefficient                  0.4207
+Mean absolute error                      0.2248
+Root mean squared error                  0.3172
+Relative absolute error                 84.3433 %
+Root relative squared error            106.2078 %
+Total Number of Instances            24295     
+Ignored Class Unknown Instances               1469     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 X52                        Num   0%   0%  94%  1469 /  6%     6 /  0%   543 
+
+
+Results KNN-1 Regression X52
+======
+
+Correlation coefficient                  0.3957
+Mean absolute error                      0.1622
+Root mean squared error                  0.2294
+Relative absolute error                 87.8911 %
+Root relative squared error            109.0271 %
+Total Number of Instances            24295     
+Ignored Class Unknown Instances               1469     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 Y52                        Num   0%   0%  94%  1469 /  6%     4 /  0%   351 
+
+
+Results KNN-1 Regression Y52
+======
+
+Correlation coefficient                  0.4115
+Mean absolute error                      0.2268
+Root mean squared error                  0.3194
+Relative absolute error                 85.101  %
+Root relative squared error            106.9188 %
+Total Number of Instances            24295     
+Ignored Class Unknown Instances               1469     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 X53                        Num   0%   0%  94%  1469 /  6%     6 /  0%   543 
+
+
+Results KNN-1 Regression X53
+======
+
+Correlation coefficient                  0.3854
+Mean absolute error                      0.1639
+Root mean squared error                  0.2312
+Relative absolute error                 88.8107 %
+Root relative squared error            109.8808 %
+Total Number of Instances            24295     
+Ignored Class Unknown Instances               1469     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 Y53                        Num   0%   0%  94%  1469 /  6%     4 /  0%   351 
+
+
+Results KNN-1 Regression Y53
+======
+
+Correlation coefficient                  0.4088
+Mean absolute error                      0.2274
+Root mean squared error                  0.3197
+Relative absolute error                 85.3186 %
+Root relative squared error            107.0496 %
+Total Number of Instances            24295     
+Ignored Class Unknown Instances               1469     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 X54                        Num   0%   0%  94%  1469 /  6%     6 /  0%   543 
+
+
+Results KNN-1 Regression X54
+======
+
+Correlation coefficient                  0.3776
+Mean absolute error                      0.1653
+Root mean squared error                  0.2325
+Relative absolute error                 89.5474 %
+Root relative squared error            110.4975 %
+Total Number of Instances            24295     
+Ignored Class Unknown Instances               1469     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 Y54                        Num   0%   0%  94%  1469 /  6%     4 /  0%   351 
+
+
+Results KNN-1 Regression Y54
+======
+
+Correlation coefficient                  0.4058
+Mean absolute error                      0.2282
+Root mean squared error                  0.3203
+Relative absolute error                 85.6114 %
+Root relative squared error            107.2382 %
+Total Number of Instances            24295     
+Ignored Class Unknown Instances               1469     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 X55                        Num   0%   0%  94%  1468 /  6%     6 /  0%   543 
+
+
+Results KNN-1 Regression X55
+======
+
+Correlation coefficient                  0.3649
+Mean absolute error                      0.1676
+Root mean squared error                  0.2351
+Relative absolute error                 90.8007 %
+Root relative squared error            111.7391 %
+Total Number of Instances            24296     
+Ignored Class Unknown Instances               1468     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 Y55                        Num   0%   0%  94%  1468 /  6%     4 /  0%   351 
+
+
+Results KNN-1 Regression Y55
+======
+
+Correlation coefficient                  0.3984
+Mean absolute error                      0.2298
+Root mean squared error                  0.322 
+Relative absolute error                 86.202  %
+Root relative squared error            107.8087 %
+Total Number of Instances            24296     
+Ignored Class Unknown Instances               1468     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 X56                        Num   0%   0%  94%  1467 /  6%     6 /  0%   543 
+
+
+Results KNN-1 Regression X56
+======
+
+Correlation coefficient                  0.3558
+Mean absolute error                      0.1691
+Root mean squared error                  0.2367
+Relative absolute error                 91.6481 %
+Root relative squared error            112.5154 %
+Total Number of Instances            24297     
+Ignored Class Unknown Instances               1467     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 Y56                        Num   0%   0%  94%  1467 /  6%     4 /  0%   351 
+
+
+Results KNN-1 Regression Y56
+======
+
+Correlation coefficient                  0.3955
+Mean absolute error                      0.2303
+Root mean squared error                  0.3225
+Relative absolute error                 86.4179 %
+Root relative squared error            107.9778 %
+Total Number of Instances            24297     
+Ignored Class Unknown Instances               1467     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 X57                        Num   0%   0%  94%  1467 /  6%     6 /  0%   543 
+
+
+Results KNN-1 Regression X57
+======
+
+Correlation coefficient                  0.3501
+Mean absolute error                      0.1701
+Root mean squared error                  0.2376
+Relative absolute error                 92.1656 %
+Root relative squared error            112.945  %
+Total Number of Instances            24297     
+Ignored Class Unknown Instances               1467     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 Y57                        Num   0%   0%  94%  1467 /  6%     4 /  0%   351 
+
+
+Results KNN-1 Regression Y57
+======
+
+Correlation coefficient                  0.3899
+Mean absolute error                      0.2315
+Root mean squared error                  0.3226
+Relative absolute error                 86.8718 %
+Root relative squared error            108.0352 %
+Total Number of Instances            24297     
+Ignored Class Unknown Instances               1467     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 X58                        Num   0%   0%  94%  1467 /  6%     6 /  0%   543 
+
+
+Results KNN-1 Regression X58
+======
+
+Correlation coefficient                  0.3314
+Mean absolute error                      0.1729
+Root mean squared error                  0.2409
+Relative absolute error                 93.6783 %
+Root relative squared error            114.5032 %
+Total Number of Instances            24297     
+Ignored Class Unknown Instances               1467     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 Y58                        Num   0%   0%  94%  1467 /  6%     4 /  0%   351 
+
+
+Results KNN-1 Regression Y58
+======
+
+Correlation coefficient                  0.3851
+Mean absolute error                      0.2329
+Root mean squared error                  0.3265
+Relative absolute error                 87.3874 %
+Root relative squared error            109.3124 %
+Total Number of Instances            24297     
+Ignored Class Unknown Instances               1467     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 X59                        Num   0%   0%  94%  1467 /  6%     6 /  0%   543 
+
+
+Results KNN-1 Regression X59
+======
+
+Correlation coefficient                  0.325 
+Mean absolute error                      0.174 
+Root mean squared error                  0.2422
+Relative absolute error                 94.2951 %
+Root relative squared error            115.0974 %
+Total Number of Instances            24297     
+Ignored Class Unknown Instances               1467     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 Y59                        Num   0%   0%  94%  1467 /  6%     4 /  0%   351 
+
+
+Results KNN-1 Regression Y59
+======
+
+Correlation coefficient                  0.3832
+Mean absolute error                      0.2333
+Root mean squared error                  0.3251
+Relative absolute error                 87.5264 %
+Root relative squared error            108.8563 %
+Total Number of Instances            24297     
+Ignored Class Unknown Instances               1467     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 X60                        Num   0%   0%  94%  1467 /  6%     6 /  0%   543 
+
+
+Results KNN-1 Regression X60
+======
+
+Correlation coefficient                  0.3218
+Mean absolute error                      0.1748
+Root mean squared error                  0.2428
+Relative absolute error                 94.7174 %
+Root relative squared error            115.4162 %
+Total Number of Instances            24297     
+Ignored Class Unknown Instances               1467     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 Y60                        Num   0%   0%  94%  1467 /  6%     4 /  0%   351 
+
+
+Results KNN-1 Regression Y60
+======
+
+Correlation coefficient                  0.3773
+Mean absolute error                      0.2349
+Root mean squared error                  0.3267
+Relative absolute error                 88.1518 %
+Root relative squared error            109.3928 %
+Total Number of Instances            24297     
+Ignored Class Unknown Instances               1467     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 X61                        Num   0%   0%  94%  1467 /  6%     6 /  0%   543 
+
+
+Results KNN-1 Regression X61
+======
+
+Correlation coefficient                  0.3154
+Mean absolute error                      0.1759
+Root mean squared error                  0.2441
+Relative absolute error                 95.3127 %
+Root relative squared error            116.0209 %
+Total Number of Instances            24297     
+Ignored Class Unknown Instances               1467     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 Y61                        Num   0%   0%  94%  1467 /  6%     4 /  0%   351 
+
+
+Results KNN-1 Regression Y61
+======
+
+Correlation coefficient                  0.3794
+Mean absolute error                      0.2349
+Root mean squared error                  0.3255
+Relative absolute error                 88.1252 %
+Root relative squared error            108.9928 %
+Total Number of Instances            24297     
+Ignored Class Unknown Instances               1467     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 X62                        Num   0%   0%  94%  1467 /  6%     6 /  0%   543 
+
+
+Results KNN-1 Regression X62
+======
+
+Correlation coefficient                  0.3103
+Mean absolute error                      0.1771
+Root mean squared error                  0.2451
+Relative absolute error                 95.95   %
+Root relative squared error            116.4928 %
+Total Number of Instances            24297     
+Ignored Class Unknown Instances               1467     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 Y62                        Num   0%   0%  94%  1467 /  6%     4 /  0%   351 
+
+
+Results KNN-1 Regression Y62
+======
+
+Correlation coefficient                  0.3679
+Mean absolute error                      0.2377
+Root mean squared error                  0.3287
+Relative absolute error                 89.1651 %
+Root relative squared error            110.075  %
+Total Number of Instances            24297     
+Ignored Class Unknown Instances               1467     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 X63                        Num   0%   0%  94%  1467 /  6%     6 /  0%   543 
+
+
+Results KNN-1 Regression X63
+======
+
+Correlation coefficient                  0.2996
+Mean absolute error                      0.1786
+Root mean squared error                  0.2469
+Relative absolute error                 96.7757 %
+Root relative squared error            117.3411 %
+Total Number of Instances            24297     
+Ignored Class Unknown Instances               1467     
+
+Relation Name:  Norm_training
+Num Instances:  25764
+Num Attributes: 5
+
+     Name                      Type  Nom  Int Real     Missing      Unique  Dist
+   1 X                          Num   0%   6%  94%     0 /  0%     6 /  0%   544 
+   2 Y                          Num   0%   0%  94%  1476 /  6%     4 /  0%   351 
+   3 V                          Num   0%   1%  89%  2509 / 10%   131 /  1%   573 
+   4 Ang                        Num   0%   3%  87%  2509 / 10%   350 /  1%   870 
+   5 Y63                        Num   0%   0%  94%  1467 /  6%     4 /  0%   351 
+
+
+Results KNN-1 Regression Y63
+======
+
+Correlation coefficient                  0.3677
+Mean absolute error                      0.2378
+Root mean squared error                  0.3295
+Relative absolute error                 89.2054 %
+Root relative squared error            110.3217 %
+Total Number of Instances            24297     
+Ignored Class Unknown Instances               1467     
+
+25.361061411160872

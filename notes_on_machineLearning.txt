@@ -1,0 +1,9 @@
+To run the machineLearning program:
+
+Make sure the Weka version of your dataset is in the current directory
+
+Make sure the weka .jar files are in your current directory
+
+javac -extdirs <directory of weka.jar> MachineLearning.java
+
+java -cp weka.jar:$CLASSPATH MachineLeaning >results.txt
