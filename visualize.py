@@ -127,8 +127,9 @@ class Visualizer:
                 last_prediction = prediction
             predict_turtle.speed('slow')
             actual_turtle.speed('slow')
-            if wait_after_visualize==True:
-                self.window.exitonclick()
+
+        if wait_after_visualize:
+            self.window.exitonclick()
                 
 
 
