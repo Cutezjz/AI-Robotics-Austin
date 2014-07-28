@@ -2,14 +2,14 @@
 import math
 import random
 import robot
-
+import visualize
 
 
 def angle_trunc(a):
-    """This maps all angles to a domain of [-pi, pi]"""
-    while a < 0.0:
-        a += math.pi * 2
-    return ((a + math.pi) % (math.pi * 2)) - math.pi
+	"""This maps all angles to a domain of [-pi, pi]"""
+	while a < 0.0:
+		a += math.pi * 2
+	return ((a + math.pi) % (math.pi * 2)) - math.pi
 
 
 class PfPredictor:
@@ -33,6 +33,54 @@ class PfPredictor:
 			y=self.lines[toPoint][1] - 5.0
 		return [x,y]
 
+	def learn(self):
+		PARTICLE_COUNT = 10
+		PARTICLE_REMOVAL_FRACTION = 0.1
+		START_TURNING_NOISE = 0.1
+		TURNING_NOISE = 0.0
+		DISTANCE_NOISE = 0.0
+		MEASUREMENT_NOISE = 0.0
+
+		# First, find reasonable initial settings for the first robots:
+		pt = 0
+		self.robot_data = []
+		while len(self.lines[pt]) < 6 or not self.lines[pt][2] or not self.lines[pt][4] or self.lines[pt][5]:
+			self.robot_data.append([-1.0, -1.0, 0.0, 0.0])
+			pt += 1
+		init_x, init_y, init_speed, init_heading, init_turn_angle, init_collision = self.lines[pt]
+		print "initial speed = %.3f, angle = %.3f" % (init_speed, init_turn_angle)
+
+		# Create the initial particle fleet:
+		particles = []
+		for i in range(PARTICLE_COUNT):
+			noisy_turn_angle = random.gauss(init_turn_angle, START_TURNING_NOISE)
+			r = robot.robot(init_x, init_y, init_heading, noisy_turn_angle, init_speed)
+			r.set_noise(TURNING_NOISE, DISTANCE_NOISE, MEASUREMENT_NOISE)
+			particles.append(r)
+		
+		# Begin moving particles and learning:
+		while pt < len(self.lines):
+			# Move particles
+			for i in range(PARTICLE_COUNT):
+				particles[i].move_in_circle()
+				
+			# Filter particles and create new ones to replace those removed
+			# TODO: this properly
+			if len(self.lines) >= 5 and self.lines[pt][0] != -1.0 and self.lines[pt][4]:
+				init_x, init_y, init_speed, init_heading, init_turn_angle, init_collision = self.lines[pt]
+				r = robot.robot(init_x, init_y, init_heading, init_turn_angle, init_speed)
+				r.set_noise(TURNING_NOISE, DISTANCE_NOISE, MEASUREMENT_NOISE)
+				particles = particles[1:] + [r]
+			
+			# Calculate average values for all particles
+			avg_x = sum([r.x for r in particles]) / PARTICLE_COUNT
+			avg_y = sum([r.y for r in particles]) / PARTICLE_COUNT
+			avg_speed = sum([r.distance for r in particles]) / PARTICLE_COUNT
+			avg_heading = sum([r.heading for r in particles]) / PARTICLE_COUNT
+			self.robot_data.append([avg_x, avg_y, avg_speed, avg_heading])
+			pt += 1
+			
+		
 	def read(self,filename):
 		f = open(filename)
 		self.lines=[[float(d) for d in line.strip().replace('[','').replace(',','').replace(']','').split()] for line in f.readlines()]
@@ -54,7 +102,8 @@ class PfPredictor:
 
 		MAX_DELTA = 40	# Delta larger than this for consecutive points implies a bad datapoint
 		bad_lines = 0
-		
+
+		last_good_point = [0.0, 0.0]		
 		for i in range(len(self.lines)):
 			# First we check for crazy datapoints; there's at least one in the training data.
 			# If we find one, convert it to [-1, -1]
@@ -81,7 +130,7 @@ class PfPredictor:
 		
 		prev_heading = None
 		MAX_TURN_ANGLE = 0.5	# Turn angle larger than this implies a collision
-		COLLISION_REGION = 25
+		COLLISION_REGION = 30
 		self.collision_indices = []
 		
 		for i in range(len(self.lines)):
@@ -118,9 +167,15 @@ class PfPredictor:
 
 
 
-p=PfPredictor()
-p.read("training_video1-centroid_data")
-p.process()
-print "read %d lines, saw %d collisions" % (len(p.lines), len(p.collision_indices))
-print "extent is (%d, %d) to (%d, %d)" % (p.minX, p.minY, p.maxX, p.maxY)
+# Run the code below only if this module is being directly executed
+if __name__ == "__main__":
+	p=PfPredictor()
+	p.read("training_video1-centroid_data")
+	p.process()
+	print "read %d lines, saw %d collisions" % (len(p.lines), len(p.collision_indices))
+	print "extent is (%d, %d) to (%d, %d)" % (p.minX, p.minY, p.maxX, p.maxY)
+	p.learn()
+	
+	vis = visualize.Visualizer(p)
+	vis.visualize(512, 16, 512, True, True)
 

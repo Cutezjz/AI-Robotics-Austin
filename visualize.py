@@ -28,7 +28,7 @@ class Visualizer:
             
             
         
-    def visualize(self, start_index, count=1, old_points=16, wait_after_visualize=True):
+    def visualize(self, start_index, count=1, old_points=16, wait_after_visualize=True, expect_robot_data=False):
         """Display actual and predicted data in a window.
 
         Arguments:
@@ -59,6 +59,12 @@ class Visualizer:
         predict_turtle.color('orange')
         predict_turtle.penup()
         predict_turtle.shapesize(0.3, 0.3, 0.3)
+        
+        particle_turtle = turtle.Turtle()
+        particle_turtle.shape('circle')
+        particle_turtle.color('purple')
+        particle_turtle.penup()
+        particle_turtle.shapesize(0.3, 0.3, 0.3)
 
         actual_turtle = turtle.Turtle()
         actual_turtle.shape('circle')
@@ -68,7 +74,7 @@ class Visualizer:
 
         missing_turtle = turtle.Turtle()
         missing_turtle.shape('circle')
-        missing_turtle.color('red')
+        missing_turtle.color('white')
         missing_turtle.penup()
         missing_turtle.shapesize(0.3, 0.3, 0.3)
         missing_turtle.speed('fastest')
@@ -76,6 +82,7 @@ class Visualizer:
         old_points = min(old_points, start_index-1)
 
         old_turtle.speed('fastest')
+        particle_turtle.speed('fastest')
         last_point = [0.0, 0.0]
         for i in range(old_points):
             point = real_data[start_index-old_points+i]
@@ -84,12 +91,21 @@ class Visualizer:
                 missing_turtle.stamp()
             else:
                 old_turtle.goto(point[0], point[1])
-                if len(point) >= 4:
+                if len(point) >= 4 and point[3]:
                     old_turtle.setheading(point[3] * 180.0 / math.pi)
+                if len(point) >= 6 and point[5]==True:
+                    old_turtle.color('red')
                 old_turtle.stamp()
+                old_turtle.color('green')
                 last_point = point
             old_turtle.speed('fast')
             old_turtle.pendown()    # (Remove this to get rid of the connecting lines)
+            
+            if expect_robot_data:
+                robot_data = pred.robot_data[start_index-old_points+i]
+                if robot_data[0] != -1.0:
+                    particle_turtle.goto(robot_data[0], robot_data[1])
+                    particle_turtle.stamp()
 
         predict_turtle.speed('fastest')
         actual_turtle.speed('fastest')
@@ -111,7 +127,7 @@ class Visualizer:
                     missing_turtle.stamp()
                 else:
                     actual_turtle.goto(point[0], point[1])
-                    if len(point) >= 4:
+                    if len(point) >= 4 and point[3]:
                         actual_turtle.setheading(point[3] * 180.0 / math.pi)  # radians -> degrees
                     actual_turtle.stamp()
                     last_point = point
@@ -132,14 +148,15 @@ class Visualizer:
             self.window.exitonclick()
                 
 
-
-p=Predictor()
-p.read("training_video1-centroid_data")
-print "Read complete"
-p.process()
-print "Process complete"
-vis = Visualizer(p)
-print "Visualizer setup"
-#vis.visualize_many(512, 16, 64,3,5)
-vis.visualize_many(1000, 16, 64,3,5)
-#vis.visualize_many(2000, 16, 64,3,5)
+# Run the code below only if this module is being directly executed
+if __name__ == "__main__":
+    p=Predictor()
+    p.read("training_video1-centroid_data")
+    print "Read complete"
+    p.process()
+    print "Process complete"
+    vis = Visualizer(p)
+    print "Visualizer setup"
+    #vis.visualize_many(512, 16, 64,3,5)
+    vis.visualize_many(1000, 16, 64,3,5)
+    #vis.visualize_many(2000, 16, 64,3,5)
