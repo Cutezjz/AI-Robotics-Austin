@@ -4,13 +4,69 @@ import random
 class Predictor:
 	lines=[[]]
 	norm_lines=[[]]
+	knn_orig_x=[]
+	knn_orig_y=[]
+	knn_final_x=[]
+	knn_final_y=[]
+	allow_knn=True
 	def predict(self,fromPoint, toPoint):
 		return self.lines[toPoint]
+
+	def predict_KNN(self,fromPoint, toPoint):
+		from sklearn import preprocessing
+		from sklearn.neighbors import KNeighborsRegressor
+		neigh = KNeighborsRegressor(n_neighbors=7)
+		print "fromPoint="+str(fromPoint)+" "+str(toPoint)
+		Xorig=  self.knn_orig_x[0]
+		Xfinal=  self.knn_final_x[toPoint-fromPoint]
+		
+		Yorig= self.knn_orig_y[0]
+		Yfinal=  self.knn_final_y[toPoint-fromPoint]
+		print "Example "+str(Xorig[0])+" "+str(Xfinal[0])	
+		print "len="+str(len(Xorig))+" "+str(len(Xfinal))
+		print "typ="+str(type(Xorig[0]))+" "+str(type(Xfinal[0]))
+		print "typ="+str(type(Xorig))+" "+str(type(Xfinal))
+		neigh.fit(Xorig, Xfinal)
+		neigh.fit(Yorig, Yfinal)
+		print len(self.lines)
+		predX=neigh.predict(self.norm_lines[fromPoint-1])[0]
+		predY=neigh.predict(self.norm_lines[fromPoint-1])[0]
+		
+		return self.denorm((predX,predY))#self.norm_lines[toPoint])
+
+	def denorm(self, p):
+		newx=p[0]*self.dx+self.minX
+		newy=p[1]*self.dy+self.minY
+		return (newx, newy)
 
 	def read(self,filename):
 		f = open(filename)
 		self.lines=[line.strip().replace('[','').replace(',','').replace(']','').split() for line in f.readlines()]
+		for i in range (len(self.lines)):
+			self.lines[i][0]=int(self.lines[i][0])
+			self.lines[i][1]=int(self.lines[i][1])
 		f.close()
+		self.normalize()
+		self.process()
+	
+	def process(self):
+		import numpy
+		if self.allow_knn and len(self.knn_orig_x)==0:
+			for i in range(64):
+				#self.knn_orig_x.append( numpy.array(self.lines)[0:len(self.lines)-64,0:1]  )#.tolist())
+ 				#self.knn_orig_y.append( numpy.array(self.lines)[0:len(self.lines)-64,1:2]  )#.tolist())
+				#self.knn_final_x.append(numpy.array(self.lines)[i:len(self.lines)-64+i,0])#.tolist())
+				#self.knn_final_y.append(numpy.array(self.lines)[i:len(self.lines)-64+i,1])#.tolist())
+				
+				self.knn_orig_x.append( numpy.array(self.norm_lines)[0:len(self.norm_lines)-64,0:4]  )#.tolist())
+ 				self.knn_orig_y.append( numpy.array(self.norm_lines)[0:len(self.norm_lines)-64,0:4]  )#.tolist())
+				self.knn_final_x.append(numpy.array(self.norm_lines)[i:len(self.norm_lines)-64+i,0])#.tolist())
+				self.knn_final_y.append(numpy.array(self.norm_lines)[i:len(self.norm_lines)-64+i,1])#.tolist())
+			#	//self.knn_orig_x[i]=self.norm_lines[0:len(self.norm_lines)-i][0]
+			#	//self.knn_orig_y[i]=self.norm_lines[0:len(self.norm_lines)-i][1]
+			#	//self.knn_final_x[i]=self.norm_lines[i:len(self.norm_lines)][0]
+			#	//self.knn_final_y[i]=self.norm_lines[i:len(self.norm_lines)][1]
+
 	def normalize(self):
 		maxX=-1
 		self.minX=100000000
@@ -104,3 +160,38 @@ class Predictor2:
 					self.lines[i].append(math.sqrt((self.lines[i][0]-self.lines[i-1][0])**2+(self.lines[i][1]-self.lines[i-1][1])**2))
 					self.lines[i].append(math.atan2((self.lines[i][1]-self.lines[i-1][1]),((self.lines[i][0]-self.lines[i-1][0]))))
 
+class Predictor_KNN:
+	lines=[[]]
+	norm_lines=[[]]
+	def read(self,filename):
+		f = open(filename)
+		self.lines=[line.strip().replace('[','').replace(',','').replace(']','').split() for line in f.readlines()]
+		f.close()
+		self.normalize()
+
+	def normalize(self):
+		maxX=-1
+		self.minX=100000000
+		maxY=-1
+		self.minY=100000000
+		for i in range (0,len(self.lines)):
+			if(self.lines[i][0] == "-1" or self.lines[i][1]== "-1"):
+				continue
+			maxX=max(float(self.lines[i][0]),maxX)
+			maxY=max(float(self.lines[i][1]),maxY)
+			self.minX=min(float(self.lines[i][0]),self.minX)
+			self.minY=min(float(self.lines[i][1]),self.minY)
+		self.dx=maxX-self.minX
+		self.dy=maxY-self.minY
+		for i in range(0,len(self.lines)):
+			if(self.lines[i][0] == "-1" or self.lines[i][1]== "-1"):
+				self.norm_lines.append([-1,-1,-1,-1])
+			else:
+				toAdd=[((float(self.lines[i][0])-self.minX)/self.dx),((float(self.lines[i][1])-self.minY)/self.dy),-1.,-1.]
+				#If there is a previous point, calculate the angle and speed
+				if i>0 and self.lines[i-1][0]!="-1":
+					toAdd[2]=math.sqrt((toAdd[0]-self.norm_lines[-1][0])**2+(toAdd[1]-self.norm_lines[-1][1])**2)
+					toAdd[3]=math.atan2(-1*(toAdd[1]-self.norm_lines[-1][1]),(toAdd[0]-self.norm_lines[-1][0]))
+
+				self.norm_lines.append(toAdd)
+		del self.norm_lines[0]
