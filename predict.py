@@ -1,7 +1,34 @@
 #!/usr/bin/python
 import math
 import random
+class Weight:
+	def __init__(self, d):
+		print "Init "+str(d)
+		self.d=d
+		self.w=[]
+		for i in range(len(self.d)):
+			if d[0][i]<.001:
+				self.w.append(0)
+			else:
+				self.w.append(1.0/self.d[i])
+		print "W="+str(self.w[0])
+		#return self.w
+
+	def __call__(self):
+		print "Call-W "+str(self.w)
+		print "Calling"
+		return self.w
+		
 class Predictor:
+	def inverse(d):
+		w=[]
+		for i in range(len(self.d)):
+			if d[0][i]<.001:
+				w.append(0)
+			else:
+				w.append(1.0/self.d[i])
+		return w
+		
 	lines=[[]]
 	norm_lines=[[]]
 	knn_orig_x=[]
@@ -15,24 +42,27 @@ class Predictor:
 	def predict_KNN(self,fromPoint, toPoint):
 		from sklearn import preprocessing
 		from sklearn.neighbors import KNeighborsRegressor
-		neigh = KNeighborsRegressor(n_neighbors=7)
-		print "fromPoint="+str(fromPoint)+" "+str(toPoint)
+		neigh_x = KNeighborsRegressor(n_neighbors=7,algorithm='kd_tree')
+		neigh_y = KNeighborsRegressor(n_neighbors=7,algorithm='kd_tree')
+		#print "fromPoint="+str(fromPoint)+" "+str(toPoint)
 		Xorig=  self.knn_orig_x[0]
 		Xfinal=  self.knn_final_x[toPoint-fromPoint]
 		
 		Yorig= self.knn_orig_y[0]
 		Yfinal=  self.knn_final_y[toPoint-fromPoint]
-		print "Example "+str(Xorig[0])+" "+str(Xfinal[0])	
-		print "len="+str(len(Xorig))+" "+str(len(Xfinal))
-		print "typ="+str(type(Xorig[0]))+" "+str(type(Xfinal[0]))
-		print "typ="+str(type(Xorig))+" "+str(type(Xfinal))
-		neigh.fit(Xorig, Xfinal)
-		neigh.fit(Yorig, Yfinal)
-		print len(self.lines)
-		predX=neigh.predict(self.norm_lines[fromPoint-1])[0]
-		predY=neigh.predict(self.norm_lines[fromPoint-1])[0]
-		
-		return self.denorm((predX,predY))#self.norm_lines[toPoint])
+		#print "Example "+str(Xorig[0])+" "+str(Xfinal[0])	
+		#print "len="+str(len(Xorig))+" "+str(len(Xfinal))
+		#print "typ="+str(type(Xorig[0]))+" "+str(type(Xfinal[0]))
+		#print "typ="+str(type(Xorig))+" "+str(type(Xfinal))
+		neigh_x.fit(Xorig, Xfinal)
+		neigh_y.fit(Yorig, Yfinal)
+		#print len(self.lines)
+#		print "XNeigh"+str(
+		predX=neigh_x.predict(self.norm_lines[fromPoint-1])[0]
+		predY=neigh_y.predict(self.norm_lines[fromPoint-1])[0]
+		toRet=self.denorm((predX,predY))#self.norm_lines[toPoint])
+		print str(self.lines[fromPoint])+" "+str(self.norm_lines[fromPoint][2])+","+str(self.norm_lines[fromPoint][3])+"->"+str(toRet)+" After "+str(toPoint-fromPoint)+"steps"
+		return toRet
 
 	def denorm(self, p):
 		newx=p[0]*self.dx+self.minX
@@ -62,6 +92,7 @@ class Predictor:
  				self.knn_orig_y.append( numpy.array(self.norm_lines)[0:len(self.norm_lines)-64,0:4]  )#.tolist())
 				self.knn_final_x.append(numpy.array(self.norm_lines)[i:len(self.norm_lines)-64+i,0])#.tolist())
 				self.knn_final_y.append(numpy.array(self.norm_lines)[i:len(self.norm_lines)-64+i,1])#.tolist())
+				self.weight_call=Weight
 			#	//self.knn_orig_x[i]=self.norm_lines[0:len(self.norm_lines)-i][0]
 			#	//self.knn_orig_y[i]=self.norm_lines[0:len(self.norm_lines)-i][1]
 			#	//self.knn_final_x[i]=self.norm_lines[i:len(self.norm_lines)][0]

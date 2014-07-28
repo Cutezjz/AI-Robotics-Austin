@@ -1,7 +1,7 @@
 import turtle
 import time
 import math
-from predict import Predictor2
+from predict import Predictor
 
 class Visualizer:
     """A class that displays actual and predicted data in a window."""
@@ -117,7 +117,7 @@ class Visualizer:
                     last_point = point
 
             # Now display the prediction:
-            prediction = pred.predict(start_index-1, start_index+i)
+            prediction = pred.predict_KNN(start_index-1, start_index+i)
             if prediction[0] == -1.0:
                 missing_turtle.goto(last_prediction[0], last_prediction[1])
                 missing_turtle.stamp()
@@ -132,11 +132,13 @@ class Visualizer:
                 
 
 
-p=Predictor2(.1)
+p=Predictor()
 p.read("training_video1-centroid_data")
 print "Read complete"
 p.process()
 print "Process complete"
 vis = Visualizer(p)
 print "Visualizer setup"
-vis.visualize_many(512, 16, 64,3,5)
+#vis.visualize_many(512, 16, 64,3,5)
+vis.visualize_many(1000, 16, 64,3,5)
+#vis.visualize_many(2000, 16, 64,3,5)
