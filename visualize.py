@@ -13,7 +13,7 @@ class Visualizer:
         self.setup=False
 
     def visualize_many(self, start_index, count=1, old_points=16, num_visualizations=1, skip_between_visualizations=16):
-        """Display actual and predicted data in a window, plotting predictions from multiple time points. 
+        """Display actual and predicted data in a window, plotting predictions from multiple time points.
 
         Arguments:
         start_index -- the index at which prediction should start
@@ -25,9 +25,9 @@ class Visualizer:
         for i in range(num_visualizations):
             self.visualize(start_index+(i*skip_between_visualizations), count, old_points,False)
         self.window.exitonclick()
-            
-            
-        
+
+
+
     def visualize(self, start_index, count=1, old_points=16, wait_after_visualize=True, expect_robot_data=False):
         """Display actual and predicted data in a window.
 
@@ -59,7 +59,7 @@ class Visualizer:
         predict_turtle.color('orange')
         predict_turtle.penup()
         predict_turtle.shapesize(0.3, 0.3, 0.3)
-        
+
         particle_turtle = turtle.Turtle()
         particle_turtle.shape('circle')
         particle_turtle.color('purple')
@@ -100,7 +100,7 @@ class Visualizer:
                 last_point = point
             old_turtle.speed('fast')
             old_turtle.pendown()    # (Remove this to get rid of the connecting lines)
-            
+
             if expect_robot_data:
                 robot_data = pred.robot_data[start_index-old_points+i]
                 if robot_data[0] != -1.0:
@@ -133,7 +133,11 @@ class Visualizer:
                     last_point = point
 
             # Now display the prediction:
-            prediction = pred.predict_KNN(start_index-1, start_index+i)
+            if hasattr(pred, "predict_KNN") and callable(getattr(pred, "predict_KNN")):
+                prediction = pred.predict_KNN(start_index-1, start_index+i)
+            else:
+                prediction = pred.predict(start_index-1, start_index+i)
+
             if prediction[0] == -1.0:
                 missing_turtle.goto(last_prediction[0], last_prediction[1])
                 missing_turtle.stamp()
@@ -146,7 +150,7 @@ class Visualizer:
 
         if wait_after_visualize:
             self.window.exitonclick()
-                
+
 
 # Run the code below only if this module is being directly executed
 if __name__ == "__main__":

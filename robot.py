@@ -10,7 +10,7 @@ def angle_trunc(a):
 class robot:
 
     def __init__(self, x = 0.0, y = 0.0, heading = 0.0, turning = 2*pi/10, distance = 1.0):
-        """This function is called when you create a new robot. It sets some of 
+        """This function is called when you create a new robot. It sets some of
         the attributes of the robot, either to their default values or to the values
         specified when it is created."""
         self.x = x
@@ -55,7 +55,7 @@ class robot:
 
     def sense(self):
         """This function represents the robot sensing its location. When
-        measurements are noisy, this will return a value that is close to, 
+        measurements are noisy, this will return a value that is close to,
         but not necessarily equal to, the robot's (x, y) position."""
         return (random.gauss(self.x, self.measurement_noise),
                 random.gauss(self.y, self.measurement_noise))

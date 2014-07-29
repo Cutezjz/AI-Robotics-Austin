@@ -1,7 +1,7 @@
 #!/usr/bin/python
 import math
 import random
-import robot
+from robot import *
 import visualize
 
 
@@ -10,6 +10,71 @@ def angle_trunc(a):
 	while a < 0.0:
 		a += math.pi * 2
 	return ((a + math.pi) % (math.pi * 2)) - math.pi
+
+def Gaussian2d(mu, sigma, x):
+    """calculates the probability of x for 2D (but circular) Gaussian with mean mu and var. sigma"""
+    dist = sqrt((mu[0] - x[0]) ** 2 + (mu[1] - x[1]) ** 2)
+    result = exp(- (dist ** 2) / (sigma ** 2) / 2.0) / sqrt(2.0 * pi * (sigma ** 2))
+    # print 'Gaussian2d: dist = %.5f, sigma = %.5f, result = %.5f' % (dist, sigma, result)
+    return result
+
+def measurement_prob(robot, measurement, sigma):
+    # calculates how likely a measurement should be
+    prob = Gaussian2d([robot.x, robot.y], sigma, measurement)
+    return prob
+
+def copy_robot(src):
+    result = robot(src.x, src.y, src.heading, src.turning, src.distance)
+    result.set_noise(src.turning_noise, src.distance_noise, src.measurement_noise)
+    return result
+
+def resample(robots, measurement, num_results, sigma):
+    num_robots = len(robots)
+    w = []
+    w_max = 0.
+    for i in range(num_robots):
+        w.append(measurement_prob(robots[i], measurement, sigma))
+        w_max = max(w_max, w[i])
+    # print "w = ", w, ", w_max = ", w_max
+
+    result = []
+    beta = 0.
+    index = int(random.random() * num_robots)
+    for i in range(num_results):
+        beta += 2 * w_max * random.random()
+        while beta > w[index]:
+            beta -= w[index];
+            index = (index + 1) % num_robots
+        result.append(copy_robot(robots[index]))
+        # print 'selecting robot at (%.5f, %.5f)' % (robots[index].x, robots[index].y)
+    return result
+
+def create_particles(count, loc, heading, turning, distance, loc_sigma, heading_sigma, turning_sigma, distance_sigma):
+
+    TURNING_NOISE = 0.2
+    SPEED_NOISE_FACTOR = 0.01
+    MEASUREMENT_NOISE = 0.0
+
+    result = []
+
+    for i in range(count):
+        x = random.gauss(loc[0], loc_sigma)
+        y = random.gauss(loc[1], loc_sigma)
+        h = random.gauss(heading, heading_sigma)
+        t = random.gauss(turning, turning_sigma)
+        d = random.gauss(distance, distance_sigma)
+        p = robot(x, y, h, t, d)
+        p.set_noise(TURNING_NOISE, distance * SPEED_NOISE_FACTOR, MEASUREMENT_NOISE)
+        result.append(p)
+        # print 'created robot: x=%.5f, y=%.5f, heading=%.5f, turning=%.5f, distance=%.5f' % (x, y, h, t, d)
+
+    return result
+
+def average_robot_location(robots):
+    x_avg = 0.0 if len(robots)==0 else sum([r.x for r in robots]) / len(robots)
+    y_avg = 0.0 if len(robots)==0 else sum([r.y for r in robots]) / len(robots)
+    return [x_avg, y_avg]
+
 
 
 class PfPredictor:
@@ -34,12 +99,13 @@ class PfPredictor:
 		return [x,y]
 
 	def learn(self):
-		PARTICLE_COUNT = 10
+		PARTICLE_COUNT = 50
 		PARTICLE_REMOVAL_FRACTION = 0.1
+		RESAMPLE_SIGMA = 1.0
+		START_LOCATION_NOISE = 1.0
+		START_HEADING_NOISE = 0.1
 		START_TURNING_NOISE = 0.1
-		TURNING_NOISE = 0.0
-		DISTANCE_NOISE = 0.0
-		MEASUREMENT_NOISE = 0.0
+		START_SPEED_NOISE = 0.1
 
 		# First, find reasonable initial settings for the first robots:
 		pt = 0
@@ -51,12 +117,7 @@ class PfPredictor:
 		print "initial speed = %.3f, angle = %.3f" % (init_speed, init_turn_angle)
 
 		# Create the initial particle fleet:
-		particles = []
-		for i in range(PARTICLE_COUNT):
-			noisy_turn_angle = random.gauss(init_turn_angle, START_TURNING_NOISE)
-			r = robot.robot(init_x, init_y, init_heading, noisy_turn_angle, init_speed)
-			r.set_noise(TURNING_NOISE, DISTANCE_NOISE, MEASUREMENT_NOISE)
-			particles.append(r)
+		particles = create_particles(PARTICLE_COUNT, [init_x, init_y], init_heading, init_turn_angle, init_speed, START_LOCATION_NOISE, START_HEADING_NOISE, START_TURNING_NOISE, START_SPEED_NOISE)
 		
 		# Begin moving particles and learning:
 		while pt < len(self.lines):
@@ -65,12 +126,12 @@ class PfPredictor:
 				particles[i].move_in_circle()
 				
 			# Filter particles and create new ones to replace those removed
-			# TODO: this properly
+			# We resample and create new particles only if there's enough valid data at this point
 			if len(self.lines) >= 5 and self.lines[pt][0] != -1.0 and self.lines[pt][4]:
 				init_x, init_y, init_speed, init_heading, init_turn_angle, init_collision = self.lines[pt]
-				r = robot.robot(init_x, init_y, init_heading, init_turn_angle, init_speed)
-				r.set_noise(TURNING_NOISE, DISTANCE_NOISE, MEASUREMENT_NOISE)
-				particles = particles[1:] + [r]
+				resampled_particles = resample(particles, [init_x, init_y], int(PARTICLE_COUNT * (1.0 - PARTICLE_REMOVAL_FRACTION)), RESAMPLE_SIGMA)
+				new_particles = create_particles(int(PARTICLE_COUNT * PARTICLE_REMOVAL_FRACTION), [init_x, init_y], init_heading, init_turn_angle, init_speed, START_LOCATION_NOISE, START_HEADING_NOISE, START_TURNING_NOISE, START_SPEED_NOISE)
+				particles = resampled_particles + new_particles
 			
 			# Calculate average values for all particles
 			avg_x = sum([r.x for r in particles]) / PARTICLE_COUNT
@@ -171,6 +232,7 @@ class PfPredictor:
 if __name__ == "__main__":
 	p=PfPredictor()
 	p.read("training_video1-centroid_data")
+	# p.read("testing_video-centroid_data")
 	p.process()
 	print "read %d lines, saw %d collisions" % (len(p.lines), len(p.collision_indices))
 	print "extent is (%d, %d) to (%d, %d)" % (p.minX, p.minY, p.maxX, p.maxY)
