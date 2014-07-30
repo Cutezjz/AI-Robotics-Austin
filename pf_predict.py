@@ -51,8 +51,8 @@ def resample(robots, measurement, num_results, sigma):
 
 def create_particles(count, loc, heading, turning, distance, loc_sigma, heading_sigma, turning_sigma, distance_sigma):
 
-    TURNING_NOISE = 0.2
-    SPEED_NOISE_FACTOR = 0.01
+    TURNING_NOISE = 0.0
+    SPEED_NOISE_FACTOR = 0.0
     MEASUREMENT_NOISE = 0.0
 
     result = []
@@ -87,25 +87,33 @@ class PfPredictor:
 	def within_collision_boundary(self, x, y, boundary):
 		return self.minX + boundary > x or self.maxX - boundary < x or self.minY + boundary > y or self.maxY - boundary < y
 	
+	def get_robot_averages(self):
+		"""Return averages of [x, y, speed, heading] across all robots"""
+		count = len(self.particles)
+		avg_x = sum([r.x for r in self.particles]) / count
+		avg_y = sum([r.y for r in self.particles]) / count
+		avg_speed = sum([r.distance for r in self.particles]) / count
+		avg_heading = sum([r.heading for r in self.particles]) / count
+		avg_turning = sum([r.turning for r in self.particles]) / count
+		return [avg_x, avg_y, avg_speed, avg_heading, avg_turning]
+		
 	def predict(self, fromPoint, toPoint):
 		"""Predict the datapoint at index 'toPoint'"""
-		# TODO
-		if toPoint >= len(self.lines):
-			x = 0.0
-			y = 0.0
-		else:
-			x=self.lines[toPoint][0] + 5.0
-			y=self.lines[toPoint][1] - 5.0
+		# NOTE: ignoring parameters and just predicting the next point
+		for r in self.particles:
+			r.move_in_circle()
+		x, y, speed, heading, turning = self.get_robot_averages()
+		print "predict: (%.1f, %.1f), speed=%.3f, heading=%.3f, turn_angle=%.3f" % (x, y, speed, heading, turning)
 		return [x,y]
 
-	def learn(self):
+	def learn(self, num_points=None):
 		PARTICLE_COUNT = 50
 		PARTICLE_REMOVAL_FRACTION = 0.1
 		RESAMPLE_SIGMA = 1.0
-		START_LOCATION_NOISE = 1.0
-		START_HEADING_NOISE = 0.1
-		START_TURNING_NOISE = 0.1
-		START_SPEED_NOISE = 0.1
+		START_LOCATION_NOISE = 0.5
+		START_HEADING_NOISE = 0.02
+		START_TURNING_NOISE = 0.02
+		START_SPEED_NOISE = 0.05
 
 		# First, find reasonable initial settings for the first robots:
 		pt = 0
@@ -113,32 +121,48 @@ class PfPredictor:
 		while len(self.lines[pt]) < 6 or not self.lines[pt][2] or not self.lines[pt][4] or self.lines[pt][5]:
 			self.robot_data.append([-1.0, -1.0, 0.0, 0.0])
 			pt += 1
-		init_x, init_y, init_speed, init_heading, init_turn_angle, init_collision = self.lines[pt]
-		print "initial speed = %.3f, angle = %.3f" % (init_speed, init_turn_angle)
+		x_i, y_i, s_i, h_i, ta_i, c_i = self.lines[pt]
+		print "initial speed = %.3f, angle = %.3f" % (s_i, ta_i)
 
 		# Create the initial particle fleet:
-		particles = create_particles(PARTICLE_COUNT, [init_x, init_y], init_heading, init_turn_angle, init_speed, START_LOCATION_NOISE, START_HEADING_NOISE, START_TURNING_NOISE, START_SPEED_NOISE)
-		
+		self.particles = create_particles(PARTICLE_COUNT, [x_i, y_i], h_i, ta_i, s_i, START_LOCATION_NOISE, START_HEADING_NOISE, START_TURNING_NOISE, START_SPEED_NOISE)
+
+		new_particle_count = int(PARTICLE_COUNT * PARTICLE_REMOVAL_FRACTION)
+		keep_particle_count = PARTICLE_COUNT - new_particle_count
+
+		if num_points == None:
+			num_points = len(self.lines)
+		num_points = min(num_points, len(self.lines))
+
+		cum_speed = None	# cumulative speed estimate
+		cum_turn_angle = None
+
 		# Begin moving particles and learning:
-		while pt < len(self.lines):
+		while pt < num_points:
 			# Move particles
 			for i in range(PARTICLE_COUNT):
-				particles[i].move_in_circle()
+				self.particles[i].move_in_circle()
 				
 			# Filter particles and create new ones to replace those removed
 			# We resample and create new particles only if there's enough valid data at this point
-			if len(self.lines) >= 5 and self.lines[pt][0] != -1.0 and self.lines[pt][4]:
-				init_x, init_y, init_speed, init_heading, init_turn_angle, init_collision = self.lines[pt]
-				resampled_particles = resample(particles, [init_x, init_y], int(PARTICLE_COUNT * (1.0 - PARTICLE_REMOVAL_FRACTION)), RESAMPLE_SIGMA)
-				new_particles = create_particles(int(PARTICLE_COUNT * PARTICLE_REMOVAL_FRACTION), [init_x, init_y], init_heading, init_turn_angle, init_speed, START_LOCATION_NOISE, START_HEADING_NOISE, START_TURNING_NOISE, START_SPEED_NOISE)
-				particles = resampled_particles + new_particles
+			if len(self.lines) >= 6 and self.lines[pt][0] != -1.0 and self.lines[pt][4]:
+				x_i, y_i, s_i, h_i, ta_i, c_i = self.lines[pt]
+				
+				# First, we update our cumulative speed and turn angle estimates:
+				cum_speed = s_i if cum_speed == None else cum_speed * 0.9 + s_i * 0.1
+				if cum_turn_angle == None:
+					cum_turn_angle = ta_i
+				elif not c_i:
+					cum_turn_angle = cum_turn_angle * 0.8 + ta_i * 0.2
+				
+				# Now update the particle fleet:
+				resampled_particles = resample(self.particles, [x_i, y_i], keep_particle_count, RESAMPLE_SIGMA)
+				new_particles = create_particles(new_particle_count, [x_i, y_i], h_i, cum_turn_angle, cum_speed, START_LOCATION_NOISE, START_HEADING_NOISE, START_TURNING_NOISE, START_SPEED_NOISE)
+				self.particles = resampled_particles + new_particles
 			
 			# Calculate average values for all particles
-			avg_x = sum([r.x for r in particles]) / PARTICLE_COUNT
-			avg_y = sum([r.y for r in particles]) / PARTICLE_COUNT
-			avg_speed = sum([r.distance for r in particles]) / PARTICLE_COUNT
-			avg_heading = sum([r.heading for r in particles]) / PARTICLE_COUNT
-			self.robot_data.append([avg_x, avg_y, avg_speed, avg_heading])
+			robot_averages = self.get_robot_averages()
+			self.robot_data.append(robot_averages)
 			pt += 1
 			
 		
@@ -236,8 +260,11 @@ if __name__ == "__main__":
 	p.process()
 	print "read %d lines, saw %d collisions" % (len(p.lines), len(p.collision_indices))
 	print "extent is (%d, %d) to (%d, %d)" % (p.minX, p.minY, p.maxX, p.maxY)
-	p.learn()
+	
+	start_index = 440
+	# start_index = 1378
+	p.learn(start_index)
 	
 	vis = visualize.Visualizer(p)
-	vis.visualize(512, 16, 512, True, True)
+	vis.visualize(start_index, 16, 64, True, True)
 
