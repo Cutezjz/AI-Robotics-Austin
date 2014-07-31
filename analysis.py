@@ -184,7 +184,7 @@ class Analysis:
                     #print('angle[i] = ', angle[i],' new_angle = ', new_angle)
                     print('length of angle = ', len(angle))
                     print('new_angle = ', new_angle)
-                    collision_angles.append(angle[i])
+                    collision_angles.append(angle[-1])
                     bounced_angle.append(new_angle)
 
             
