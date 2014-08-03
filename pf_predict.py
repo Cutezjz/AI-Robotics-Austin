@@ -80,6 +80,18 @@ def average_robot_location(robots):
 class PfPredictor:
 	"""A class for predicting robot positions based on a particle filter."""
 
+	HEXBUG_LENGTH = 35
+	HEXBUG_WIDTH  = 10
+
+	MAX_TURN_ANGLE = 0.5	# Turn angle larger than this implies a collision
+	COLLISION_REGION = 1
+
+	WALL_NONE = 0
+	WALL_RIGHT = 1
+	WALL_TOP = 2
+	WALL_LEFT = 3
+	WALL_BOTTOM = 4
+
 	def __init__(self,noise_parameter=0):
 		self.lines=[[]]
 		self.noise=noise_parameter
@@ -87,6 +99,99 @@ class PfPredictor:
 	def within_collision_boundary(self, x, y, boundary):
 		return self.minX + boundary > x or self.maxX - boundary < x or self.minY + boundary > y or self.maxY - boundary < y
 	
+	def get_hexbug_front(self, pos, heading, distance = 0.0):
+		x_front = pos[0] + ((self.HEXBUG_LENGTH / 2.0) + distance) * cos(heading)
+		y_front = pos[1] + ((self.HEXBUG_LENGTH / 2.0) + distance) * sin(heading)
+		return [x_front, y_front]
+
+	def collision_knn_heading_delta(self, entry_angle, collision_database):
+
+		K = 7  # must be odd
+
+		nearest_distance = 2.0 * math.pi
+		nearest_index = None
+		nearest_delta = None
+		for i in range(len(collision_database)):
+			entry = collision_database[i]
+			distance = abs(entry[0] - entry_angle)
+			if distance < nearest_distance:
+				nearest_delta = entry[1]
+				nearest_distance = distance
+				nearest_index = i
+
+		weight = 1000000.0 if nearest_distance == 0.0 else 1.0 / nearest_distance
+		weight_sum = weight
+		weighted_delta_sum = weight * nearest_delta
+		print "Collision KNN Closest: dist = %.3f, weight = %.3f, delta = %.3f, angle = %.3f" % (nearest_distance, weight, nearest_delta, entry_angle)
+		for i in range((K-1)/2):
+			index = nearest_index - (i+1)
+			if index > 0:
+				entry = collision_database[index]
+				distance = abs(entry[0] - entry_angle)
+				weight = 1000000.0 if distance == 0.0 else 1.0 / distance
+				weight_sum += weight
+				weighted_delta_sum += weight * entry[1]
+				print "Collision KNN less: dist = %.3f, weight = %.3f, delta = %.3f" % (distance, weight, entry[1])
+		for i in range((K-1)/2):
+			index = nearest_index + (i+1)
+			if index < len(collision_database):
+				entry = collision_database[index]
+				distance = abs(entry[0] - entry_angle)
+				weight = 1000000.0 if distance == 0.0 else 1.0 / distance
+				weight_sum += weight
+				weighted_delta_sum += weight * entry[1]
+				print "Collision KNN more: dist = %.3f, weight = %.3f, delta = %.3f" % (distance, weight, entry[1])
+
+		return weighted_delta_sum / weight_sum
+
+	def predict_collision(self, loc, heading, speed, turn_angle, collision_database = None):
+		"""Will hexbug hit the wall in the NEXT time step?
+		
+		If collision_database is not None, it is expected to be a list of [entry_angle, heading_delta]
+		pairs, sorted by ascending entry angle.  Collision behavior will be calculated from this list using
+		a KNN lookup with weighted average."""
+
+		front_loc = self.get_hexbug_front(loc, heading, speed)
+		wall = self.WALL_NONE
+		near_corner = False
+		entry_angle = None
+		new_heading = None
+		heading_delta = None
+
+		if (front_loc[0] + self.COLLISION_REGION >= self.maxX):
+			wall = self.WALL_RIGHT
+			entry_angle = math.pi / 2.0 + heading
+		if (front_loc[1] - self.COLLISION_REGION <= self.minY):
+			if wall != self.WALL_NONE:
+				near_corner = True
+			wall = self.WALL_TOP
+			entry_angle = math.pi + heading
+		if (front_loc[0] - self.COLLISION_REGION <= self.minX):
+			if wall != self.WALL_NONE:
+				near_corner = True
+			wall = self.WALL_LEFT
+			entry_angle = 3.0 * math.pi / 2.0 + heading
+		if (front_loc[1] + self.COLLISION_REGION >= self.maxY):
+			if wall != self.WALL_NONE:
+				near_corner = True
+			wall = self.WALL_BOTTOM
+			entry_angle = heading
+			
+		# TODO: something way smarter than this (KNN!)
+		if entry_angle != None:
+			entry_angle = angle_trunc(entry_angle)
+			if collision_database:
+				heading_delta = self.collision_knn_heading_delta(entry_angle, collision_database)
+			else:
+				if entry_angle <= math.pi / 2.0:
+					heading_delta = 2.0 * entry_angle
+				else:
+					heading_delta = 2.0 * (math.pi - entry_angle)
+			new_heading = angle_trunc(heading + heading_delta)
+			print "Collision predicted at wall %d: (%.1f, %.1f) hdg %.3f speed %.1f angle %.3f - new heading = %.3f" % (wall, front_loc[0], front_loc[1], heading, speed, entry_angle, new_heading)
+
+		return [wall, near_corner, new_heading, entry_angle, heading_delta]
+
 	def get_robot_averages(self):
 		"""Return averages of [x, y, speed, heading] across all robots"""
 		count = len(self.particles)
@@ -100,8 +205,24 @@ class PfPredictor:
 	def predict(self, fromPoint, toPoint):
 		"""Predict the datapoint at index 'toPoint'"""
 		# NOTE: ignoring parameters and just predicting the next point
-		for r in self.particles:
-			r.move_in_circle()
+		x, y, speed, heading, turning = self.get_robot_averages()
+		
+		wall, near_corner, new_heading, entry_angle, heading_delta = self.predict_collision([x,y], heading, speed, turning, self.collision_database)
+		if wall == self.WALL_NONE:
+			# No collision predicted; just move normally
+			for r in self.particles:
+				r.move_in_circle()
+		else:
+			# Collision predicted; update robot headings (TODO: and speed? turn angle??)
+			# We assume the collision will happen halfway through the sample period...
+			for r in self.particles:
+				r_speed = r.distance
+				r.distance = r_speed / 2.0
+				r.move_in_circle()
+				r.heading = random.gauss(new_heading, 0.02)	# TODO use a real definition for noise
+				r.move_in_circle()
+				r.distance = r_speed
+
 		x, y, speed, heading, turning = self.get_robot_averages()
 		print "predict: (%.1f, %.1f), speed=%.3f, heading=%.3f, turn_angle=%.3f" % (x, y, speed, heading, turning)
 		return [x,y]
@@ -214,9 +335,8 @@ class PfPredictor:
 		self.dy=self.maxY-self.minY
 		
 		prev_heading = None
-		MAX_TURN_ANGLE = 0.5	# Turn angle larger than this implies a collision
-		COLLISION_REGION = 30
 		self.collision_indices = []
+		self.collision_database = []
 		
 		for i in range(len(self.lines)):
 			# If previous and current points are valid, append the speed and heading,
@@ -235,12 +355,15 @@ class PfPredictor:
 				if prev_heading:
 					turn_angle = angle_trunc(heading - prev_heading)
 					self.lines[i].append(turn_angle)
-					if abs(turn_angle) > MAX_TURN_ANGLE and self.within_collision_boundary(x_curr, y_curr, COLLISION_REGION):
-						# We assume this is a collision...
-						self.lines[i].append(True)
+					wall, near_corner, predicted_heading, entry_angle, heading_delta = self.predict_collision([x_prev, y_prev], heading, speed, turn_angle)
+					if wall != self.WALL_NONE:
+						# We assume this is after a collision...
+						self.lines[i].append(predicted_heading)
 						self.collision_indices.append(i)
-						if i < 1000:
-							print "%5d: prev = %.3f, curr = %.3f (%.3f,%.3f to %.3f,%.3f), turn = %.3f, collision = %d" % (i, prev_heading, heading, x_prev, y_prev, x_curr, y_curr, turn_angle, self.lines[i][5])
+						if not near_corner:
+							self.collision_database.append([entry_angle, angle_trunc(heading - prev_heading)])
+							if i < 1000:
+								print "%5d: wall = %d, prev = %.3f, curr = %.3f (%.3f,%.3f to %.3f,%.3f), turn = %.3f, collision = %d" % (i, wall, prev_heading, heading, x_prev, y_prev, x_curr, y_curr, turn_angle, self.lines[i][5])
 					else:
 						self.lines[i].append(False)
 				else:
@@ -249,22 +372,28 @@ class PfPredictor:
 			else:
 				prev_heading = None
 				self.lines[i] += [None, None, None, None]
-
+		
+		print "Sorting collision database of %d entries" % (len(self.collision_database))
+		sorted_database = sorted(self.collision_database, key=lambda collision: collision[0])
+		self.collision_database = sorted_database
+		print "Collision database:"
+		for c in self.collision_database:
+			print c
 
 
 # Run the code below only if this module is being directly executed
 if __name__ == "__main__":
 	p=PfPredictor()
-	p.read("training_video1-centroid_data")
-	# p.read("testing_video-centroid_data")
+	# p.read("training_video1-centroid_data")
+	p.read("testing_video-centroid_data")
 	p.process()
 	print "read %d lines, saw %d collisions" % (len(p.lines), len(p.collision_indices))
 	print "extent is (%d, %d) to (%d, %d)" % (p.minX, p.minY, p.maxX, p.maxY)
 	
-	start_index = 440
-	# start_index = 1378
+	# start_index = 440
+	start_index = 1378
 	p.learn(start_index)
 	
 	vis = visualize.Visualizer(p)
-	vis.visualize(start_index, 16, 64, True, True)
+	vis.visualize(start_index, 24, 128, True, True)
 
