@@ -12,14 +12,14 @@ def angle_trunc(a):
 	return ((a + math.pi) % (math.pi * 2)) - math.pi
 
 def Gaussian2d(mu, sigma, x):
-    """calculates the probability of x for 2D (but circular) Gaussian with mean mu and var. sigma"""
+    """Return the probability of x for a 2D (but circular) Gaussian with mean mu and var. sigma"""
     dist = sqrt((mu[0] - x[0]) ** 2 + (mu[1] - x[1]) ** 2)
     result = exp(- (dist ** 2) / (sigma ** 2) / 2.0) / sqrt(2.0 * pi * (sigma ** 2))
     # print 'Gaussian2d: dist = %.5f, sigma = %.5f, result = %.5f' % (dist, sigma, result)
     return result
 
 def measurement_prob(robot, measurement, sigma):
-    # calculates how likely a measurement should be
+    """Returns the likelihood of a measurement, assuming a circular Gaussian distribution."""
     prob = Gaussian2d([robot.x, robot.y], sigma, measurement)
     return prob
 
@@ -35,7 +35,6 @@ def resample(robots, measurement, num_results, sigma):
     for i in range(num_robots):
         w.append(measurement_prob(robots[i], measurement, sigma))
         w_max = max(w_max, w[i])
-    # print "w = ", w, ", w_max = ", w_max
 
     result = []
     beta = 0.
@@ -46,7 +45,6 @@ def resample(robots, measurement, num_results, sigma):
             beta -= w[index];
             index = (index + 1) % num_robots
         result.append(copy_robot(robots[index]))
-        # print 'selecting robot at (%.5f, %.5f)' % (robots[index].x, robots[index].y)
     return result
 
 def create_particles(count, loc, heading, turning, distance, loc_sigma, heading_sigma, turning_sigma, distance_sigma):
@@ -70,36 +68,40 @@ def create_particles(count, loc, heading, turning, distance, loc_sigma, heading_
 
     return result
 
-def average_robot_location(robots):
-    x_avg = 0.0 if len(robots)==0 else sum([r.x for r in robots]) / len(robots)
-    y_avg = 0.0 if len(robots)==0 else sum([r.y for r in robots]) / len(robots)
-    return [x_avg, y_avg]
-
 
 
 class PfPredictor:
 	"""A class for predicting robot positions based on a particle filter."""
 
-	HEXBUG_LENGTH = 35
-	HEXBUG_WIDTH  = 10
+	HEXBUG_LENGTH = 35		# Approximate hexbug length (in pixels)
+	HEXBUG_WIDTH  = 10		# Approximate hexbug width (in pixels)
 
-	MAX_TURN_ANGLE = 0.5	# Turn angle larger than this implies a collision
-	COLLISION_REGION = 1
+	COLLISION_REGION = 1	# Collision detection margin (in pixels)
 
+	# Enumerated values for which wall causes a collision
 	WALL_NONE = 0
 	WALL_RIGHT = 1
 	WALL_TOP = 2
 	WALL_LEFT = 3
 	WALL_BOTTOM = 4
 
+	COLLISION_HISTORY_STEPS = 6		# Number of steps to play back from history after a collision
+
 	def __init__(self,noise_parameter=0):
 		self.lines=[[]]
 		self.noise=noise_parameter
+		self.steps_to_record = 0
+		self.steps_to_playback = 0
+		self.collision_database = []
 
-	def within_collision_boundary(self, x, y, boundary):
-		return self.minX + boundary > x or self.maxX - boundary < x or self.minY + boundary > y or self.maxY - boundary < y
-	
 	def get_hexbug_front(self, pos, heading, distance = 0.0):
+		"""Return the rough location of the front center of the hexbug.
+		
+		pos - [x,y] coordinates of the bug's centroid
+		heading - bug heading (in radians)
+		distance - an additional distance to add (in the direction of 'heading')
+		"""
+
 		x_front = pos[0] + ((self.HEXBUG_LENGTH / 2.0) + distance) * cos(heading)
 		y_front = pos[1] + ((self.HEXBUG_LENGTH / 2.0) + distance) * sin(heading)
 		return [x_front, y_front]
@@ -144,6 +146,20 @@ class PfPredictor:
 
 		return weighted_delta_sum / weight_sum
 
+	def find_nearest_collision_sequence(self, entry_angle):
+		"""Search the collision database for the nearest entry and return it"""
+		nearest_distance = 2.0 * math.pi
+		nearest_index = None
+		nearest_result = None
+		for i in range(len(self.collision_database)):
+			entry = self.collision_database[i]
+			distance = abs(entry[0] - entry_angle)
+			if distance < nearest_distance:
+				nearest_result = entry[1]
+				nearest_distance = distance
+				nearest_index = i
+		return nearest_result
+	
 	def predict_collision(self, loc, heading, speed, turn_angle, collision_database = None):
 		"""Will hexbug hit the wall in the NEXT time step?
 		
@@ -205,23 +221,33 @@ class PfPredictor:
 	def predict(self, fromPoint, toPoint):
 		"""Predict the datapoint at index 'toPoint'"""
 		# NOTE: ignoring parameters and just predicting the next point
-		x, y, speed, heading, turning = self.get_robot_averages()
 		
-		wall, near_corner, new_heading, entry_angle, heading_delta = self.predict_collision([x,y], heading, speed, turning, self.collision_database)
-		if wall == self.WALL_NONE:
-			# No collision predicted; just move normally
+		x, y, speed, heading, turning = self.get_robot_averages()
+
+		if self.steps_to_playback > 0:
+			heading_delta, playback_speed = self.collision_steps[-self.steps_to_playback]
+			new_heading = angle_trunc(heading + heading_delta)
+			x_delta = playback_speed * cos(new_heading)
+			y_delta = playback_speed * sin(new_heading)
 			for r in self.particles:
-				r.move_in_circle()
+				r.x += x_delta
+				r.y += y_delta
+				r.heading = angle_trunc(r.heading + heading_delta)
+			self.steps_to_playback -= 1
+				
 		else:
-			# Collision predicted; update robot headings (TODO: and speed? turn angle??)
-			# We assume the collision will happen halfway through the sample period...
-			for r in self.particles:
-				r_speed = r.distance
-				r.distance = r_speed / 2.0
-				r.move_in_circle()
-				r.heading = random.gauss(new_heading, 0.02)	# TODO use a real definition for noise
-				r.move_in_circle()
-				r.distance = r_speed
+			wall, near_corner, new_heading, entry_angle, heading_delta = self.predict_collision([x,y], heading, speed, turning)
+			if wall == self.WALL_NONE:
+				# No collision predicted; just move normally
+				for r in self.particles:
+					r.move_in_circle()
+			else:
+				# Collision predicted; find replay sequence and begin replay:
+				self.collision_steps = self.find_nearest_collision_sequence(entry_angle)
+				self.steps_to_playback = len(self.collision_steps)
+				
+				# Recursively call this (now in playback mode):
+				return self.predict(fromPoint, toPoint)
 
 		x, y, speed, heading, turning = self.get_robot_averages()
 		print "predict: (%.1f, %.1f), speed=%.3f, heading=%.3f, turn_angle=%.3f" % (x, y, speed, heading, turning)
@@ -292,13 +318,14 @@ class PfPredictor:
 		self.lines=[[float(d) for d in line.strip().replace('[','').replace(',','').replace(']','').split()] for line in f.readlines()]
 		f.close()
 
-	def process(self):
+	def process(self, create_collision_database=True):
 		"""Prepare the data for use.
 
 		This involves:
 		- Finding the min and max X and Y values in the data
 		- Filtering out stray datapoints
 		- Annotating each datapoint with speed and angle
+		- Creating a collision database (if requested)
 		"""
 
 		self.maxX=-1
@@ -335,7 +362,6 @@ class PfPredictor:
 		self.dy=self.maxY-self.minY
 		
 		prev_heading = None
-		self.collision_indices = []
 		self.collision_database = []
 		
 		for i in range(len(self.lines)):
@@ -351,27 +377,38 @@ class PfPredictor:
 				heading = math.atan2((y_curr - y_prev), (x_curr - x_prev))
 				self.lines[i].append(speed)
 				self.lines[i].append(heading)
-				
+
 				if prev_heading:
 					turn_angle = angle_trunc(heading - prev_heading)
 					self.lines[i].append(turn_angle)
-					wall, near_corner, predicted_heading, entry_angle, heading_delta = self.predict_collision([x_prev, y_prev], heading, speed, turn_angle)
-					if wall != self.WALL_NONE:
-						# We assume this is after a collision...
-						self.lines[i].append(predicted_heading)
-						self.collision_indices.append(i)
-						if not near_corner:
-							self.collision_database.append([entry_angle, angle_trunc(heading - prev_heading)])
-							if i < 1000:
-								print "%5d: wall = %d, prev = %.3f, curr = %.3f (%.3f,%.3f to %.3f,%.3f), turn = %.3f, collision = %d" % (i, wall, prev_heading, heading, x_prev, y_prev, x_curr, y_curr, turn_angle, self.lines[i][5])
-					else:
+					if self.steps_to_record > 0:
+						self.collision_steps.append([turn_angle, speed])
+						self.steps_to_record -= 1
+						if self.steps_to_record == 0:
+							self.collision_database.append([self.collision_entry_angle, self.collision_steps])
+							self.collision_entry_angle = None
+							self.collision_steps = None
 						self.lines[i].append(False)
+					else:
+						wall, near_corner, predicted_heading, entry_angle, heading_delta = self.predict_collision([x_curr, y_curr], heading, speed, turn_angle)
+						if wall != self.WALL_NONE:
+							# We assume this is after a collision...
+							self.lines[i].append(predicted_heading)
+							if create_collision_database and not near_corner:
+								self.steps_to_record = self.COLLISION_HISTORY_STEPS
+								self.collision_steps = []
+								self.collision_entry_angle = entry_angle
+								if i < 1000:
+									print "%5d: wall = %d, prev = %.3f, curr = %.3f (%.3f,%.3f to %.3f,%.3f), turn = %.3f, collision = %d" % (i, wall, prev_heading, heading, x_prev, y_prev, x_curr, y_curr, turn_angle, self.lines[i][5])
+						else:
+							self.lines[i].append(False)
 				else:
 					self.lines[i] += [None, None]
 				prev_heading = heading
 			else:
 				prev_heading = None
 				self.lines[i] += [None, None, None, None]
+				self.steps_to_record = 0	# A [-1, -1] terminates collision recording
 		
 		print "Sorting collision database of %d entries" % (len(self.collision_database))
 		sorted_database = sorted(self.collision_database, key=lambda collision: collision[0])
@@ -383,15 +420,19 @@ class PfPredictor:
 
 # Run the code below only if this module is being directly executed
 if __name__ == "__main__":
+	p_train=PfPredictor()
+	p_train.read("training_video1-centroid_data")
+	p_train.process()
+	
 	p=PfPredictor()
-	# p.read("training_video1-centroid_data")
 	p.read("testing_video-centroid_data")
-	p.process()
-	print "read %d lines, saw %d collisions" % (len(p.lines), len(p.collision_indices))
+	p.process(False)
+	p.collision_database = p_train.collision_database
+	print "read %d lines, saw %d collisions" % (len(p.lines), len(p.collision_database))
 	print "extent is (%d, %d) to (%d, %d)" % (p.minX, p.minY, p.maxX, p.maxY)
 	
 	# start_index = 440
-	start_index = 1378
+	start_index = 1378 - 60
 	p.learn(start_index)
 	
 	vis = visualize.Visualizer(p)
