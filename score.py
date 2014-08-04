@@ -56,6 +56,6 @@ for i in range (3,20):
 #	pf_pred.learn(start_index)
 	pf_pred.read_test_set("testing_video-centroid_data")
 	s_pred=Scorer(pf_pred)
-	print "pf_pred"+str(math.sqrt(s_pred.error(i*100,(i*100)+100)))
+	print "pf_pred"+str(s_pred.error(i*100,(i*100)+100))
 	s_knn=Scorer(p_knn)
-	print "p_knn"+str(math.sqrt(s_knn.error(i*100,(i*100)+100)))
+	print "p_knn"+str(s_knn.error(i*100,(i*100)+100))
