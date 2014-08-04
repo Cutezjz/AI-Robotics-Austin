@@ -1,6 +1,8 @@
 #!/usr/bin/python
 import math
 import random
+import visualize
+
 class Weight:
     def __init__(self, d):
         print "Init "+str(d)
@@ -204,3 +206,12 @@ class Predictor2:
 class Predictor_KNN(Predictor):
     def predict(self, fromPoint,toPoint):
         return self.predict_KNN(fromPoint, toPoint)
+
+if __name__ == "__main__":
+    p = Predictor_KNN()
+    p.read("testing_video-centroid_data")
+
+    start_index = 1378
+
+    vis = visualize.Visualizer(p)
+    vis.visualize(start_index, 63, 64, True, False)
