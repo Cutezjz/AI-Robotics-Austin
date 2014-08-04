@@ -312,6 +312,10 @@ class PfPredictor:
 			self.robot_data.append(robot_averages)
 			pt += 1
 			
+	def read_test_set(self,filename):
+		f = open(filename)
+		self.test_set_lines=[[float(d) for d in line.strip().replace('[','').replace(',','').replace(']','').split()] for line in f.readlines()]
+		f.close()
 		
 	def read(self,filename):
 		f = open(filename)

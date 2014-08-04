@@ -40,30 +40,39 @@ class Predictor:
         return self.lines[toPoint]
 
     def predict_KNN(self,fromPoint, toPoint):
-        remove_bot=fromPoint-100
-        remove_top=toPoint+100
         from sklearn import preprocessing
         from sklearn.neighbors import KNeighborsRegressor
+        
         neigh_x = KNeighborsRegressor(n_neighbors=7,algorithm='kd_tree')
         neigh_y = KNeighborsRegressor(n_neighbors=7,algorithm='kd_tree')
         Xorig=  self.knn_orig_x[0]
-        print "toPoint, fromPoint "+str(toPoint)+" "+str(fromPoint)
         Xfinal=  self.knn_final_x[toPoint-fromPoint]
-        
         Yorig= self.knn_orig_y[0]
         Yfinal=  self.knn_final_y[toPoint-fromPoint]
-        neigh_x.fit(Xorig[:remove_bot], Xfinal[:remove_bot])
-        neigh_y.fit(Yorig[:remove_bot], Yfinal[:remove_bot])
-        predX=neigh_x.predict(self.norm_lines[fromPoint-1])[0]
-        predY=neigh_y.predict(self.norm_lines[fromPoint-1])[0]
-        toRet=self.denorm((self.norm_lines[fromPoint-1][0]+predX,self.norm_lines[fromPoint-1][1]+predY))#self.norm_lines[toPoint])
-        print str(self.lines[fromPoint])+" "+str(self.norm_lines[fromPoint][2])+","+str(self.norm_lines[fromPoint][3])+"->"+str(toRet)+" After "+str(toPoint-fromPoint)+"steps"
+        
+        neigh_x.fit(Xorig, Xfinal)
+        neigh_y.fit(Yorig, Yfinal)
+        predX=neigh_x.predict(self.norm_test_lines[fromPoint-1])[0]
+        predY=neigh_y.predict(self.norm_test_lines[fromPoint-1])[0]
+        toRet=self.denorm((self.norm_test_lines[fromPoint-1][0]+predX,self.norm_test_lines[fromPoint-1][1]+predY))
         return toRet
 
     def denorm(self, p):
         newx=p[0]*self.dx+self.minX
         newy=p[1]*self.dy+self.minY
         return (newx, newy)
+    
+    norm_test_lines=[]
+
+    def read_test_set(self,filename):
+        f = open(filename)
+        self.test_set_lines=[[float(d) for d in line.strip().replace('[','').replace(',','').replace(']','').split()] for line in f.readlines()]
+        f.close()
+        self.norm_test_lines=self.normalize(self.test_set_lines)
+        #for i in range(len(self.test_set_lines)):
+        #    newX=(self.test_set_lines[i][0]-self.minX)/(self.dx)
+        #    newY=(self.test_set_lines[i][1]-self.minY)/(self.dy)
+        #    self.norm_test_lines.append((newX,newY))
 
     def read(self,filename):
         f = open(filename)
@@ -72,43 +81,6 @@ class Predictor:
             self.lines[i][0]=int(self.lines[i][0])
             self.lines[i][1]=int(self.lines[i][1])
         f.close()
-        self.normalize()
-        self.process()
-    
-    def process(self):
-        import numpy
-        print "Process"
-        if self.allow_knn and len(self.knn_orig_x)==0:
-            print "KNN allowed"
-            for i in range(64):
-                print "Running time "+str(i)
-                self.knn_orig_x.append( numpy.array(self.norm_lines)[0:len(self.norm_lines)-64,0:4]  )#.tolist())
-                self.knn_orig_y.append( numpy.array(self.norm_lines)[0:len(self.norm_lines)-64,0:4]  )#.tolist())
-                self.knn_final_x.append(numpy.array(self.norm_lines)[i:len(self.norm_lines)-64+i,0]-numpy.array(self.norm_lines)[0:len(self.norm_lines)-64,0])#.tolist())
-                self.knn_final_y.append(numpy.array(self.norm_lines)[i:len(self.norm_lines)-64+i,1]-numpy.array(self.norm_lines)[0:len(self.norm_lines)-64,1])#.tolist())
-                #self.knn_final_x.append(numpy.array(self.norm_lines)[i:len(self.norm_lines)-64+i,0])#.tolist())
-                #self.knn_final_y.append(numpy.array(self.norm_lines)[i:len(self.norm_lines)-64+i,1])#.tolist())
-                self.weight_call=Weight
-    
-    def avg_missing_points(self):
-        for i in range(len(self.lines)):
-            if self.lines[i][0]==-1 or self.lines[i][1]==-1:
-                count=0
-                while(self.lines[i+count][0]==-1 or self.lines[i+count][1]==-1):
-                    count=count+1
-                dx=self.lines[i+count][0]-self.lines[i-1][0]
-                dy=self.lines[i+count][1]-self.lines[i-1][1]
-#                print "Averaging "+str(i)+" "+str(i+count)+" "+str(self.lines[i+count])+","+str(self.lines[i-1])
-                for j in range (count):
-#                    print "Moving "+str(i+j)+" from ("+str(self.lines[i+j][0])+","+str(self.lines[i+j][1])+") to ("+str(self.lines[i-1][0]+dx*(0.0+j)/count)+","+str(self.lines[i-1][1]+dy*(0.0+j)/count)+")"
-                    self.lines[i+j][0]=self.lines[i-1][0]+dx*(0.0+j)/count
-                    self.lines[i+j][1]=self.lines[i-1][1]+dy*(0.0+j)/count
-                
-
-
-    def normalize(self):
-        if self.allow_knn and len(self.knn_orig_x)==0:
-            self.avg_missing_points()
         maxX=-1
         self.minX=100000000
         maxY=-1
@@ -122,18 +94,54 @@ class Predictor:
             self.minY=min(float(self.lines[i][1]),self.minY)
         self.dx=maxX-self.minX
         self.dy=maxY-self.minY
-        for i in range(0,len(self.lines)):
-            if(self.lines[i][0] == "-1" or self.lines[i][1]== "-1"):
-                self.norm_lines.append([-1,-1,-1,-1])
-            else:
-                toAdd=[((float(self.lines[i][0])-self.minX)/self.dx),((float(self.lines[i][1])-self.minY)/self.dy),-1.,-1.]
-                #If there is a previous point, calculate the angle and speed
-                if i>0 and self.lines[i-1][0]!="-1":
-                    toAdd[2]=math.sqrt((toAdd[0]-self.norm_lines[-1][0])**2+(toAdd[1]-self.norm_lines[-1][1])**2)
-                    toAdd[3]=math.atan2(-1*(toAdd[1]-self.norm_lines[-1][1]),(toAdd[0]-self.norm_lines[-1][0]))
+        self.norm_lines=self.normalize(self.lines)
+        self.process()
+    
+    def process(self):
+        import numpy
+        print "Process"
+        if self.allow_knn and len(self.knn_orig_x)==0:
+            print "KNN allowed"
+            for i in range(64):
+                self.knn_orig_x.append( numpy.array(self.norm_lines)[0:len(self.norm_lines)-64,0:4]  )#.tolist())
+                self.knn_orig_y.append( numpy.array(self.norm_lines)[0:len(self.norm_lines)-64,0:4]  )#.tolist())
+                self.knn_final_x.append(numpy.array(self.norm_lines)[i:len(self.norm_lines)-64+i,0]-numpy.array(self.norm_lines)[0:len(self.norm_lines)-64,0])#.tolist())
+                self.knn_final_y.append(numpy.array(self.norm_lines)[i:len(self.norm_lines)-64+i,1]-numpy.array(self.norm_lines)[0:len(self.norm_lines)-64,1])#.tolist())
+                #self.knn_final_x.append(numpy.array(self.norm_lines)[i:len(self.norm_lines)-64+i,0])#.tolist())
+                #self.knn_final_y.append(numpy.array(self.norm_lines)[i:len(self.norm_lines)-64+i,1])#.tolist())
+                self.weight_call=Weight
+    
+    def avg_missing_points(self,lines):
+        for i in range(len(lines)):
+            if lines[i][0]==-1 or lines[i][1]==-1:
+                count=0
+                while(lines[i+count][0]==-1 or lines[i+count][1]==-1):
+                    count=count+1
+                dx=lines[i+count][0]-lines[i-1][0]
+                dy=lines[i+count][1]-lines[i-1][1]
+                for j in range (count):
+                    lines[i+j][0]=lines[i-1][0]+dx*(0.0+j)/count
+                    lines[i+j][1]=lines[i-1][1]+dy*(0.0+j)/count
+        return lines
+                
 
-                self.norm_lines.append(toAdd)
-        del self.norm_lines[0]
+
+    def normalize(self,lines):
+        norm_lines=[]
+        if self.allow_knn and len(self.knn_orig_x)==0:
+            lines=self.avg_missing_points(lines)
+        for i in range(0,len(lines)):
+            if(lines[i][0] == "-1" or lines[i][1]== "-1"):
+                norm_lines.append([-1,-1,-1,-1])
+            else:
+                toAdd=[((float(lines[i][0])-self.minX)/self.dx),((float(lines[i][1])-self.minY)/self.dy),-1.,-1.]
+                #If there is a previous point, calculate the angle and speed
+                if i>0 and lines[i-1][0]!="-1":
+                    toAdd[2]=math.sqrt((toAdd[0]-norm_lines[-1][0])**2+(toAdd[1]-norm_lines[-1][1])**2)
+                    toAdd[3]=math.atan2(-1*(toAdd[1]-norm_lines[-1][1]),(toAdd[0]-norm_lines[-1][0]))
+
+                norm_lines.append(toAdd)
+        return norm_lines
 
 class Predictor2:
     """A class for predicting robot positions based on training data."""

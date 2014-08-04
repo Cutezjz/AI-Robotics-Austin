@@ -12,12 +12,12 @@ class Scorer:
 	def error(self,initial_point=10, final_point=99999999):
 		sum=0
 		count=0
-		for i in range(initial_point, min(len(self.p.lines)-64,final_point)):
+		for i in range(initial_point, final_point):
 			inner_sum=0
 			for j in range(0,64):
 				if(self.p.lines[i+j]!="-1"):
 					count+=1
-					inner_sum=Scorer.squared_err(self.p.predict(i,i+j),self.p.lines[i+j])		
+					inner_sum=Scorer.squared_err(self.p.predict(i,i+j),self.p.test_set_lines[i+j])		
 				else:
 					print "lines == -1"
 			sum+=math.sqrt(inner_sum)
@@ -29,30 +29,33 @@ class Scorer:
 
 
 	
-for i in range (1,20):
-	p_train=PfPredictor()
-	p_train.read("training_video1-centroid_data")
-	p_train.process()
-	
-	pf_pred=PfPredictor()
-	pf_pred.read("training_video1-centroid_data")
-	pf_pred.process(False)
-	pf_pred.collision_database = p_train.collision_database
-	print "read %d lines, saw %d collisions" % (len(pf_pred.lines), len(pf_pred.collision_database))
-	print "extent is (%d, %d) to (%d, %d)" % (pf_pred.minX, pf_pred.minY, pf_pred.maxX, pf_pred.maxY)
+p_train=PfPredictor()
+p_train.read("training_video1-centroid_data")
+p_train.process()
+
+pf_pred=PfPredictor()
+pf_pred.read("testing_video-centroid_data")
+pf_pred.process(False)
+pf_pred.collision_database = p_train.collision_database
+print "read %d lines, saw %d collisions" % (len(pf_pred.lines), len(pf_pred.collision_database))
+print "extent is (%d, %d) to (%d, %d)" % (pf_pred.minX, pf_pred.minY, pf_pred.maxX, pf_pred.maxY)
+p_knn=Predictor_KNN()
+p_knn.read("training_video1-centroid_data")
+p_knn.read_test_set("testing_video-centroid_data")
+print "Preprocessing complete"
+for i in range (3,20):
 	
 	# start_index = 440
 #	start_index = 1378 - 60
-	start_index = i*1000+10000
+	start_index = i*100
 	pf_pred.learn(start_index)
 #	pf_pred=PfPredictor()
 #	pf_pred.read("training_video1-centroid_data")
 #	pf_pred.process()
-#	start_index = i*1000+10000
+#	start_index = i*10+100
 #	pf_pred.learn(start_index)
+	pf_pred.read_test_set("testing_video-centroid_data")
 	s_pred=Scorer(pf_pred)
-	print "pf_pred"+str(math.sqrt(s_pred.error(i*1000+10000,(i*1000)+10200)))
-	p_knn=Predictor_KNN()
-	p_knn.read("training_video1-centroid_data")
+	print "pf_pred"+str(math.sqrt(s_pred.error(i*100,(i*100)+100)))
 	s_knn=Scorer(p_knn)
-	print "p_knn"+str(math.sqrt(s_knn.error(i*1000+10000,(i*1000)+10200)))
+	print "p_knn"+str(math.sqrt(s_knn.error(i*100,(i*100)+100)))
