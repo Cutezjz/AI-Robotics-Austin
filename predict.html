@@ -1,0 +1,155 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module predict</title>
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>predict</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/tayphe01/Dropbox/programs/SelfDrivingCars/predict.py">/home/tayphe01/Dropbox/programs/SelfDrivingCars/predict.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="math.html">math</a><br>
+</td><td width="25%" valign=top><a href="random.html">random</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="predict.html#Predictor">Predictor</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="predict.html#Predictor_KNN">Predictor_KNN</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Predictor">class <strong>Predictor</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>The&nbsp;core&nbsp;predictor&nbsp;class<br>
+&nbsp;<br>
+Includes&nbsp;utility&nbsp;functions&nbsp;like&nbsp;reading&nbsp;files&nbsp;and&nbsp;normalizing&nbsp;datasets,&nbsp;as&nbsp;well&nbsp;as&nbsp;the&nbsp;main&nbsp;KNN&nbsp;predictor<br>
+The&nbsp;KNN&nbsp;predictor&nbsp;shall:<br>
+Read&nbsp;in&nbsp;a&nbsp;training&nbsp;file<br>
+Process&nbsp;that&nbsp;training&nbsp;file:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Average&nbsp;groups&nbsp;of&nbsp;missing&nbsp;points&nbsp;with&nbsp;the&nbsp;points&nbsp;before&nbsp;and&nbsp;after&nbsp;the&nbsp;missing&nbsp;groups<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Convert&nbsp;the&nbsp;X&nbsp;and&nbsp;Y&nbsp;coordinates&nbsp;to&nbsp;fraction&nbsp;of&nbsp;box&nbsp;width&nbsp;and&nbsp;height&nbsp;respectively<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Calculate&nbsp;the&nbsp;velocity&nbsp;and&nbsp;angle&nbsp;from&nbsp;each&nbsp;point&nbsp;to&nbsp;the&nbsp;point&nbsp;before&nbsp;it<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Create&nbsp;64&nbsp;vectors&nbsp;of&nbsp;points,&nbsp;knn_final_x&nbsp;and&nbsp;knn_final_y,&nbsp;with&nbsp;knn_final_x[a][b]&nbsp;representing&nbsp;the&nbsp;change&nbsp;in&nbsp;the&nbsp;normalized&nbsp;X&nbsp;coordinate&nbsp;of&nbsp;the&nbsp;robot&nbsp;"a"&nbsp;time&nbsp;steps&nbsp;after&nbsp;"b"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Set&nbsp;knn_orig&nbsp;to&nbsp;be&nbsp;the&nbsp;normalized&nbsp;points&nbsp;from&nbsp;the&nbsp;training&nbsp;set,&nbsp;less&nbsp;the&nbsp;final&nbsp;64&nbsp;points<br>
+Read&nbsp;a&nbsp;test&nbsp;file<br>
+Normalize&nbsp;the&nbsp;test&nbsp;file&nbsp;as&nbsp;above<br>
+When&nbsp;predict_KNN&nbsp;is&nbsp;called,&nbsp;fit&nbsp;a&nbsp;KNN&nbsp;predictor&nbsp;from&nbsp;knn_orig&nbsp;to&nbsp;knn_final_x&nbsp;and&nbsp;knn_final_y,&nbsp;using&nbsp;the&nbsp;7&nbsp;nearest&nbsp;neighbors<br>
+Estimate&nbsp;the&nbsp;normalized&nbsp;Dx&nbsp;and&nbsp;Dy&nbsp;from&nbsp;those&nbsp;7&nbsp;nearest&nbsp;neighbors<br>
+Return&nbsp;the&nbsp;denormalized&nbsp;current&nbsp;point&nbsp;plus&nbsp;offset&nbsp;Dx&nbsp;and&nbsp;Dy<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Predictor-avg_missing_points"><strong>avg_missing_points</strong></a>(self, lines)</dt><dd><tt>If&nbsp;a&nbsp;point&nbsp;or&nbsp;group&nbsp;of&nbsp;points&nbsp;is&nbsp;missing,&nbsp;assume&nbsp;those&nbsp;missing&nbsp;points&nbsp;were&nbsp;in&nbsp;between&nbsp;the&nbsp;known&nbsp;points&nbsp;before&nbsp;and&nbsp;after&nbsp;the&nbsp;missing&nbsp;points</tt></dd></dl>
+
+<dl><dt><a name="Predictor-denorm"><strong>denorm</strong></a>(self, p)</dt><dd><tt>Convert&nbsp;a&nbsp;point&nbsp;from&nbsp;a&nbsp;normalized&nbsp;point&nbsp;to&nbsp;a&nbsp;normal&nbsp;point,&nbsp;using&nbsp;the&nbsp;instances&nbsp;normalization&nbsp;parameters</tt></dd></dl>
+
+<dl><dt><a name="Predictor-normalize"><strong>normalize</strong></a>(self, lines)</dt><dd><tt>Compute&nbsp;the&nbsp;min&nbsp;and&nbsp;max&nbsp;X&nbsp;and&nbsp;Y&nbsp;coordinates,&nbsp;and&nbsp;normalize&nbsp;all&nbsp;points&nbsp;to&nbsp;the&nbsp;range&nbsp;([0,1],[0,1])&nbsp;where&nbsp;0&nbsp;represents&nbsp;min&nbsp;and&nbsp;1&nbsp;represents&nbsp;max<br>
+&nbsp;<br>
+Then&nbsp;compute&nbsp;the&nbsp;angles&nbsp;and&nbsp;velocity&nbsp;associated&nbsp;with&nbsp;each&nbsp;point&nbsp;to&nbsp;the&nbsp;point&nbsp;before&nbsp;it</tt></dd></dl>
+
+<dl><dt><a name="Predictor-predict"><strong>predict</strong></a>(self, fromPoint, toPoint)</dt><dd><tt>Return&nbsp;a&nbsp;perfect&nbsp;prediction&nbsp;<br>
+&nbsp;<br>
+This&nbsp;function&nbsp;is&nbsp;useful&nbsp;for&nbsp;testing&nbsp;purposes,&nbsp;but&nbsp;will&nbsp;fail&nbsp;if&nbsp;asked&nbsp;to&nbsp;predict&nbsp;data&nbsp;that&nbsp;hasn't&nbsp;be&nbsp;presented.</tt></dd></dl>
+
+<dl><dt><a name="Predictor-predict_KNN"><strong>predict_KNN</strong></a>(self, fromPoint, toPoint)</dt><dd><tt>Return&nbsp;a&nbsp;prediction&nbsp;based&nbsp;on&nbsp;the&nbsp;dx&nbsp;and&nbsp;dy&nbsp;of&nbsp;the&nbsp;7&nbsp;most&nbsp;similar&nbsp;points&nbsp;to&nbsp;fromPoint</tt></dd></dl>
+
+<dl><dt><a name="Predictor-process"><strong>process</strong></a>(self)</dt><dd><tt>If&nbsp;KNN&nbsp;is&nbsp;enabled&nbsp;for&nbsp;this&nbsp;predictor,&nbsp;set&nbsp;up&nbsp;the&nbsp;64&nbsp;vectors&nbsp;associated&nbsp;with&nbsp;the&nbsp;coordinates&nbsp;up&nbsp;to&nbsp;64&nbsp;time&nbsp;steps&nbsp;from&nbsp;each&nbsp;known&nbsp;coordinate</tt></dd></dl>
+
+<dl><dt><a name="Predictor-read"><strong>read</strong></a>(self, filename)</dt><dd><tt>Read&nbsp;and&nbsp;normalize&nbsp;the&nbsp;training&nbsp;data&nbsp;from&nbsp;file&nbsp;filename</tt></dd></dl>
+
+<dl><dt><a name="Predictor-read_test_set"><strong>read_test_set</strong></a>(self, filename)</dt><dd><tt>Read&nbsp;and&nbsp;normalize&nbsp;the&nbsp;test&nbsp;data&nbsp;from&nbsp;file&nbsp;filename</tt></dd></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>allow_knn</strong> = True</dl>
+
+<dl><dt><strong>knn_final_x</strong> = []</dl>
+
+<dl><dt><strong>knn_final_y</strong> = []</dl>
+
+<dl><dt><strong>knn_orig_x</strong> = []</dl>
+
+<dl><dt><strong>knn_orig_y</strong> = []</dl>
+
+<dl><dt><strong>lines</strong> = []</dl>
+
+<dl><dt><strong>norm_lines</strong> = []</dl>
+
+<dl><dt><strong>norm_test_lines</strong> = []</dl>
+
+<dl><dt><strong>test_set_lines</strong> = []</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Predictor_KNN">class <strong>Predictor_KNN</strong></a>(<a href="predict.html#Predictor">Predictor</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>A&nbsp;utility&nbsp;class&nbsp;which&nbsp;inherits&nbsp;a&nbsp;complete&nbsp;KNN&nbsp;predictor&nbsp;from&nbsp;<a href="#Predictor">Predictor</a><br>
+&nbsp;<br>
+Overrides&nbsp;the&nbsp;predict&nbsp;function&nbsp;with&nbsp;the&nbsp;<a href="#Predictor">Predictor</a>.predict_knn&nbsp;function<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Predictor_KNN-predict"><strong>predict</strong></a>(self, fromPoint, toPoint)</dt><dd><tt>Call&nbsp;the&nbsp;<a href="#Predictor">Predictor</a>.predict_knn&nbsp;function</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="predict.html#Predictor">Predictor</a>:<br>
+<dl><dt><a name="Predictor_KNN-avg_missing_points"><strong>avg_missing_points</strong></a>(self, lines)</dt><dd><tt>If&nbsp;a&nbsp;point&nbsp;or&nbsp;group&nbsp;of&nbsp;points&nbsp;is&nbsp;missing,&nbsp;assume&nbsp;those&nbsp;missing&nbsp;points&nbsp;were&nbsp;in&nbsp;between&nbsp;the&nbsp;known&nbsp;points&nbsp;before&nbsp;and&nbsp;after&nbsp;the&nbsp;missing&nbsp;points</tt></dd></dl>
+
+<dl><dt><a name="Predictor_KNN-denorm"><strong>denorm</strong></a>(self, p)</dt><dd><tt>Convert&nbsp;a&nbsp;point&nbsp;from&nbsp;a&nbsp;normalized&nbsp;point&nbsp;to&nbsp;a&nbsp;normal&nbsp;point,&nbsp;using&nbsp;the&nbsp;instances&nbsp;normalization&nbsp;parameters</tt></dd></dl>
+
+<dl><dt><a name="Predictor_KNN-normalize"><strong>normalize</strong></a>(self, lines)</dt><dd><tt>Compute&nbsp;the&nbsp;min&nbsp;and&nbsp;max&nbsp;X&nbsp;and&nbsp;Y&nbsp;coordinates,&nbsp;and&nbsp;normalize&nbsp;all&nbsp;points&nbsp;to&nbsp;the&nbsp;range&nbsp;([0,1],[0,1])&nbsp;where&nbsp;0&nbsp;represents&nbsp;min&nbsp;and&nbsp;1&nbsp;represents&nbsp;max<br>
+&nbsp;<br>
+Then&nbsp;compute&nbsp;the&nbsp;angles&nbsp;and&nbsp;velocity&nbsp;associated&nbsp;with&nbsp;each&nbsp;point&nbsp;to&nbsp;the&nbsp;point&nbsp;before&nbsp;it</tt></dd></dl>
+
+<dl><dt><a name="Predictor_KNN-predict_KNN"><strong>predict_KNN</strong></a>(self, fromPoint, toPoint)</dt><dd><tt>Return&nbsp;a&nbsp;prediction&nbsp;based&nbsp;on&nbsp;the&nbsp;dx&nbsp;and&nbsp;dy&nbsp;of&nbsp;the&nbsp;7&nbsp;most&nbsp;similar&nbsp;points&nbsp;to&nbsp;fromPoint</tt></dd></dl>
+
+<dl><dt><a name="Predictor_KNN-process"><strong>process</strong></a>(self)</dt><dd><tt>If&nbsp;KNN&nbsp;is&nbsp;enabled&nbsp;for&nbsp;this&nbsp;predictor,&nbsp;set&nbsp;up&nbsp;the&nbsp;64&nbsp;vectors&nbsp;associated&nbsp;with&nbsp;the&nbsp;coordinates&nbsp;up&nbsp;to&nbsp;64&nbsp;time&nbsp;steps&nbsp;from&nbsp;each&nbsp;known&nbsp;coordinate</tt></dd></dl>
+
+<dl><dt><a name="Predictor_KNN-read"><strong>read</strong></a>(self, filename)</dt><dd><tt>Read&nbsp;and&nbsp;normalize&nbsp;the&nbsp;training&nbsp;data&nbsp;from&nbsp;file&nbsp;filename</tt></dd></dl>
+
+<dl><dt><a name="Predictor_KNN-read_test_set"><strong>read_test_set</strong></a>(self, filename)</dt><dd><tt>Read&nbsp;and&nbsp;normalize&nbsp;the&nbsp;test&nbsp;data&nbsp;from&nbsp;file&nbsp;filename</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="predict.html#Predictor">Predictor</a>:<br>
+<dl><dt><strong>allow_knn</strong> = True</dl>
+
+<dl><dt><strong>knn_final_x</strong> = []</dl>
+
+<dl><dt><strong>knn_final_y</strong> = []</dl>
+
+<dl><dt><strong>knn_orig_x</strong> = []</dl>
+
+<dl><dt><strong>knn_orig_y</strong> = []</dl>
+
+<dl><dt><strong>lines</strong> = []</dl>
+
+<dl><dt><strong>norm_lines</strong> = []</dl>
+
+<dl><dt><strong>norm_test_lines</strong> = []</dl>
+
+<dl><dt><strong>test_set_lines</strong> = []</dl>
+
+</td></tr></table></td></tr></table>
+</body></html>

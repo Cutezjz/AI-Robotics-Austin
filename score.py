@@ -17,9 +17,11 @@ class Scorer:
 			for j in range(0,64):
 				if(self.p.lines[i+j]!="-1"):
 					count+=1
-					inner_sum=Scorer.squared_err(self.p.predict(i,i+j),self.p.test_set_lines[i+j])		
+					err=Scorer.squared_err(self.p.predict(i,i+j),self.p.test_set_lines[i+j])		
+					print str(err)+"|",
+					inner_sum+=err
 				else:
-					print "lines == -1"
+					print "lines == -1",
 			sum+=math.sqrt(inner_sum)
 		return sum*64.0/(count)
 
@@ -37,25 +39,16 @@ pf_pred=PfPredictor()
 pf_pred.read("testing_video-centroid_data")
 pf_pred.process(False)
 pf_pred.collision_database = p_train.collision_database
-print "read %d lines, saw %d collisions" % (len(pf_pred.lines), len(pf_pred.collision_database))
-print "extent is (%d, %d) to (%d, %d)" % (pf_pred.minX, pf_pred.minY, pf_pred.maxX, pf_pred.maxY)
 p_knn=Predictor_KNN()
 p_knn.read("training_video1-centroid_data")
 p_knn.read_test_set("testing_video-centroid_data")
 print "Preprocessing complete"
-for i in range (3,20):
+for i in range (300,1378):
 	
-	# start_index = 440
-#	start_index = 1378 - 60
-	start_index = i*100
+	start_index = i
 	pf_pred.learn(start_index)
-#	pf_pred=PfPredictor()
-#	pf_pred.read("training_video1-centroid_data")
-#	pf_pred.process()
-#	start_index = i*10+100
-#	pf_pred.learn(start_index)
 	pf_pred.read_test_set("testing_video-centroid_data")
 	s_pred=Scorer(pf_pred)
-	print "pf_pred"+str(s_pred.error(i*100,(i*100)+100))
+	print str(s_pred.error(i,i+1))+"|pf_pred"
 	s_knn=Scorer(p_knn)
-	print "p_knn"+str(s_knn.error(i*100,(i*100)+100))
+	print str(s_knn.error(i,i+1))+"|knn_pred"
