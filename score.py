@@ -27,6 +27,8 @@ class Scorer:
 				else:
 					print "|",
 			sum+=math.sqrt(inner_sum)
+		if count==0:
+			return 0
 		return sum*64.0/(count)
 
 	@staticmethod
