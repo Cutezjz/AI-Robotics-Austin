@@ -1,0 +1,31 @@
+read 1378 lines, saw 514 collisions
+extent is (165, 84) to (684, 420)
+Process
+KNN allowed
+Preprocessing complete
+pf_pred2255.79757954
+p_knn1196.77834358
+pf_pred87107.3848204
+p_knn916.530574849
+pf_pred7190.24367087
+p_knn914.354339277
+pf_pred2207.85269237
+p_knn991.503288894
+pf_pred1797.3098317
+p_knn1163.38642058
+pf_pred1758.7406767
+p_knn1231.81655026
+pf_pred1256.0489372
+p_knn1106.00940461
+pf_pred1344.13816589
+p_knn757.636660072
+pf_pred14625.3423977
+p_knn914.591955017
+pf_pred18166.8887743
+p_knn853.958401384
+Traceback (most recent call last):
+  File "score.py", line 59, in <module>
+    print "pf_pred"+str(s_pred.error(i*100,(i*100)+100))
+  File "score.py", line 18, in error
+    if(self.p.lines[i+j]!="-1"):
+IndexError: list index out of range
