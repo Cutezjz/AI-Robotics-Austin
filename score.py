@@ -15,13 +15,13 @@ class Scorer:
 		for i in range(initial_point, final_point):
 			inner_sum=0
 			for j in range(0,64):
-				if(self.p.lines[i+j]!="-1"):
+				if(self.p.lines[i+j][0]!=-1 and self.p.lines[i][0]!=-1):
 					count+=1
 					err=Scorer.squared_err(self.p.predict(i,i+j),self.p.test_set_lines[i+j])		
 					print str(err)+"|",
 					inner_sum+=err
 				else:
-					print "lines == -1",
+					print "|",
 			sum+=math.sqrt(inner_sum)
 		return sum*64.0/(count)
 
@@ -43,7 +43,7 @@ p_knn=Predictor_KNN()
 p_knn.read("training_video1-centroid_data")
 p_knn.read_test_set("testing_video-centroid_data")
 print "Preprocessing complete"
-for i in range (300,1378):
+for i in range (300,1377):
 	
 	start_index = i
 	pf_pred.learn(start_index)
