@@ -3,10 +3,9 @@ import time
 import math
 from predict import Predictor
 from predict import Predictor_KNN
-#from pf_predict import PfPredictor
 
 class Visualizer:
-    """A class that displays actual and predicted data in a window."""
+    """A class that displays actual and predicted data (from a predictor) in a window."""
 
     WINDOW_WIDTH = 1024
 
@@ -24,6 +23,7 @@ class Visualizer:
         num_visualizations  -- The number of paths to visualize, meaning the number of times to call visualize
         skip_between_visualizations -- The number of time steps to skip between visualizations
         """
+
         for i in range(num_visualizations):
             self.visualize(start_index+(i*skip_between_visualizations), count, old_points,False)
         self.window.exitonclick()
@@ -38,7 +38,9 @@ class Visualizer:
         count -- the number of points to predict
         old_points -- the number of points leading up to start_index that should be displayed
         wait_after_visualize -- Whether to wait for a mouseclick at the end of the function
+        expect_robot_data -- Whether to expect (and plot) the robot_data array in the predictor
         """
+
         pred = self.predictor
         if not self.setup:
             self.setup=True
@@ -157,16 +159,9 @@ class Visualizer:
 # Run the code below only if this module is being directly executed
 if __name__ == "__main__":
     p=Predictor_KNN()
-    #p=PfPredictor()
     p.read("training_video1-centroid_data")
     p.process()
-    #print "read %d lines, saw %d collisions" % (len(p.lines), len(p.collision_indices))
-    #print "extent is (%d, %d) to (%d, %d)" % (p.minX, p.minY, p.maxX, p.maxY)
     
     start_index = 440
-    # start_index = 1378
-    #p.learn(start_index)
     vis = Visualizer(p)
-    #vis.visualize_many(512, 16, 64,3,5)
     vis.visualize_many(440, 16, 64,3,5)
-    #vis.visualize_many(2000, 16, 64,3,5)

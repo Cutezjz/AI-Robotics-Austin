@@ -24,11 +24,21 @@ def measurement_prob(robot, measurement, sigma):
     return prob
 
 def copy_robot(src):
+    """Copy a robot (particle) and return the copy."""
     result = robot(src.x, src.y, src.heading, src.turning, src.distance)
     result.set_noise(src.turning_noise, src.distance_noise, src.measurement_noise)
     return result
 
 def resample(robots, measurement, num_results, sigma):
+    """Create a filtered set of particles using the 'probability wheel' approach.
+
+    Arguments:
+    - robots: the original set of particles
+    - measurement: the actual [x,y] position measured
+    - num_results: the number of particles in the result set
+    - sigma: the sigma value for calculating measurement probabilities.
+    """
+
     num_robots = len(robots)
     w = []
     w_max = 0.
@@ -48,6 +58,7 @@ def resample(robots, measurement, num_results, sigma):
     return result
 
 def create_particles(count, loc, heading, turning, distance, loc_sigma, heading_sigma, turning_sigma, distance_sigma):
+    """Create and return a new set of particles with the given parameters and noise values."""
 
     TURNING_NOISE = 0.0
     SPEED_NOISE_FACTOR = 0.0
@@ -71,12 +82,33 @@ def create_particles(count, loc, heading, turning, distance, loc_sigma, heading_
 
 
 class PfPredictor:
-	"""A class for predicting robot positions based on a particle filter."""
+	"""A class for predicting robot positions based on a particle filter and history-based collision prediction.
+
+	When learning, a PfPredictor object will create PARTICLE_COUNT particles (robots) and update
+	the set using normal particle filtering methods.  However, if a collision is detected, the
+	predictor will look in its (preferably large) database of previously-seen collisions and pick
+	the one with the closest angle of collision to the current collision, and then override
+	particle movements for the next COLLISION_HISTORY_STEPS with the historical collision data.
+	After that, particle updates proceed as normal.
+
+	To properly use a PfPredictor object, do this:
+
+	- Call read(datafile_name).
+	- Call process(create_collision_database). Normally, create_collision_database is True when
+	  processing the training file, and False when getting ready to predict data in the test set.
+	- Set the collision database if it comes from a separate training set.
+	- Call learn(num_lines) where num_lines can be None to learn on the entire dataset.
+	- Call predict(xxx, xxx) for each point to predict.  Note that the parameters are ignored; they
+	  are present only to be compatible with other predictor classes.
+	"""
 
 	HEXBUG_LENGTH = 36		# Approximate hexbug length (in pixels)
 	HEXBUG_WIDTH  = 10		# Approximate hexbug width (in pixels)
 
 	COLLISION_REGION = 2	# Collision detection margin (in pixels)
+
+	PARTICLE_COUNT = 50				# Number of particles (robots) used
+	PARTICLE_REMOVAL_FRACTION = 0.1	# Fraction of particles replaced with every learning step
 
 	# Enumerated values for which wall causes a collision
 	WALL_NONE = 0
@@ -173,6 +205,7 @@ class PfPredictor:
 		x, y, speed, heading, turning = self.get_robot_averages()
 
 		if self.steps_to_playback > 0:
+			# We're playing back a collision replay sequence
 			heading_delta, playback_speed = self.collision_steps[-self.steps_to_playback]
 			new_heading = angle_trunc(heading + heading_delta)
 			x_delta = playback_speed * cos(new_heading)
@@ -202,42 +235,44 @@ class PfPredictor:
 		return [x,y]
 
 	def learn(self, num_points=None):
-		PARTICLE_COUNT = 50
-		PARTICLE_REMOVAL_FRACTION = 0.1
+		"""Train the particle fleet, and create the robot_data array of particle averages for each step.
+
+		If num_points is not None, it is a limit on the number of datapoints to process.
+		"""
+
 		RESAMPLE_SIGMA = 1.0
 		START_LOCATION_NOISE = 0.5
 		START_HEADING_NOISE = 0.02
 		START_TURNING_NOISE = 0.01
 		START_SPEED_NOISE = 0.05
 
-		# First, find reasonable initial settings for the first robots:
+		# First, find reasonable initial settings for the first particles:
 		pt = 0
 		self.robot_data = []
 		while len(self.lines[pt]) < 6 or not self.lines[pt][2] or not self.lines[pt][4] or self.lines[pt][5]:
 			self.robot_data.append([-1.0, -1.0, 0.0, 0.0])
 			pt += 1
 		x_i, y_i, s_i, h_i, ta_i, c_i = self.lines[pt]
-		# print "initial speed = %.3f, angle = %.3f" % (s_i, ta_i)
 
 		# Create the initial particle fleet:
-		self.particles = create_particles(PARTICLE_COUNT, [x_i, y_i], h_i, ta_i, s_i, START_LOCATION_NOISE, START_HEADING_NOISE, START_TURNING_NOISE, START_SPEED_NOISE)
+		self.particles = create_particles(self.PARTICLE_COUNT, [x_i, y_i], h_i, ta_i, s_i, START_LOCATION_NOISE, START_HEADING_NOISE, START_TURNING_NOISE, START_SPEED_NOISE)
 
-		new_particle_count = int(PARTICLE_COUNT * PARTICLE_REMOVAL_FRACTION)
-		keep_particle_count = PARTICLE_COUNT - new_particle_count
+		new_particle_count = int(self.PARTICLE_COUNT * self.PARTICLE_REMOVAL_FRACTION)
+		keep_particle_count = self.PARTICLE_COUNT - new_particle_count
 
 		if num_points == None:
 			num_points = len(self.lines)
 		num_points = min(num_points, len(self.lines))
 
-		cum_speed = None	# cumulative speed estimate
-		cum_turn_angle = None
+		cum_speed = None		# cumulative speed estimate
+		cum_turn_angle = None	# cumulative turn angle estimate
 
 		# Begin moving particles and learning:
 		while pt < num_points:
 			# Move particles
 			self.predict(0, 0)
-				
-			# Filter particles and create new ones to replace those removed
+
+			# Filter particles and create new ones to replace those removed.
 			# We resample and create new particles only if there's enough valid data at this point
 			if len(self.lines) >= 6 and self.lines[pt][0] != -1.0 and self.lines[pt][4]:
 				x_i, y_i, s_i, h_i, ta_i, c_i = self.lines[pt]
@@ -258,14 +293,17 @@ class PfPredictor:
 			robot_averages = self.get_robot_averages()
 			self.robot_data.append(robot_averages)
 			pt += 1
-	def read_test_set(self,filename):
+
+	def read_test_set(self, filename):
 		f = open(filename)
-		self.test_set_lines=[[float(d) for d in line.strip().replace('[','').replace(',','').replace(']','').split()] for line in f.readlines()]
+		self.test_set_lines = [[float(d) for d in line.strip().replace('[','').replace(',','').replace(']','').split()] for line in f.readlines()]
 		f.close()
-		
-	def read(self,filename):
+
+	def read(self, filename):
+		"""Load datapoints from file 'filename'."""
+
 		f = open(filename)
-		self.lines=[[float(d) for d in line.strip().replace('[','').replace(',','').replace(']','').split()] for line in f.readlines()]
+		self.lines = [[float(d) for d in line.strip().replace('[','').replace(',','').replace(']','').split()] for line in f.readlines()]
 		f.close()
 
 	def process(self, create_collision_database=True):
@@ -273,7 +311,7 @@ class PfPredictor:
 
 		This involves:
 		- Finding the min and max X and Y values in the data
-		- Filtering out stray datapoints
+		- Filtering out crazy datapoints (based on a maximum delta from previous position)
 		- Annotating each datapoint with speed and angle
 		- Creating a collision database (if requested)
 		"""
@@ -292,7 +330,6 @@ class PfPredictor:
 			# If we find one, convert it to [-1, -1]
 			if i > 0 and self.lines[i][0] != -1:
 				if abs(last_good_point[0] - self.lines[i][0]) > MAX_DELTA * (bad_lines+1) or abs(last_good_point[1] - self.lines[i][1]) > MAX_DELTA * (bad_lines+1):
-					# print 'Rejecting datapoint [%d, %d]' % (self.lines[i][0], self.lines[i][1])
 					self.lines[i][0] = -1
 					self.lines[i][1] = -1
 
@@ -358,15 +395,12 @@ class PfPredictor:
 				self.lines[i] += [None, None, None, None]
 				self.steps_to_record = 0	# A [-1, -1] terminates collision recording
 
-		# print "Sorting collision database of %d entries" % (len(self.collision_database))
 		sorted_database = sorted(self.collision_database, key=lambda collision: collision[0])
 		self.collision_database = sorted_database
-		# print "Collision database:"
-		# for c in self.collision_database:
-		# 	print c
 
 def make_pf_predictor(training_file_name, test_file_name):
 	"""Create a PfPredictor that is ready to learn on test file data."""
+
 	p_train = PfPredictor()
 	p_train.read(training_file_name)
 	p_train.process()
@@ -375,17 +409,13 @@ def make_pf_predictor(training_file_name, test_file_name):
 	p_test.read(test_file_name)
 	p_test.process(False)
 	p_test.collision_database = p_train.collision_database
-	# print "read %d lines, saw %d collisions" % (len(p_test.lines), len(p_test.collision_database))
-	# print "extent is (%d, %d) to (%d, %d)" % (p_test.minX, p_test.minY, p_test.maxX, p_test.maxY)
 
 	return p_test
 
 # Run the code below only if this module is being directly executed
 if __name__ == "__main__":
 	p = make_pf_predictor("training_video1-centroid_data", "testing_video-centroid_data")
-	# p = make_pf_predictor("training_video1-centroid_data", "training_video1-centroid_data")
 
-	# start_index = 440
 	start_index = 1378
 	p.learn(start_index)
 
