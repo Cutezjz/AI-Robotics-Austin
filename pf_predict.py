@@ -119,9 +119,8 @@ class PfPredictor:
 
 	COLLISION_HISTORY_STEPS = 7		# Number of steps to play back from history after a collision
 
-	def __init__(self,noise_parameter=0):
+	def __init__(self):
 		self.lines=[[]]
-		self.noise=noise_parameter
 		self.steps_to_record = 0
 		self.steps_to_playback = 0
 		self.collision_database = []

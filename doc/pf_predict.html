@@ -1,0 +1,278 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module pf_predict</title>
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>pf_predict</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:///E:/omscs/cs8803/projects/finalproject/ai-robotics-austin/pf_predict.py">e:\omscs\cs8803\projects\finalproject\ai-robotics-austin\pf_predict.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="math.html">math</a><br>
+</td><td width="25%" valign=top><a href="random.html">random</a><br>
+</td><td width="25%" valign=top><a href="visualize.html">visualize</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="pf_predict.html#PfPredictor">PfPredictor</a>
+</font></dt></dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="PfPredictor">class <strong>PfPredictor</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>A&nbsp;class&nbsp;for&nbsp;predicting&nbsp;robot&nbsp;positions&nbsp;based&nbsp;on&nbsp;a&nbsp;particle&nbsp;filter&nbsp;and&nbsp;history-based&nbsp;collision&nbsp;prediction.<br>
+&nbsp;<br>
+When&nbsp;learning,&nbsp;a&nbsp;<a href="#PfPredictor">PfPredictor</a>&nbsp;object&nbsp;will&nbsp;create&nbsp;PARTICLE_COUNT&nbsp;particles&nbsp;(robots)&nbsp;and&nbsp;update<br>
+the&nbsp;set&nbsp;using&nbsp;normal&nbsp;particle&nbsp;filtering&nbsp;methods.&nbsp;&nbsp;However,&nbsp;if&nbsp;a&nbsp;collision&nbsp;is&nbsp;detected,&nbsp;the<br>
+predictor&nbsp;will&nbsp;look&nbsp;in&nbsp;its&nbsp;(preferably&nbsp;large)&nbsp;database&nbsp;of&nbsp;previously-seen&nbsp;collisions&nbsp;and&nbsp;pick<br>
+the&nbsp;one&nbsp;with&nbsp;the&nbsp;closest&nbsp;angle&nbsp;of&nbsp;collision&nbsp;to&nbsp;the&nbsp;current&nbsp;collision,&nbsp;and&nbsp;then&nbsp;override<br>
+particle&nbsp;movements&nbsp;for&nbsp;the&nbsp;next&nbsp;COLLISION_HISTORY_STEPS&nbsp;with&nbsp;the&nbsp;historical&nbsp;collision&nbsp;data.<br>
+After&nbsp;that,&nbsp;particle&nbsp;updates&nbsp;proceed&nbsp;as&nbsp;normal.<br>
+&nbsp;<br>
+To&nbsp;properly&nbsp;use&nbsp;a&nbsp;<a href="#PfPredictor">PfPredictor</a>&nbsp;object,&nbsp;do&nbsp;this:<br>
+&nbsp;<br>
+-&nbsp;Call&nbsp;<a href="#PfPredictor-read">read</a>(datafile_name).<br>
+-&nbsp;Call&nbsp;<a href="#PfPredictor-process">process</a>(create_collision_database).&nbsp;Normally,&nbsp;create_collision_database&nbsp;is&nbsp;True&nbsp;when<br>
+&nbsp;&nbsp;processing&nbsp;the&nbsp;training&nbsp;file,&nbsp;and&nbsp;False&nbsp;when&nbsp;getting&nbsp;ready&nbsp;to&nbsp;predict&nbsp;data&nbsp;in&nbsp;the&nbsp;test&nbsp;set.<br>
+-&nbsp;Set&nbsp;the&nbsp;collision&nbsp;database&nbsp;if&nbsp;it&nbsp;comes&nbsp;from&nbsp;a&nbsp;separate&nbsp;training&nbsp;set.<br>
+-&nbsp;Call&nbsp;<a href="#PfPredictor-learn">learn</a>(num_lines)&nbsp;where&nbsp;num_lines&nbsp;can&nbsp;be&nbsp;None&nbsp;to&nbsp;learn&nbsp;on&nbsp;the&nbsp;entire&nbsp;dataset.<br>
+-&nbsp;Call&nbsp;<a href="#PfPredictor-predict">predict</a>(xxx,&nbsp;xxx)&nbsp;for&nbsp;each&nbsp;point&nbsp;to&nbsp;predict.&nbsp;&nbsp;Note&nbsp;that&nbsp;the&nbsp;parameters&nbsp;are&nbsp;ignored;&nbsp;they<br>
+&nbsp;&nbsp;are&nbsp;present&nbsp;only&nbsp;to&nbsp;be&nbsp;compatible&nbsp;with&nbsp;other&nbsp;predictor&nbsp;classes.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="PfPredictor-__init__"><strong>__init__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="PfPredictor-find_nearest_collision_sequence"><strong>find_nearest_collision_sequence</strong></a>(self, entry_angle)</dt><dd><tt>Search&nbsp;the&nbsp;collision&nbsp;database&nbsp;for&nbsp;the&nbsp;nearest&nbsp;entry&nbsp;and&nbsp;return&nbsp;it</tt></dd></dl>
+
+<dl><dt><a name="PfPredictor-get_hexbug_front"><strong>get_hexbug_front</strong></a>(self, pos, heading, distance<font color="#909090">=0.0</font>)</dt><dd><tt>Return&nbsp;the&nbsp;rough&nbsp;location&nbsp;of&nbsp;the&nbsp;front&nbsp;center&nbsp;of&nbsp;the&nbsp;hexbug.<br>
+&nbsp;<br>
+pos&nbsp;-&nbsp;[x,y]&nbsp;coordinates&nbsp;of&nbsp;the&nbsp;bug's&nbsp;centroid<br>
+heading&nbsp;-&nbsp;bug&nbsp;heading&nbsp;(in&nbsp;radians)<br>
+distance&nbsp;-&nbsp;an&nbsp;additional&nbsp;distance&nbsp;to&nbsp;add&nbsp;(in&nbsp;the&nbsp;direction&nbsp;of&nbsp;'heading')</tt></dd></dl>
+
+<dl><dt><a name="PfPredictor-get_robot_averages"><strong>get_robot_averages</strong></a>(self)</dt><dd><tt>Return&nbsp;averages&nbsp;of&nbsp;[x,&nbsp;y,&nbsp;speed,&nbsp;heading]&nbsp;across&nbsp;all&nbsp;robots</tt></dd></dl>
+
+<dl><dt><a name="PfPredictor-learn"><strong>learn</strong></a>(self, num_points<font color="#909090">=None</font>)</dt><dd><tt>Train&nbsp;the&nbsp;particle&nbsp;fleet,&nbsp;and&nbsp;create&nbsp;the&nbsp;robot_data&nbsp;array&nbsp;of&nbsp;particle&nbsp;averages&nbsp;for&nbsp;each&nbsp;step.<br>
+&nbsp;<br>
+If&nbsp;num_points&nbsp;is&nbsp;not&nbsp;None,&nbsp;it&nbsp;is&nbsp;a&nbsp;limit&nbsp;on&nbsp;the&nbsp;number&nbsp;of&nbsp;datapoints&nbsp;to&nbsp;process.</tt></dd></dl>
+
+<dl><dt><a name="PfPredictor-predict"><strong>predict</strong></a>(self, fromPoint, toPoint)</dt><dd><tt>Predict&nbsp;the&nbsp;datapoint&nbsp;at&nbsp;index&nbsp;'toPoint'</tt></dd></dl>
+
+<dl><dt><a name="PfPredictor-predict_collision"><strong>predict_collision</strong></a>(self, loc, heading, speed, turn_angle)</dt><dd><tt>Will&nbsp;hexbug&nbsp;hit&nbsp;the&nbsp;wall&nbsp;in&nbsp;the&nbsp;NEXT&nbsp;time&nbsp;step?<br>
+&nbsp;<br>
+If&nbsp;so,&nbsp;return&nbsp;[WALL_xxx,&nbsp;near_corner?,&nbsp;entry_angle].<br>
+If&nbsp;not,&nbsp;return&nbsp;[WALL_NONE,&nbsp;False,&nbsp;None]</tt></dd></dl>
+
+<dl><dt><a name="PfPredictor-process"><strong>process</strong></a>(self, create_collision_database<font color="#909090">=True</font>)</dt><dd><tt>Prepare&nbsp;the&nbsp;data&nbsp;for&nbsp;use.<br>
+&nbsp;<br>
+This&nbsp;involves:<br>
+-&nbsp;Finding&nbsp;the&nbsp;min&nbsp;and&nbsp;max&nbsp;X&nbsp;and&nbsp;Y&nbsp;values&nbsp;in&nbsp;the&nbsp;data<br>
+-&nbsp;Filtering&nbsp;out&nbsp;crazy&nbsp;datapoints&nbsp;(based&nbsp;on&nbsp;a&nbsp;maximum&nbsp;delta&nbsp;from&nbsp;previous&nbsp;position)<br>
+-&nbsp;Annotating&nbsp;each&nbsp;datapoint&nbsp;with&nbsp;speed&nbsp;and&nbsp;angle<br>
+-&nbsp;Creating&nbsp;a&nbsp;collision&nbsp;database&nbsp;(if&nbsp;requested)</tt></dd></dl>
+
+<dl><dt><a name="PfPredictor-read"><strong>read</strong></a>(self, filename)</dt><dd><tt>Load&nbsp;datapoints&nbsp;from&nbsp;file&nbsp;'filename'.</tt></dd></dl>
+
+<dl><dt><a name="PfPredictor-read_test_set"><strong>read_test_set</strong></a>(self, filename)</dt></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>COLLISION_HISTORY_STEPS</strong> = 7</dl>
+
+<dl><dt><strong>COLLISION_REGION</strong> = 2</dl>
+
+<dl><dt><strong>HEXBUG_LENGTH</strong> = 36</dl>
+
+<dl><dt><strong>HEXBUG_WIDTH</strong> = 10</dl>
+
+<dl><dt><strong>PARTICLE_COUNT</strong> = 50</dl>
+
+<dl><dt><strong>PARTICLE_REMOVAL_FRACTION</strong> = 0.1</dl>
+
+<dl><dt><strong>WALL_BOTTOM</strong> = 4</dl>
+
+<dl><dt><strong>WALL_LEFT</strong> = 3</dl>
+
+<dl><dt><strong>WALL_NONE</strong> = 0</dl>
+
+<dl><dt><strong>WALL_RIGHT</strong> = 1</dl>
+
+<dl><dt><strong>WALL_TOP</strong> = 2</dl>
+
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-Gaussian2d"><strong>Gaussian2d</strong></a>(mu, sigma, x)</dt><dd><tt>Return&nbsp;the&nbsp;probability&nbsp;of&nbsp;x&nbsp;for&nbsp;a&nbsp;2D&nbsp;(but&nbsp;circular)&nbsp;Gaussian&nbsp;with&nbsp;mean&nbsp;mu&nbsp;and&nbsp;var.&nbsp;sigma</tt></dd></dl>
+ <dl><dt><a name="-acos"><strong>acos</strong></a>(...)</dt><dd><tt><a href="#-acos">acos</a>(x)<br>
+&nbsp;<br>
+Return&nbsp;the&nbsp;arc&nbsp;cosine&nbsp;(measured&nbsp;in&nbsp;radians)&nbsp;of&nbsp;x.</tt></dd></dl>
+ <dl><dt><a name="-acosh"><strong>acosh</strong></a>(...)</dt><dd><tt><a href="#-acosh">acosh</a>(x)<br>
+&nbsp;<br>
+Return&nbsp;the&nbsp;hyperbolic&nbsp;arc&nbsp;cosine&nbsp;(measured&nbsp;in&nbsp;radians)&nbsp;of&nbsp;x.</tt></dd></dl>
+ <dl><dt><a name="-angle_trunc"><strong>angle_trunc</strong></a>(a)</dt><dd><tt>This&nbsp;maps&nbsp;all&nbsp;angles&nbsp;to&nbsp;a&nbsp;domain&nbsp;of&nbsp;[-pi,&nbsp;pi]</tt></dd></dl>
+ <dl><dt><a name="-asin"><strong>asin</strong></a>(...)</dt><dd><tt><a href="#-asin">asin</a>(x)<br>
+&nbsp;<br>
+Return&nbsp;the&nbsp;arc&nbsp;sine&nbsp;(measured&nbsp;in&nbsp;radians)&nbsp;of&nbsp;x.</tt></dd></dl>
+ <dl><dt><a name="-asinh"><strong>asinh</strong></a>(...)</dt><dd><tt><a href="#-asinh">asinh</a>(x)<br>
+&nbsp;<br>
+Return&nbsp;the&nbsp;hyperbolic&nbsp;arc&nbsp;sine&nbsp;(measured&nbsp;in&nbsp;radians)&nbsp;of&nbsp;x.</tt></dd></dl>
+ <dl><dt><a name="-atan"><strong>atan</strong></a>(...)</dt><dd><tt><a href="#-atan">atan</a>(x)<br>
+&nbsp;<br>
+Return&nbsp;the&nbsp;arc&nbsp;tangent&nbsp;(measured&nbsp;in&nbsp;radians)&nbsp;of&nbsp;x.</tt></dd></dl>
+ <dl><dt><a name="-atan2"><strong>atan2</strong></a>(...)</dt><dd><tt><a href="#-atan2">atan2</a>(y,&nbsp;x)<br>
+&nbsp;<br>
+Return&nbsp;the&nbsp;arc&nbsp;tangent&nbsp;(measured&nbsp;in&nbsp;radians)&nbsp;of&nbsp;y/x.<br>
+Unlike&nbsp;<a href="#-atan">atan</a>(y/x),&nbsp;the&nbsp;signs&nbsp;of&nbsp;both&nbsp;x&nbsp;and&nbsp;y&nbsp;are&nbsp;considered.</tt></dd></dl>
+ <dl><dt><a name="-atanh"><strong>atanh</strong></a>(...)</dt><dd><tt><a href="#-atanh">atanh</a>(x)<br>
+&nbsp;<br>
+Return&nbsp;the&nbsp;hyperbolic&nbsp;arc&nbsp;tangent&nbsp;(measured&nbsp;in&nbsp;radians)&nbsp;of&nbsp;x.</tt></dd></dl>
+ <dl><dt><a name="-ceil"><strong>ceil</strong></a>(...)</dt><dd><tt><a href="#-ceil">ceil</a>(x)<br>
+&nbsp;<br>
+Return&nbsp;the&nbsp;ceiling&nbsp;of&nbsp;x&nbsp;as&nbsp;a&nbsp;float.<br>
+This&nbsp;is&nbsp;the&nbsp;smallest&nbsp;integral&nbsp;value&nbsp;&gt;=&nbsp;x.</tt></dd></dl>
+ <dl><dt><a name="-copy_robot"><strong>copy_robot</strong></a>(src)</dt><dd><tt>Copy&nbsp;a&nbsp;robot&nbsp;(particle)&nbsp;and&nbsp;return&nbsp;the&nbsp;copy.</tt></dd></dl>
+ <dl><dt><a name="-copysign"><strong>copysign</strong></a>(...)</dt><dd><tt><a href="#-copysign">copysign</a>(x,&nbsp;y)<br>
+&nbsp;<br>
+Return&nbsp;x&nbsp;with&nbsp;the&nbsp;sign&nbsp;of&nbsp;y.</tt></dd></dl>
+ <dl><dt><a name="-cos"><strong>cos</strong></a>(...)</dt><dd><tt><a href="#-cos">cos</a>(x)<br>
+&nbsp;<br>
+Return&nbsp;the&nbsp;cosine&nbsp;of&nbsp;x&nbsp;(measured&nbsp;in&nbsp;radians).</tt></dd></dl>
+ <dl><dt><a name="-cosh"><strong>cosh</strong></a>(...)</dt><dd><tt><a href="#-cosh">cosh</a>(x)<br>
+&nbsp;<br>
+Return&nbsp;the&nbsp;hyperbolic&nbsp;cosine&nbsp;of&nbsp;x.</tt></dd></dl>
+ <dl><dt><a name="-create_particles"><strong>create_particles</strong></a>(count, loc, heading, turning, distance, loc_sigma, heading_sigma, turning_sigma, distance_sigma)</dt><dd><tt>Create&nbsp;and&nbsp;return&nbsp;a&nbsp;new&nbsp;set&nbsp;of&nbsp;particles&nbsp;with&nbsp;the&nbsp;given&nbsp;parameters&nbsp;and&nbsp;noise&nbsp;values.</tt></dd></dl>
+ <dl><dt><a name="-degrees"><strong>degrees</strong></a>(...)</dt><dd><tt><a href="#-degrees">degrees</a>(x)<br>
+&nbsp;<br>
+Convert&nbsp;angle&nbsp;x&nbsp;from&nbsp;radians&nbsp;to&nbsp;degrees.</tt></dd></dl>
+ <dl><dt><a name="-erf"><strong>erf</strong></a>(...)</dt><dd><tt><a href="#-erf">erf</a>(x)<br>
+&nbsp;<br>
+Error&nbsp;function&nbsp;at&nbsp;x.</tt></dd></dl>
+ <dl><dt><a name="-erfc"><strong>erfc</strong></a>(...)</dt><dd><tt><a href="#-erfc">erfc</a>(x)<br>
+&nbsp;<br>
+Complementary&nbsp;error&nbsp;function&nbsp;at&nbsp;x.</tt></dd></dl>
+ <dl><dt><a name="-exp"><strong>exp</strong></a>(...)</dt><dd><tt><a href="#-exp">exp</a>(x)<br>
+&nbsp;<br>
+Return&nbsp;e&nbsp;raised&nbsp;to&nbsp;the&nbsp;power&nbsp;of&nbsp;x.</tt></dd></dl>
+ <dl><dt><a name="-expm1"><strong>expm1</strong></a>(...)</dt><dd><tt><a href="#-expm1">expm1</a>(x)<br>
+&nbsp;<br>
+Return&nbsp;<a href="#-exp">exp</a>(x)-1.<br>
+This&nbsp;function&nbsp;avoids&nbsp;the&nbsp;loss&nbsp;of&nbsp;precision&nbsp;involved&nbsp;in&nbsp;the&nbsp;direct&nbsp;evaluation&nbsp;of&nbsp;<a href="#-exp">exp</a>(x)-1&nbsp;for&nbsp;small&nbsp;x.</tt></dd></dl>
+ <dl><dt><a name="-fabs"><strong>fabs</strong></a>(...)</dt><dd><tt><a href="#-fabs">fabs</a>(x)<br>
+&nbsp;<br>
+Return&nbsp;the&nbsp;absolute&nbsp;value&nbsp;of&nbsp;the&nbsp;float&nbsp;x.</tt></dd></dl>
+ <dl><dt><a name="-factorial"><strong>factorial</strong></a>(...)</dt><dd><tt><a href="#-factorial">factorial</a>(x)&nbsp;-&gt;&nbsp;Integral<br>
+&nbsp;<br>
+Find&nbsp;x!.&nbsp;Raise&nbsp;a&nbsp;ValueError&nbsp;if&nbsp;x&nbsp;is&nbsp;negative&nbsp;or&nbsp;non-integral.</tt></dd></dl>
+ <dl><dt><a name="-floor"><strong>floor</strong></a>(...)</dt><dd><tt><a href="#-floor">floor</a>(x)<br>
+&nbsp;<br>
+Return&nbsp;the&nbsp;floor&nbsp;of&nbsp;x&nbsp;as&nbsp;a&nbsp;float.<br>
+This&nbsp;is&nbsp;the&nbsp;largest&nbsp;integral&nbsp;value&nbsp;&lt;=&nbsp;x.</tt></dd></dl>
+ <dl><dt><a name="-fmod"><strong>fmod</strong></a>(...)</dt><dd><tt><a href="#-fmod">fmod</a>(x,&nbsp;y)<br>
+&nbsp;<br>
+Return&nbsp;<a href="#-fmod">fmod</a>(x,&nbsp;y),&nbsp;according&nbsp;to&nbsp;platform&nbsp;C.&nbsp;&nbsp;x&nbsp;%&nbsp;y&nbsp;may&nbsp;differ.</tt></dd></dl>
+ <dl><dt><a name="-frexp"><strong>frexp</strong></a>(...)</dt><dd><tt><a href="#-frexp">frexp</a>(x)<br>
+&nbsp;<br>
+Return&nbsp;the&nbsp;mantissa&nbsp;and&nbsp;exponent&nbsp;of&nbsp;x,&nbsp;as&nbsp;pair&nbsp;(m,&nbsp;e).<br>
+m&nbsp;is&nbsp;a&nbsp;float&nbsp;and&nbsp;e&nbsp;is&nbsp;an&nbsp;int,&nbsp;such&nbsp;that&nbsp;x&nbsp;=&nbsp;m&nbsp;*&nbsp;2.**e.<br>
+If&nbsp;x&nbsp;is&nbsp;0,&nbsp;m&nbsp;and&nbsp;e&nbsp;are&nbsp;both&nbsp;0.&nbsp;&nbsp;Else&nbsp;0.5&nbsp;&lt;=&nbsp;abs(m)&nbsp;&lt;&nbsp;1.0.</tt></dd></dl>
+ <dl><dt><a name="-fsum"><strong>fsum</strong></a>(...)</dt><dd><tt><a href="#-fsum">fsum</a>(iterable)<br>
+&nbsp;<br>
+Return&nbsp;an&nbsp;accurate&nbsp;floating&nbsp;point&nbsp;sum&nbsp;of&nbsp;values&nbsp;in&nbsp;the&nbsp;iterable.<br>
+Assumes&nbsp;IEEE-754&nbsp;floating&nbsp;point&nbsp;arithmetic.</tt></dd></dl>
+ <dl><dt><a name="-gamma"><strong>gamma</strong></a>(...)</dt><dd><tt><a href="#-gamma">gamma</a>(x)<br>
+&nbsp;<br>
+Gamma&nbsp;function&nbsp;at&nbsp;x.</tt></dd></dl>
+ <dl><dt><a name="-hypot"><strong>hypot</strong></a>(...)</dt><dd><tt><a href="#-hypot">hypot</a>(x,&nbsp;y)<br>
+&nbsp;<br>
+Return&nbsp;the&nbsp;Euclidean&nbsp;distance,&nbsp;<a href="#-sqrt">sqrt</a>(x*x&nbsp;+&nbsp;y*y).</tt></dd></dl>
+ <dl><dt><a name="-isinf"><strong>isinf</strong></a>(...)</dt><dd><tt><a href="#-isinf">isinf</a>(x)&nbsp;-&gt;&nbsp;bool<br>
+&nbsp;<br>
+Check&nbsp;if&nbsp;float&nbsp;x&nbsp;is&nbsp;infinite&nbsp;(positive&nbsp;or&nbsp;negative).</tt></dd></dl>
+ <dl><dt><a name="-isnan"><strong>isnan</strong></a>(...)</dt><dd><tt><a href="#-isnan">isnan</a>(x)&nbsp;-&gt;&nbsp;bool<br>
+&nbsp;<br>
+Check&nbsp;if&nbsp;float&nbsp;x&nbsp;is&nbsp;not&nbsp;a&nbsp;number&nbsp;(NaN).</tt></dd></dl>
+ <dl><dt><a name="-ldexp"><strong>ldexp</strong></a>(...)</dt><dd><tt><a href="#-ldexp">ldexp</a>(x,&nbsp;i)<br>
+&nbsp;<br>
+Return&nbsp;x&nbsp;*&nbsp;(2**i).</tt></dd></dl>
+ <dl><dt><a name="-lgamma"><strong>lgamma</strong></a>(...)</dt><dd><tt><a href="#-lgamma">lgamma</a>(x)<br>
+&nbsp;<br>
+Natural&nbsp;logarithm&nbsp;of&nbsp;absolute&nbsp;value&nbsp;of&nbsp;Gamma&nbsp;function&nbsp;at&nbsp;x.</tt></dd></dl>
+ <dl><dt><a name="-log"><strong>log</strong></a>(...)</dt><dd><tt><a href="#-log">log</a>(x[,&nbsp;base])<br>
+&nbsp;<br>
+Return&nbsp;the&nbsp;logarithm&nbsp;of&nbsp;x&nbsp;to&nbsp;the&nbsp;given&nbsp;base.<br>
+If&nbsp;the&nbsp;base&nbsp;not&nbsp;specified,&nbsp;returns&nbsp;the&nbsp;natural&nbsp;logarithm&nbsp;(base&nbsp;e)&nbsp;of&nbsp;x.</tt></dd></dl>
+ <dl><dt><a name="-log10"><strong>log10</strong></a>(...)</dt><dd><tt><a href="#-log10">log10</a>(x)<br>
+&nbsp;<br>
+Return&nbsp;the&nbsp;base&nbsp;10&nbsp;logarithm&nbsp;of&nbsp;x.</tt></dd></dl>
+ <dl><dt><a name="-log1p"><strong>log1p</strong></a>(...)</dt><dd><tt><a href="#-log1p">log1p</a>(x)<br>
+&nbsp;<br>
+Return&nbsp;the&nbsp;natural&nbsp;logarithm&nbsp;of&nbsp;1+x&nbsp;(base&nbsp;e).<br>
+The&nbsp;result&nbsp;is&nbsp;computed&nbsp;in&nbsp;a&nbsp;way&nbsp;which&nbsp;is&nbsp;accurate&nbsp;for&nbsp;x&nbsp;near&nbsp;zero.</tt></dd></dl>
+ <dl><dt><a name="-make_pf_predictor"><strong>make_pf_predictor</strong></a>(training_file_name, test_file_name)</dt><dd><tt>Create&nbsp;a&nbsp;<a href="#PfPredictor">PfPredictor</a>&nbsp;that&nbsp;is&nbsp;ready&nbsp;to&nbsp;learn&nbsp;on&nbsp;test&nbsp;file&nbsp;data.</tt></dd></dl>
+ <dl><dt><a name="-measurement_prob"><strong>measurement_prob</strong></a>(robot, measurement, sigma)</dt><dd><tt>Returns&nbsp;the&nbsp;likelihood&nbsp;of&nbsp;a&nbsp;measurement,&nbsp;assuming&nbsp;a&nbsp;circular&nbsp;Gaussian&nbsp;distribution.</tt></dd></dl>
+ <dl><dt><a name="-modf"><strong>modf</strong></a>(...)</dt><dd><tt><a href="#-modf">modf</a>(x)<br>
+&nbsp;<br>
+Return&nbsp;the&nbsp;fractional&nbsp;and&nbsp;integer&nbsp;parts&nbsp;of&nbsp;x.&nbsp;&nbsp;Both&nbsp;results&nbsp;carry&nbsp;the&nbsp;sign<br>
+of&nbsp;x&nbsp;and&nbsp;are&nbsp;floats.</tt></dd></dl>
+ <dl><dt><a name="-pow"><strong>pow</strong></a>(...)</dt><dd><tt><a href="#-pow">pow</a>(x,&nbsp;y)<br>
+&nbsp;<br>
+Return&nbsp;x**y&nbsp;(x&nbsp;to&nbsp;the&nbsp;power&nbsp;of&nbsp;y).</tt></dd></dl>
+ <dl><dt><a name="-radians"><strong>radians</strong></a>(...)</dt><dd><tt><a href="#-radians">radians</a>(x)<br>
+&nbsp;<br>
+Convert&nbsp;angle&nbsp;x&nbsp;from&nbsp;degrees&nbsp;to&nbsp;radians.</tt></dd></dl>
+ <dl><dt><a name="-resample"><strong>resample</strong></a>(robots, measurement, num_results, sigma)</dt><dd><tt>Create&nbsp;a&nbsp;filtered&nbsp;set&nbsp;of&nbsp;particles&nbsp;using&nbsp;the&nbsp;'probability&nbsp;wheel'&nbsp;approach.<br>
+&nbsp;<br>
+Arguments:<br>
+-&nbsp;robots:&nbsp;the&nbsp;original&nbsp;set&nbsp;of&nbsp;particles<br>
+-&nbsp;measurement:&nbsp;the&nbsp;actual&nbsp;[x,y]&nbsp;position&nbsp;measured<br>
+-&nbsp;num_results:&nbsp;the&nbsp;number&nbsp;of&nbsp;particles&nbsp;in&nbsp;the&nbsp;result&nbsp;set<br>
+-&nbsp;sigma:&nbsp;the&nbsp;sigma&nbsp;value&nbsp;for&nbsp;calculating&nbsp;measurement&nbsp;probabilities.</tt></dd></dl>
+ <dl><dt><a name="-sin"><strong>sin</strong></a>(...)</dt><dd><tt><a href="#-sin">sin</a>(x)<br>
+&nbsp;<br>
+Return&nbsp;the&nbsp;sine&nbsp;of&nbsp;x&nbsp;(measured&nbsp;in&nbsp;radians).</tt></dd></dl>
+ <dl><dt><a name="-sinh"><strong>sinh</strong></a>(...)</dt><dd><tt><a href="#-sinh">sinh</a>(x)<br>
+&nbsp;<br>
+Return&nbsp;the&nbsp;hyperbolic&nbsp;sine&nbsp;of&nbsp;x.</tt></dd></dl>
+ <dl><dt><a name="-sqrt"><strong>sqrt</strong></a>(...)</dt><dd><tt><a href="#-sqrt">sqrt</a>(x)<br>
+&nbsp;<br>
+Return&nbsp;the&nbsp;square&nbsp;root&nbsp;of&nbsp;x.</tt></dd></dl>
+ <dl><dt><a name="-tan"><strong>tan</strong></a>(...)</dt><dd><tt><a href="#-tan">tan</a>(x)<br>
+&nbsp;<br>
+Return&nbsp;the&nbsp;tangent&nbsp;of&nbsp;x&nbsp;(measured&nbsp;in&nbsp;radians).</tt></dd></dl>
+ <dl><dt><a name="-tanh"><strong>tanh</strong></a>(...)</dt><dd><tt><a href="#-tanh">tanh</a>(x)<br>
+&nbsp;<br>
+Return&nbsp;the&nbsp;hyperbolic&nbsp;tangent&nbsp;of&nbsp;x.</tt></dd></dl>
+ <dl><dt><a name="-trunc"><strong>trunc</strong></a>(...)</dt><dd><tt><a href="#-trunc">trunc</a>(x:Real)&nbsp;-&gt;&nbsp;Integral<br>
+&nbsp;<br>
+Truncates&nbsp;x&nbsp;to&nbsp;the&nbsp;nearest&nbsp;Integral&nbsp;toward&nbsp;0.&nbsp;Uses&nbsp;the&nbsp;__trunc__&nbsp;magic&nbsp;method.</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>e</strong> = 2.718281828459045<br>
+<strong>pi</strong> = 3.141592653589793</td></tr></table>
+</body></html>

@@ -1,0 +1,68 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module visualize</title>
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>visualize</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:///E:/omscs/cs8803/projects/finalproject/ai-robotics-austin/visualize.py">e:\omscs\cs8803\projects\finalproject\ai-robotics-austin\visualize.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="math.html">math</a><br>
+</td><td width="25%" valign=top><a href="time.html">time</a><br>
+</td><td width="25%" valign=top><a href="turtle.html">turtle</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="visualize.html#Visualizer">Visualizer</a>
+</font></dt></dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Visualizer">class <strong>Visualizer</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>A&nbsp;class&nbsp;that&nbsp;displays&nbsp;actual&nbsp;and&nbsp;predicted&nbsp;data&nbsp;(from&nbsp;a&nbsp;predictor)&nbsp;in&nbsp;a&nbsp;window.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Visualizer-__init__"><strong>__init__</strong></a>(self, predictor)</dt></dl>
+
+<dl><dt><a name="Visualizer-visualize"><strong>visualize</strong></a>(self, start_index, count<font color="#909090">=1</font>, old_points<font color="#909090">=16</font>, wait_after_visualize<font color="#909090">=True</font>, expect_robot_data<font color="#909090">=False</font>)</dt><dd><tt>Display&nbsp;actual&nbsp;and&nbsp;predicted&nbsp;data&nbsp;in&nbsp;a&nbsp;window.<br>
+&nbsp;<br>
+Arguments:<br>
+start_index&nbsp;--&nbsp;the&nbsp;index&nbsp;at&nbsp;which&nbsp;prediction&nbsp;should&nbsp;start<br>
+count&nbsp;--&nbsp;the&nbsp;number&nbsp;of&nbsp;points&nbsp;to&nbsp;predict<br>
+old_points&nbsp;--&nbsp;the&nbsp;number&nbsp;of&nbsp;points&nbsp;leading&nbsp;up&nbsp;to&nbsp;start_index&nbsp;that&nbsp;should&nbsp;be&nbsp;displayed<br>
+wait_after_visualize&nbsp;--&nbsp;Whether&nbsp;to&nbsp;wait&nbsp;for&nbsp;a&nbsp;mouseclick&nbsp;at&nbsp;the&nbsp;end&nbsp;of&nbsp;the&nbsp;function<br>
+expect_robot_data&nbsp;--&nbsp;Whether&nbsp;to&nbsp;expect&nbsp;(and&nbsp;plot)&nbsp;the&nbsp;robot_data&nbsp;array&nbsp;in&nbsp;the&nbsp;predictor</tt></dd></dl>
+
+<dl><dt><a name="Visualizer-visualize_many"><strong>visualize_many</strong></a>(self, start_index, count<font color="#909090">=1</font>, old_points<font color="#909090">=16</font>, num_visualizations<font color="#909090">=1</font>, skip_between_visualizations<font color="#909090">=16</font>)</dt><dd><tt>Display&nbsp;actual&nbsp;and&nbsp;predicted&nbsp;data&nbsp;in&nbsp;a&nbsp;window,&nbsp;plotting&nbsp;predictions&nbsp;from&nbsp;multiple&nbsp;time&nbsp;points.<br>
+&nbsp;<br>
+Arguments:<br>
+start_index&nbsp;--&nbsp;the&nbsp;index&nbsp;at&nbsp;which&nbsp;prediction&nbsp;should&nbsp;start<br>
+count&nbsp;--&nbsp;the&nbsp;number&nbsp;of&nbsp;points&nbsp;to&nbsp;predict<br>
+old_points&nbsp;--&nbsp;the&nbsp;number&nbsp;of&nbsp;points&nbsp;leading&nbsp;up&nbsp;to&nbsp;start_index&nbsp;that&nbsp;should&nbsp;be&nbsp;displayed<br>
+num_visualizations&nbsp;&nbsp;--&nbsp;The&nbsp;number&nbsp;of&nbsp;paths&nbsp;to&nbsp;visualize,&nbsp;meaning&nbsp;the&nbsp;number&nbsp;of&nbsp;times&nbsp;to&nbsp;call&nbsp;visualize<br>
+skip_between_visualizations&nbsp;--&nbsp;The&nbsp;number&nbsp;of&nbsp;time&nbsp;steps&nbsp;to&nbsp;skip&nbsp;between&nbsp;visualizations</tt></dd></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>WINDOW_WIDTH</strong> = 1024</dl>
+
+</td></tr></table></td></tr></table>
+</body></html>
