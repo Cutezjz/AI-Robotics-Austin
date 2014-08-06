@@ -160,6 +160,7 @@ class Visualizer:
 if __name__ == "__main__":
     p=Predictor_KNN()
     p.read("training_video1-centroid_data")
+    p.read_test_set("training_video1-centroid_data")
     p.process()
     
     start_index = 440
