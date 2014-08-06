@@ -36,7 +36,7 @@ for i in range(64):
 
 
 # Output predictions to predictions.txt file in required format
-output = open("./predictions.txt", "w")
+output = open("./prediction.txt", "w")
 output.write('[')
 for i in range(63):
         output.write(str(result[i]).replace('(','[').replace(')',']').replace(' ',''))

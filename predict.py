@@ -148,12 +148,3 @@ class Predictor_KNN(Predictor):
     def predict(self, fromPoint,toPoint):
         """Call the Predictor.predict_knn function"""
         return self.predict_KNN(fromPoint, toPoint)
-
-if __name__ == "__main__":
-    p = Predictor_KNN()
-    p.read("testing_video-centroid_data")
-
-    start_index = 1378
-
-    vis = visualize.Visualizer(p)
-    vis.visualize(start_index, 63, 64, True, False)
