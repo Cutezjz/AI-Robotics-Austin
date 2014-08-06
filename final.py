@@ -5,7 +5,7 @@ import argparse
 
 """
 Final.py will read in the training data and testing data. It will then call the
-KNN predictor to predict the next 64 points in the hex bug's path.
+KNN predictor to predict the next 63 points in the hex bug's path.
 The output will be sent to the prediction.txt file in the required format
 """
 
@@ -29,19 +29,15 @@ p.read_test_set(args.test)
 
 # Add the predicted results to result list
 result=[]
-for i in range(64):
+for i in range(63):
 	result.append(p.predict_KNN(len(p.test_set_lines),len(p.test_set_lines)+1+i))
 
-# Output predictions to predictions.txt file in required format
+# Output predictions to prediction.txt file in required format
 output = open(args.out, "w")
-output.write('[')
-for i in range(63):
-        output.write(str(result[i]).replace('(','[').replace(')',']').replace(' ',''))
-        output.write(',')
-        output.write('\n')
 
-for i in range(63, 64):
-        output.write(str(result[i]).replace('(','[').replace(')',']'))
-        output.write(']')
+output.write('[')
+for i in range(62):
+	output.write("[%d,%d],\n" % (int(result[i][0] + 0.5), int(result[i][1] + 0.5)))
+output.write("[%d,%d]]\n" % (int(result[62][0] + 0.5), int(result[62][1] + 0.5)))
 
 output.close()

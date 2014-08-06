@@ -1,7 +1,6 @@
 #!/usr/bin/python
 import math
 import random
-#import visualize
 
 class Predictor:
     """

@@ -1,27 +1,28 @@
 ======================================================
-Final Project
+CS 8803 Final Project
 Brad Cain, Taylor Phebus, Emiliano Lozano
 ======================================================
 
 The robot motion predictor we developed is based on the K nearest neighbors 
 prediction method. Upon receiving noisy XY coordinates as training data 
-(Possibly the same as the testing data), the KNN predictor shall:
+(possibly the same as the testing data), the KNN predictor shall:
 
-Preprocess the data, replacing missing points with intermediate points
-Normalize each data point to relative coordinates within the box
-Calculate the velocity and angle from each point to the previous point
-Set a KNN mapping from each 4D, normalized point to each X and Y coordinate for the next 63 points
+- Preprocess the data, replacing missing points with intermediate points.
+- Normalize each data point to relative coordinates within the box.
+- Calculate the velocity and angle from each point to the previous point.
+- Set a KNN mapping from each 4D, normalized point to each X and Y coordinate
+for the next 63 points.
 
 Upon receiving the training data, the KNN predictor shall:
 
-Preprocess and calculate the training data with the box size determined by the 
-training data
-From the final 4D normalized point, compute the 7 most similar points in the 
+- Preprocess and calculate the training data with the box size determined by
+the training data.
+- From the final 4D normalized point, compute the 7 most similar points in the
 training data.
-Compute the mean change in X and Y for those 7 points for each of their next
+- Compute the mean change in X and Y for those 7 points for each of their next
 63 points.
-Add that mean offset to the final training point
-Return 63 denormalized XY coordinates from that offset final point.
+- Add that mean offset to the final training point.
+- Return 63 denormalized XY coordinates from that offset final point.
 
 ======================================================
 Command line arguments
@@ -37,7 +38,7 @@ Training data file: training_video1-centroid_data
 
 Test data file: testing_video-centroid_data
 
-Output file: predict.txt
+Output file: prediction.txt
 
 
 ======================================================
@@ -74,7 +75,8 @@ Trained without reference to test data.
 Design Decisions
 ======================================================
 
-The KNN predictor was chosen after careful consideration and comparison with a variety of predictors.
+The KNN predictor was chosen after careful consideration and comparison with
+a variety of predictors.
 
 Among the alternatives considered:
 
@@ -87,26 +89,31 @@ Among the alternatives considered:
 ** max      4220.0
 
 * Neural Network
-** Trained via weka on training data, validated via cross validation 
-** Rejected due to long training time, increased complexity and higher cross validation error compared to KNN
+** Trained via weka on training data, validated via cross-validation 
+** Rejected due to long training time, increased complexity and higher
+cross-validation error compared to KNN
 
 
 * Linear regression
-** Trained via weka on training data, validated via cross validation 
+** Trained via weka on training data, validated via cross-validation 
 ** Input parameters: normalized x, normalized y, angle, velocity
-** Rejected due to extremely high cross validation error
+** Rejected due to extremely high cross-validation error
+
 
 Choices made within KNN Predictor:
 
 * Number of neighbors
-** 7 chosen through trial and error, 7 produced the lowest cross validation error
+** 7 chosen through trial and error, 7 produced the lowest cross-validation
+error
 
 * Weighting for neighbors
 ** Typical choices are weighting by inverse distance and weighting uniformly
-** Uniform weight chosen because inverse distance weighting did not decrease L2 error
+** Uniform weight chosen because inverse distance weighting did not decrease
+L2 error
 
 * Handling missing points
-** Decided to assume missing points are actually intemediate between the known points before and after
+** Decided to assume missing points are actually intermediate between the
+known points before and after
 ** Have to also handle groups of missing points
 
 
@@ -114,16 +121,26 @@ Choices made within KNN Predictor:
 Important files
 ======================================================
 
-All files are documented internally via docstrings. To view in depth file documentation run
+All files are documented internally via docstrings. To view in-depth file
+documentation run
 
 pydoc <file>
 
+(pydoc documentation for all these has also been placed into the 'doc'
+subdirectory)
+
 predict.py
-The predict.py class includes the KNN predictor and various utility functions for predictors
+The predict.py file includes the KNN predictor and various utility functions
+for predictors
 
 pf_predict.py
-The pf_predict.py class includes the particle filter predictor
+The pf_predict.py file includes the particle filter predictor (not used in
+the final solution)
 
 score.py
 Calculates the average L2 error from each point in the testing data
+
+visualize.py
+Defines the Visualizer class, which graphically shows actual and predicted
+paths.
 
