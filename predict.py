@@ -97,10 +97,9 @@ class Predictor:
     def process(self):
         """If KNN is enabled for this predictor, set up the 64 vectors associated with the coordinates up to 64 time steps from each known coordinate"""
         import numpy
-        print "Process"
         if self.allow_knn and len(self.knn_orig)==0:
             self.knn_orig= numpy.array(self.norm_lines)[0:len(self.norm_lines)-64,0:4]
-            for i in range(64):
+            for i in range(65):
                 self.knn_final_x.append(numpy.array(self.norm_lines)[i:len(self.norm_lines)-64+i,0]-numpy.array(self.norm_lines)[0:len(self.norm_lines)-64,0])
                 self.knn_final_y.append(numpy.array(self.norm_lines)[i:len(self.norm_lines)-64+i,1]-numpy.array(self.norm_lines)[0:len(self.norm_lines)-64,1])
     
