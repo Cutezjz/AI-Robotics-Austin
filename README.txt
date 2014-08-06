@@ -2,12 +2,26 @@
 Final Project
 Brad Cain, Taylor Phebus, Emiliano Lozano
 ======================================================
-The general idea is that the Predictor class will read in a files in the format posted online. It can be normalized, which will convert the X,Y coordinates of the points into a pair of floats scaled by the size of the box. Hopefully one corner of the box will be 0,0, the opposite corner will be 1,1. It also has the speed and angle of each point relative to the previous point, if available.
 
-The most important part of the predictor class is the predict function, which should predict the value of the toPoint using information up the the fromPoint. The predictor I included just cheats and looks up  the correct value. 
+The robot motion predictor we developed is based on the K nearest neighbors 
+prediction method. Upon receiving noisy XY coordinates as training data 
+(Possibly the same as the testing data), the KNN predictor shall:
 
-The scorer class evaluates the average accuracy of a predictor by asking the predictor to predict from every time step the value of the following 63 time steps. Because a real learning probably needs a few steps of data to warm up, the scorer can skip to initial_point before asking for predictions.
+Preprocess the data, replacing missing points with intermediate points
+Normalize each data point to relative coordinates within the box
+Calculate the velocity and angle from each point to the previous point
+Set a KNN mapping from each 4D, normalized point to each X and Y coordinate for the next 63 points
 
+Upon receiving the training data, the KNN predictor shall:
+
+Preprocess and calculate the training data with the box size determined by the 
+training data
+From the final 4D normalized point, compute the 7 most similar points in the 
+training data.
+Compute the mean change in X and Y for those 7 points for each of their next
+63 points.
+Add that mean offset to the final training point
+Return 63 denormalized XY coordinates from that offset final point.
 
 ======================================================
 Command line arguments
