@@ -13,6 +13,8 @@ The scorer class evaluates the average accuracy of a predictor by asking the pre
 Command line arguments
 ======================================================
 
+python final.py -h, --help Show command line options
+
 python final.py --training <training data file> --test <test data file> --out <output file>
 
 The data file arguments are optional, and default as follows:
